@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Spotify.Models;
+using UI.Models;
 
-namespace Spotify.Controllers;
+namespace UI.Controllers;
 
 public class HomeController : Controller
 {

@@ -1,4 +1,4 @@
-namespace Spotify.Models;
+namespace UI.Models;
 
 public class ErrorViewModel
 {
