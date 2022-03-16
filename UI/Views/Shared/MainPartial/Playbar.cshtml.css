@@ -1,0 +1,79 @@
+﻿.like{
+    color: #afafaf;
+}
+
+.bar{
+    height: 90px;
+}
+
+.cover{
+    margin: 15px;
+}
+
+.portfolio{
+    margin-top: 30px;
+    overflow: hidden;
+    max-width: 200px;
+    color: whitesmoke;
+    line-height: 17px;
+}
+
+.title{
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+.marquee{
+    
+    animation: slide-left 10s linear infinite alternate;
+}
+
+.artist{
+    font-size: 0.8rem;
+}
+.link{
+    text-decoration: none;
+    color: #afafaf;
+}
+.link:hover{
+    color: whitesmoke;
+    text-decoration-line: underline;
+}
+
+.marquee {
+    color: whitesmoke;
+    text-decoration: none;
+    display: flex;
+    position: relative;
+    transform: translate(0, 0);
+    animation-play-state: paused;
+}
+
+/*.marquee::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10%; !* 1 *!
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(23, 23, 23) 100%);
+    
+}*/
+
+.marquee:hover{
+    text-decoration-line: underline;
+    animation: marquee 20s linear infinite;
+    animation-play-state: running;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translate(0, 0);
+    }
+    50%{
+        transform: translate(-50%, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
