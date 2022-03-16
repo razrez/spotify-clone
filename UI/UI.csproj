@@ -5,16 +5,5 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Views\Account\_AccountHeaderPartial.cshtml" />
-      <_ContentIncludedByDefault Remove="Views\Home\Account\Overview.cshtml" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="Views\Shared\_AccountLayout.cshtml.css">
-        <DependentUpon>_AccountLayout.cshtml.cshtml</DependentUpon>
-      </None>
-    </ItemGroup>
-
+    
 </Project>
