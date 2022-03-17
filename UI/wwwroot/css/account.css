@@ -7,11 +7,9 @@
 
 .page{
     display: grid;
-    height: 100vh;
+    height: 100%;
     grid-template-areas: "A B"
-                                     "C C";
-    grid-template-columns: 240px auto;
-    grid-template-rows: auto 90px;
+                         "C C";
 }
 
 .sidebar{
