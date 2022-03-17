@@ -11,6 +11,11 @@ public class AccountController : Controller
     {
         return View();
     }
+
+    public IActionResult Plans()
+    {
+        return View();
+    }
     
     public IActionResult LogIn()
     {
