@@ -1,6 +1,4 @@
-﻿.like{
-    color: #afafaf;
-}
+﻿
 
 .bar{
     height: 90px;
@@ -11,7 +9,7 @@
 }
 
 .portfolio{
-    margin-top: 30px;
+    margin-right: 20px;
     overflow: hidden;
     max-width: 200px;
     color: whitesmoke;
@@ -23,14 +21,37 @@
     white-space: nowrap;
 }
 
-.marquee{
-    
-    animation: slide-left 10s linear infinite alternate;
-}
 
 .artist{
     font-size: 0.8rem;
 }
+
+.bi-heart-fill{
+    color: #20e666;
+}
+
+.bi-heart-fill:hover{
+    fill: red;
+}
+
+.btn{
+    background: transparent;
+    border: 0;
+    color:  #afafaf;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 0;
+}
+
+.btn:hover{
+    color: white;
+}
+
+.btn:checked{
+    background-color: #20e666;
+}
+
 .link{
     text-decoration: none;
     color: #afafaf;
@@ -39,6 +60,8 @@
     color: whitesmoke;
     text-decoration-line: underline;
 }
+
+/*бегущая строка*/
 
 .marquee {
     color: whitesmoke;
@@ -49,22 +72,13 @@
     animation-play-state: paused;
 }
 
-/*.marquee::after{
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 10%; !* 1 *!
-    height: 100%;
-    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(23, 23, 23) 100%);
-    
-}*/
-
 .marquee:hover{
     text-decoration-line: underline;
     animation: marquee 20s linear infinite;
     animation-play-state: running;
 }
+
+/*Action*/
 
 @keyframes marquee {
     0% {
