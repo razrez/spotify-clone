@@ -145,17 +145,35 @@ a.media-link:hover{
 }
 
 
-.plans{
+.plan-page{
     display: grid;
     height: 100%;
-    grid-template-areas: "A B C";
+    grid-template-areas: "A A A"    
+                         "B C D"
+                         "E E E"
+                         "F G H";
     grid-template-columns: 2% 90% 2%;
-    grid-template-rows: 100%;
+    
+}
+
+.your-plan-header{
+    position: relative;
+    grid-area: A;
+}
+
+.your-plan-card{
+    position: relative;
+    grid-area: C;
+}
+
+.available-plan-header{
+    position: relative;
+    grid-area: E;
 }
 
 .slider-prev-arrow-block{
     position: relative;
-    grid-area: A;
+    grid-area: F;
 }
 
 .slider-prev-arrow-block a {
@@ -165,14 +183,14 @@ a.media-link:hover{
     transform: translate(0, -50%)
 }
 
-.plan-slider{
+.available-plan-slider{
     position: relative;
-    grid-area: B;
+    grid-area: G;
 }
 
 .slider-next-arrow-block{
     position: relative;
-    grid-area: C;
+    grid-area: H;
 }
 
 .slider-next-arrow-block a {
