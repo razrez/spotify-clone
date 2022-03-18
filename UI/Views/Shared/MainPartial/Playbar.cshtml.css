@@ -1,70 +1,172 @@
-﻿
-
-.bar{
-    height: 90px;
-}
-
-.cover{
-    margin: 15px;
-}
-
-.portfolio{
-    margin-right: 20px;
-    overflow: hidden;
-    max-width: 200px;
-    color: whitesmoke;
-    line-height: 17px;
-}
-
-.title{
-    font-size: 1rem;
-    white-space: nowrap;
-}
-
-
-.artist{
-    font-size: 0.8rem;
-}
-
-.bi-heart-fill{
-    color: #20e666;
-}
-
-.bi-heart-fill:hover{
-    fill: red;
-}
-
-.btn{
-    background: transparent;
-    border: 0;
-    color:  #afafaf;
-    display: -webkit-box;
-    display: -ms-flexbox;
+﻿.music-player {
+    --primary-color: #ddd;
+    --secondary-color: #999;
+    --green-color: #2d5;
+    --padding: 1em;
+    background-color: #111;
     display: flex;
-    padding: 0;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    height: 90px;
+    padding: var(--padding);
+    color: var(--primary-color);
 }
 
-.btn:hover{
-    color: white;
+button{
+    background-color: transparent;
+    border: none;
 }
 
-.btn:checked{
-    background-color: #20e666;
+i{
+    color: var(--secondary-color);
+}
+i:hover{
+    color: var(--primary-color);
+}
+.song-bar {
+    position: absolute;
+    left: var(--padding);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    width: 25%;
+    
 }
 
-.link{
+.song-infos {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    overflow: hidden;
+}
+.image-container {
+    --size: 3.8em;
+    flex-shrink: 0;
+    width: var(--size) ;
+    height: var(--size);
+}
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.song-description p {
+    margin: 0.2em;
+}
+.title,
+.artist {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
     text-decoration: none;
-    color: #afafaf;
+    white-space: nowrap;
+    font-size: 0.9rem;
 }
-.link:hover{
-    color: whitesmoke;
-    text-decoration-line: underline;
+.title:hover,
+.artist:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+.artist{
+    color: var(--secondary-color);
+}
+.icons{
+    left: var(--padding);
+    display: flex;
+    gap: 1em;
+}
+.progress-controller{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    font-size: small;
+    color: var(--secondary-color);
+}
+.control-buttons{
+    display: flex;
+    align-items: center;
+    gap: 2em;
+    font-size: medium;
+}
+.play-pause{
+    display: inline-block;
+    padding: 1em;
+    background-color: var(--primary-color);
+    color: #111;
+    font-size: small;
+    border-radius: 50%;
+}
+.play-pause:hover{
+    transform: scale(1.1);
+    color: #111;
+}
+.progress-container{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    
+}
+.progress-bar{
+    height: 4px;
+    border-radius: 10px;
+    width: 30%;
+    background-color: #ccc4;
+}
+.progress{
+    position: relative;
+    height: 100%;
+    width: 30%;
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+}
+.progress-bar:hover .progress{
+    background-color: var(--green-color);
+}
+.progress-bar:hover .progress::after{
+    content: "";
+    position: absolute;
+    --size: 10px;
+    width: var(--size);
+    height: var(--size);
+    right: 0;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transform: translate(50%, calc(2px - 50%));
+}
+.other-features{
+    position: absolute;
+    right: var(--padding);
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+.volume-bar{
+    display: flex;
+    align-items: center;
+    gap: .7em;
+}
+.volume-bar .progress-bar{
+    width: 6em;
+}
+.volume-bar .progress-bar:hover .progress::after{
+    --size: .8em;
 }
 
 /*бегущая строка*/
 
 .marquee {
-    color: whitesmoke;
+    color: var(--primary-color);
     text-decoration: none;
     display: flex;
     position: relative;
@@ -77,6 +179,7 @@
     animation: marquee 20s linear infinite;
     animation-play-state: running;
 }
+
 
 /*Action*/
 

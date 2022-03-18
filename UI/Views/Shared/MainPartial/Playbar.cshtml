@@ -1,9 +1,9 @@
-﻿<div class="d-flex align-content-stretch align-items-center justify-content-between bar">
+﻿@*<div class="d-flex align-content-stretch align-items-center justify-content-between bar">
     <div class="track d-flex align-items-center">
         <div class="cover">
-            @*example*@
+            $1$example#1#
             <img alt="cover" src="https://phonoteka.org/uploads/posts/2021-05/1620124502_10-phonoteka_org-p-foni-dlya-trekov-10.jpg" height="60"/>
-            @*example*@
+            $1$example#1#
         </div>
         <div class="portfolio d-flex flex-column">
             <div class="title">
@@ -44,12 +44,67 @@
                 </g>
             </svg>
         </div>
-
+        <div class="progress-container">
+            <span>0:49</span>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <span>3:15</span>
+        </div>
     </div>
-    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" fill="white" class="bi bi-music-note-list" viewBox="0 0 16 16">
-        <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/>
-        <path fill-rule="evenodd" d="M12 3v10h-1V3h1z"/>
-        <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"/>
-        <path fill-rule="evenodd" d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
-    </svg>
+    <div class="other">
+        <i class="fas fa-list-ul"></i>
+        <i class="fas fa-desktop"></i>
+        <div class="volume">
+            <i class="fas fa-volume-down"></i>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+</div>*@
+<div class="music-player">
+    <div class="song-bar">
+        <div class="song-infos">
+            <div class="image-container">
+                <img alt="cover" src="https://phonoteka.org/uploads/posts/2021-05/1620124502_10-phonoteka_org-p-foni-dlya-trekov-10.jpg" height="60"/>
+            </div>
+            <div class="song-description">
+                <p class="title">
+                    <a href="#" class="marquee">Tokyo Drift - 8d Bassboosted Edition</a>
+                </p>
+                <a href="#" class="artist">Deedashev</a>
+            </div>
+        </div>
+        <div class="icons">
+            <i class="far fa-heart"></i>
+        </div>
+    </div>
+
+    <div class="progress-controller">
+        <div class="control-buttons">
+            <button class="shuffle"><i class="fas fa-random"></i></button>
+            <button class="step-back"><i class="fas fa-step-backward"></i></button>
+            <button class="play"><i class="play-pause fas fa-play"></i></button>
+            <i class=" play-pause fas fa-pause"></i>
+            <button class="step_forward"><i class="fas fa-step-forward"></i></button>
+            <button class="undo-alt"><i class="fas fa-undo-alt"></i></button>
+        </div>
+        <div class="progress-container">
+            <span>0:49</span>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <span>3:15</span>
+        </div>
+    </div>
+    <div class="other-features">
+        <i class="fas fa-list-ul"></i>
+        <div class="volume-bar">
+            <i class="fas fa-volume-down"></i>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
 </div>
