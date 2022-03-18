@@ -199,3 +199,30 @@ a.media-link:hover{
     top: 50%;
     transform: translate(0, -50%)
 }
+
+.page-without-sidebar{
+    display: grid;
+    height: 100%;
+    grid-template-areas: "A A"
+                         "C C";
+    grid-template-columns: 240px auto;
+}
+
+.main-page{
+    grid-area: A;
+    height: 100%;
+}
+
+.about-grid{
+    display: grid;
+    height: 100%;
+    grid-template-areas: "A A"
+                         "A B"
+                         ""
+                         "C C";
+    grid-template-columns: 240px auto;
+}
+
+a.about-link{
+    color: #1fcf5d;
+}
