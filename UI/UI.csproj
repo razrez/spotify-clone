@@ -5,5 +5,11 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
+
+    <ItemGroup>
+      <None Update="Views\Artist\Index.cshtml.css">
+        <DependentUpon>Index.cshtml</DependentUpon>
+      </None>
+    </ItemGroup>
     
 </Project>
