@@ -7,11 +7,11 @@
 
 .page{
     display: grid;
-    height: 100vh;
+    height: 100%;
     grid-template-areas: "A B"
-                                     "C C";
+                         "C C";
     grid-template-columns: 240px auto;
-    grid-template-rows: auto 90px;
+    grid-template-rows: 100%;
 }
 
 .sidebar{
@@ -34,11 +34,16 @@ a.dropdown-link{
 }
 
 li.navbar-divider{
-    border-left: 1px white ;
+    border-left: 2px solid white
 }
 
 a.dropdown-link:hover{
     color: #1fcf5d;
+}
+
+.sidebar-list{
+    height: 100%;  
+    background-color: #1a1a1a
 }
 
 .sidebar-item{
@@ -96,6 +101,10 @@ a.media-link:hover{
     text-decoration: none;
 }
 
+.first-icon{
+    margin-left: 35%
+}
+
 .icon{
     border-radius: 100%;
     border: 2px solid #1a1a1a;
@@ -114,4 +123,79 @@ a.media-link:hover{
     width: 50px;
     height: 50px;
     padding: 5px;
+}
+
+.plan-card{
+    width: 100%;
+}
+
+.plan-card-bg{
+    background: linear-gradient(-180deg, rgb(182, 43, 190) 0%, rgb(150, 34, 185) 100%);
+}
+.second-plan-card-bg{
+    background: linear-gradient(-180deg, rgb(43, 117, 190) 0%, rgb(28, 78, 128) 100%);
+}
+
+.another-plan-card-bg{
+    background: linear-gradient(-180deg, rgb(31, 207, 93) 0%, rgb(21, 140, 63) 100%);
+}
+
+.border-dark-btn{
+    border-radius: 500px; padding: 10px 20px;
+}
+
+
+.plan-page{
+    display: grid;
+    height: 100%;
+    grid-template-areas: "A A A"    
+                         "B C D"
+                         "E E E"
+                         "F G H";
+    grid-template-columns: 2% 90% 2%;
+    
+}
+
+.your-plan-header{
+    position: relative;
+    grid-area: A;
+}
+
+.your-plan-card{
+    position: relative;
+    grid-area: C;
+}
+
+.available-plan-header{
+    position: relative;
+    grid-area: E;
+}
+
+.slider-prev-arrow-block{
+    position: relative;
+    grid-area: F;
+}
+
+.slider-prev-arrow-block a {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%)
+}
+
+.available-plan-slider{
+    position: relative;
+    grid-area: G;
+}
+
+.slider-next-arrow-block{
+    position: relative;
+    grid-area: H;
+}
+
+.slider-next-arrow-block a {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%)
 }

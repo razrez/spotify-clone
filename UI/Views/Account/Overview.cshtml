@@ -1,17 +1,53 @@
 ﻿@model string
 @{
+    ViewData["Title"] = "Account overview";
+}
+@{
     Layout = "_AccountLayout";
 }
 
-<!DOCTYPE html>
+<div class="container mt-5 ms-4">
+    <h1><b>Account overview</b></h1>
+    <br/>
+    <h4><b>Profile</b></h4>
+    <br/>
+    <div class="row">
+        <div class="col-6 text-secondary">Username</div>
+        <div class="col-6 ">31vjqwq2wbtmnb5ff62wnvvzzabm</div>
+        <div class="col-11 ">
+            <hr/>
+        </div>
+        <div class="col-6 text-secondary">Email</div>
+        <div class="col-6 ">salavat8b@gmail.com</div>
+        <div class="col-11 ">
+            <hr/>
+        </div>
+        <div class="col-6 text-secondary">Date of birth</div>
+        <div class="col-6 ">August 13, 2002</div>
+        <div class="col-11 ">
+            <hr/>
+        </div>
+        <div class="col-6 text-secondary">Country or region</div>
+        <div class="col-6 ">Russia</div>
+        <div class="col-11 ">
+            <hr/>
+        </div>
+        <div class="col-2 mt-3">
+            <a href="#" class="btn btn-outline-dark border-dark-btn">
+                <b>Edit profile </b> 
+            </a>
+        </div>
+    </div>
 
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+    <div class="mt-5 me-5 mb-4">
+        <h4 class="mb-3"><b>Your plan</b></h4>
+        <div class="card plan-card">
+            <div class="card-header plan-card-bg">
+                <h1 class="text-white mt-5 mb-5"><b>Plan Name</b></h1>
+            </div>
+            <div class="card-body mt-2">
+                <h5 class="card-title"><b>Cost</b></h5>
+            </div>
+        </div>
+    </div>
 </div>
-</body>
-</html>
