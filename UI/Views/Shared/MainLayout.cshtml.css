@@ -1,5 +1,12 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
 
 a.navbar-brand {
   white-space: normal;
@@ -45,13 +52,6 @@ button.accept-policy {
   height: 90px;
   width: 100%;
   white-space: nowrap;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Helvetica, Arial, sans-serif;
 }
 
 .page{
@@ -106,6 +106,7 @@ button.accept-policy {
   background: linear-gradient(#212121, #000000);
   overflow: auto;
   grid-area: B;
+  display:inline-block
 }
 
 .player_section{
