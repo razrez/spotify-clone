@@ -213,15 +213,7 @@ a.media-link:hover{
     height: 100%;
 }
 
-.about-grid{
-    display: grid;
-    height: 100%;
-    grid-template-areas: "A A"
-                         "A B"
-                         ""
-                         "C C";
-    grid-template-columns: 240px auto;
-}
+
 
 a.about-link{
     color: #1fcf5d;
