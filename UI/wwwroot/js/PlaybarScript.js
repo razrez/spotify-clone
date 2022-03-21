@@ -6,6 +6,8 @@
 
 let duration = 183;
 let paused = true;
+let width;
+let dragging = true;
 
 function initTrack(dur){
     duration = dur;
@@ -33,8 +35,26 @@ playPause.addEventListener("click", function () {
     initTrack(182);
 });
 
-track.addEventListener("click", function (e){
-    let widthclicked = ((e.pageX - this.offsetLeft) / this.offsetWidth) * 100;
-    progress.style.width = `${widthclicked}%`;
-    spanCurrent.innerText = setTime((widthclicked / 100) * duration);
+track.addEventListener('mousedown', function(e) {
+    // knob offset relatively to track
+    /*track = e.clientX - track.offsetLeft;*/
+    dragging = true;
+});
+
+window.addEventListener('mouseup', function(e) {
+    dragging = false;
+})
+
+window.addEventListener('mousemove', function(e) {
+    if (dragging) {
+         // current knob offset, relative to track
+        let offset = ((e.clientX - track.offsetLeft) / track.offsetWidth) * 100;
+        if(offset < 0) {
+            offset = 0;
+        } else if(offset > 100) {
+            offset = 100;
+        }
+        progress.style.width = `${offset}%`;
+        spanCurrent.innerText = setTime((offset / 100) * duration);
+    }
 });

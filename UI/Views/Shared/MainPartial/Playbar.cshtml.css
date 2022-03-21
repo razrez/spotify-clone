@@ -165,9 +165,7 @@ i:hover{
 .progress-bar:hover .progress{
     background-color: var(--green-color);
 }
-.progress-bar:hover .toggle{
-    background-color: var(--primary-color)
-}
+
 .other-features{
     position: absolute;
     right: var(--padding);
