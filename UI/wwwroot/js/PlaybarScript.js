@@ -1,13 +1,17 @@
 ﻿let track       = document.querySelector(".progress-bar"),
     progress    = document.querySelector(".progress"),
-    playPause   = document.querySelector(".play"),
+    playPauseBtn   = document.querySelector(".play"),
+    playPauseIcon   = document.querySelector("#play-pause"),
     spanCurrent = document.querySelector("#current"),
-    spanDuration = document.querySelector("#duration");
+    spanDuration = document.querySelector("#duration"),
+    likeBtn        = document.querySelector(".like"),
+    likeIcon        = document.querySelector("#like");
 
 let duration = 183;
 let paused = true;
+let liked = false;
 let width;
-let dragging = true;
+let dragging = false;
 
 function initTrack(dur){
     duration = dur;
@@ -20,19 +24,27 @@ function setTime(dur){
     return min + ":" + sec;
 }
 
-playPause.addEventListener("click", function () {
-    let icon = document.createElement("i");
+playPauseBtn.addEventListener("click", function () {
     if(paused){
         paused = false;
-        icon.className = "play-pause fas fa-play";
-        playPause.firstChild.replaceWith(icon);
+        playPauseIcon.className = "play-pause fas fa-play";
     }
     else {
         paused = true;
-        icon.className = "play-pause fas fa-pause";
-        playPause.firstChild.replaceWith(icon);
+        playPauseIcon.className = "play-pause fas fa-pause";
     }
     initTrack(182);
+});
+
+likeBtn.addEventListener("click", function () {
+    if(liked){
+        liked = false;
+        likeIcon.className = "bi bi-heart";
+    }
+    else {
+        liked = true;
+        likeIcon.className = "bi bi-heart-fill";
+    }
 });
 
 track.addEventListener('mousedown', function(e) {
