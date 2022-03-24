@@ -1,0 +1,79 @@
+﻿/* buttons on playlists/profile */
+.play-button {
+    margin-top: 20px;
+    margin-left: 25px;
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    background: #1DB954;
+    color: black;
+    text-align: center;
+}
+
+.play-button:before {
+    content: "▶";
+    font-size: 31px;
+    position: relative;
+    top: 4px;
+    left: 2px;
+}
+
+.active:before {
+    display: block;
+    content: "=";
+    font-size: 50px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+    font-weight: bold;
+    transform: rotate(90deg);
+}
+
+.play-button:hover {
+    transform: scale(1.02);
+    cursor: default;
+    background-color: #31BC62;
+}
+
+.button-card {
+    width: 30px;
+    height: 30px;
+}
+
+/* buttons on cards */
+.button-card {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    background: #1DB954;
+    color: black;
+    text-align: center;
+    position: relative;
+    top: -40px;
+    left: 120px;
+}
+
+.button-card:before {
+    content: "▶";
+    font-size: 20px;
+    position: relative;
+    top: 1px;
+    left: 2px;
+}
+
+.card-active:before {
+    display: block;
+    content: "=";
+    font-size: 28px;
+    position: relative;
+    top: -6px;
+    left: -1px;
+    font-weight: bold;
+    transform: rotate(90deg);
+}
+
+.button-card:hover {
+    transform: scale(1.03);
+    cursor: default;
+    background-color: #31BC62;
+}

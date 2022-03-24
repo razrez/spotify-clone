@@ -4,7 +4,7 @@
 
 .artist-header {
     height: 320px;
-    background-image: url("./img/TESTS-parallax.jpg");
+    background-image: url("./img/TESTS-ARTIST-BACKGROUND.jpg");
     min-height: 50px;
     background-attachment: fixed;
     background-position: center;
@@ -43,44 +43,11 @@
     font-weight: bolder;
     font-size: 80px;
     letter-spacing: -4px;
+    white-space: nowrap;
 }
 
 .artist-name:hover {
     cursor: default;
-}
-
-.play-button {
-    margin-top: 20px;
-    margin-left: 25px;
-    border-radius: 50%;
-    width: 55px;
-    height: 55px;
-    padding-top: 3px;
-    padding-left: 6px;
-    background: #1DB954;
-    color: black;
-    text-align: center;
-    font-size: 32px;
-}
-
-.play-button:before {
-    content: "▶";
-}
-
-.active:before {
-    display: block;
-    content: "=";
-    font-size: 55px;
-    position: relative;
-    top: -15px;
-    left: -4px;
-    transform: rotate(90deg);
-}
-
-.play-button:hover {
-    transform: scale(1.03);
-    cursor: default;
-    background-color: #31BC62;
 }
 
 .artist-interaction {
@@ -131,7 +98,11 @@
     font-size: 12px;
 }
 
-
-
-
-
+.content-body {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+    margin-left: 28px;
+    margin-top: 10px;
+}

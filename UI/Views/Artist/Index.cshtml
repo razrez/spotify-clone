@@ -2,6 +2,11 @@
     Layout = "MainLayout";
     ViewData["Title"] = "Artist";
 }
+
+<head>
+    <link rel="stylesheet" href="~/css/card.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/play-button.css" asp-append-version="true"/>
+</head>
 <div class="content-spacing">
     <div class="artist-header">
         <div>&nbsp;</div>
@@ -16,18 +21,34 @@
             <div class="follow-button">FOLLOW</div>
         </div>
         <div class="artist-releases">
-            <div class="albums">
-                <div class="content-header">
-                    <a href="#" class="content-type">Albums</a>
-                    <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
-                </div>
+            <div class="content-header">
+                <a href="#" class="content-type">Albums</a>
+                <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
             </div>
-            <div class="singles-eps">
-                <div class="content-header">
-                    <a href="#" class="content-type">Singles and EPs</a>
-                    <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
-                </div>
+            <div class="content-body" id="albums">
             </div>
+            <div class="content-header">
+                <a href="#" class="content-type">Singles and EPs</a>
+                <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
+            </div>
+            <div class="content-body" id="singles-and-eps"></div>
         </div>
     </div>
 </div>
+
+<script src="/js/cards.js"></script>
+@* CARDS MOCKS *@
+<script>
+    document.querySelector("#albums")
+        .appendChild(new Card("TESTS-ARTIST-ALBUM.jpg", "Title", "2013", "Album")
+        .render());
+    document.querySelector("#albums")
+        .appendChild(new Card("TESTS-ARTIST-ALBUM.jpg", "Title", "2014", "Album")
+        .render());
+    document.querySelector("#singles-and-eps")
+        .appendChild(new Card("TESTS-ARTIST-ALBUM.jpg", "Title", "2012", "Single")
+        .render());
+    document.querySelector("#singles-and-eps")
+        .appendChild(new Card("TESTS-ARTIST-ALBUM.jpg", "Title", "2012", "EP")
+        .render());
+</script>

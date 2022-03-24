@@ -1,0 +1,48 @@
+﻿.card {
+    display: inline-block;
+    color: white;
+    width: 170px;
+    height: 220px;
+    background-color: #181818;
+    border-radius: 5px;
+    cursor: default;
+}
+
+.card:hover {
+    background-color: #262626;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.watermark {
+    padding-left: 9px;
+    padding-top: 10px;
+    padding-right: 1px;
+    width: 160px;
+    height: 150px;
+    border-radius: 15px;
+}
+
+.cover-text {
+    position: relative;
+    top: -28px;
+    left: 1px;
+}
+
+.cover-text h1, h2{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.cover-title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.cover-description {
+    font-size: 10px;
+    color: gray;
+    position: relative;
+    top: -12px;
+    word-spacing: 1px;
+}
