@@ -103,3 +103,12 @@
     font-weight: bold;
     transform: rotate(90deg);
 }
+
+.empty {
+    background: rgb(0,0,0);
+    background: linear-gradient(320deg, rgba(0,0,0,1) 23%, rgba(29,185,84,1) 100%);
+    width: 152px;
+    height: 145px;
+    margin-left: 8px;
+    margin-top: 8px;
+}
