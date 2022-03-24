@@ -1,5 +1,8 @@
 ﻿/**
- * Spotify card
+ * Spotify card 
+ * @description If fill first 4 parameters, it will create standard playlist card (used on artist profile).
+ * @description If fill all 5 parameters, it will create custom playlist by user (used in search).
+ * @description If fill only "title" and "id", it will create custom playlist by user (used in user profile).
  * @param {string} img src for img background, if leave empty string then fill with base gradient
  * @param {string} title title for card
  * @param {string} date date for card
