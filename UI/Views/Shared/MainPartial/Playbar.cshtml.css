@@ -57,16 +57,17 @@ i:hover{
     font-size: 1.2em;
 }
 
-/*.bi-arrow-repeat::after{
+.repeat-song::before{
+    color: var(--green-color);
     content: "1";
     background-color: #111;
     position: absolute;
-    padding-left: 3px;
+    /*padding-left: 3px;*/
     font-weight: bold;
     font-size: 0.5em;
-    top: 55%;
-    left: 60%;
-}*/
+    top:-20%;
+    left: 34%;
+}
 
 .bi-list-ul{
     font-size: 1.2em;
@@ -215,12 +216,15 @@ i:hover{
 }
 
 .other-features{
+    /*width: 100%;*/
     position: absolute;
     right: var(--padding);
     display: flex;
     flex-direction: row;
     gap: 1em;
 }
+
+
 .volume-container{
     display: flex;
     align-items: center;

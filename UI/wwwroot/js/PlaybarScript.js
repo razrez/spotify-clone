@@ -8,17 +8,18 @@
     shuffleBtn  = document.querySelector(".shuffle"),
     playlistBtn = document.querySelector(".playlist"),
     volumeBtn = document.querySelector(".volume"),
-    volumeBar =document.querySelector(".volume-track"),
-    volumeSet =document.querySelector(".volume-set");
+    volumeBar = document.querySelector(".volume-track"),
+    volumeSet = document.querySelector(".volume-set"),
+    repeatSong = document.querySelector("#repeat-song");
     
 
 let duration = 183;
 let paused = true;
-let repeat = false;
+let repeat = 0;
 let shuffle = false;
 let liked = false;
 let mute = false;
-let volume = 50;
+let volume;
 let width;
 let trackDragging = false;
 let volumeDragging = false;
@@ -50,10 +51,12 @@ playPauseBtn.addEventListener("click", function () {
 volumeBtn.addEventListener("click", function () {
     if (mute) {
         mute = false;
+        volumeSet.style.width = `${volume}px`;
         volumeBtn.firstElementChild.className = "bi bi-volume-down-fill";
     } else {
         mute = true;
-        volumeSet.style.width = "0";
+        volume = volumeSet.offsetWidth;
+        volumeSet.style.width = "0%";
         volumeBtn.firstElementChild.className = "bi bi-volume-mute-fill";
     }
 });
@@ -92,13 +95,18 @@ playlistBtn.addEventListener("click", function () {
 });
 
 repeatBtn.addEventListener("click", function () {
-    if(repeat){
-        repeat = false;
-        repeatBtn.firstElementChild.classList.remove("active");
+    if(repeat === 0){
+        repeat = 1;
+        repeatBtn.firstElementChild.classList.add("active");
+    }
+    else if(repeat === 1){
+        repeat = 2;
+        repeatSong.className = "repeat-song";
     }
     else {
-        repeat = true;
-        repeatBtn.firstElementChild.classList.add("active");
+        repeat = 0;
+        repeatSong.classList.remove("repeat-song")
+        repeatBtn.firstElementChild.classList.remove("active");
     }
 });
 
