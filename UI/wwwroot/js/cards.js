@@ -9,9 +9,6 @@
     render() {
         const card = document.createElement("div");
         card.className = "card";
-        card.addEventListener("mouseover", () => {
-
-        })
         card.innerHTML = ` 
             <div class="cover">
                 <img src="../img/${this.img}" alt="" class="watermark"/>
