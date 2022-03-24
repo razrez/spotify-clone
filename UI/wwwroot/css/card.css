@@ -46,3 +46,13 @@
     top: -12px;
     word-spacing: 1px;
 }
+
+.playlist-marker {
+    color: white;
+    font-weight: bold;
+    font-size: 9px;
+    background-color: #121010;
+    border-radius: 30px;
+    padding: 3px 13px;
+    margin-left: 16px;
+}
