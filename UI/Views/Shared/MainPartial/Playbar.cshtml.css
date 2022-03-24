@@ -23,12 +23,63 @@ button{
     color: var(--green-color);
 }
 
+.active{
+    color: var(--green-color);
+    position: relative;
+}
+
+.active::after{
+    position: absolute;
+    content: "";
+    height: 4px;
+    width: 4px;
+    background-color: var(--green-color);
+    border-radius: 50%;
+    font-size: 2em;
+    right: 40%;
+    top: 100%;
+}
+
 i{
     color: var(--secondary-color);
+    
 }
 i:hover{
     color: var(--primary-color);
 }
+
+.bi-shuffle::before{
+    font-weight: bolder;
+}
+
+.bi-arrow-repeat{
+    position: relative;
+    font-size: 1.2em;
+}
+
+/*.bi-arrow-repeat::after{
+    content: "1";
+    background-color: #111;
+    position: absolute;
+    padding-left: 3px;
+    font-weight: bold;
+    font-size: 0.5em;
+    top: 55%;
+    left: 60%;
+}*/
+
+.bi-list-ul{
+    font-size: 1.2em;
+}
+
+.bi-volume-down-fill{
+    font-size: 1.5em;
+}
+
+.bi-volume-mute-fill{
+    font-size: 1.5em;
+}
+
 .song-bar {
     position: absolute;
     left: var(--padding);
@@ -62,6 +113,10 @@ i:hover{
 .song-description p {
     margin: 0.2em;
 }
+
+.song-description{
+    line-height: 1rem;
+}
 .title,
 .artist {
     overflow: hidden;
@@ -78,6 +133,7 @@ i:hover{
     color: var(--primary-color);
 }
 .artist{
+    font-size: smaller;
     color: var(--secondary-color);
 }
 .icons{
@@ -138,18 +194,6 @@ i:hover{
     border-radius: 10px;
     background-color: var(--primary-color);
 }
-.toggle{
-    position: absolute;
-    --size: 10px;
-    top: -2px;
-    width: var(--size);
-    height: var(--size);
-    left: 0;
-    border-radius: 50%;
-    background-color: transparent;
-    /*transform: translate( calc(-1em - 100%), 0px);*/
-}
-
 
 
 .progress-bar:hover .progress::after{
@@ -177,15 +221,16 @@ i:hover{
     flex-direction: row;
     gap: 1em;
 }
-.volume-bar{
+.volume-container{
     display: flex;
     align-items: center;
-    gap: .7em;
+    gap: .2em;
 }
-.volume-bar .progress-bar{
+
+.volume-container .progress-bar{
     width: 6em;
 }
-.volume-bar .progress-bar:hover .progress::after{
+.volume-container .progress-bar:hover .progress::after{
     --size: .8em;
 }
 

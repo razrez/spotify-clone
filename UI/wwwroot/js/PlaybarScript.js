@@ -1,17 +1,28 @@
-﻿let track       = document.querySelector(".progress-bar"),
-    progress    = document.querySelector(".progress"),
+﻿let track       = document.querySelector(".player-track"),
+    progress    = document.querySelector(".player-set"),
     playPauseBtn   = document.querySelector(".play"),
-    playPauseIcon   = document.querySelector("#play-pause"),
     spanCurrent = document.querySelector("#current"),
     spanDuration = document.querySelector("#duration"),
     likeBtn        = document.querySelector(".like"),
-    likeIcon        = document.querySelector("#like");
+    repeatBtn   = document.querySelector(".repeat"), 
+    shuffleBtn  = document.querySelector(".shuffle"),
+    playlistBtn = document.querySelector(".playlist"),
+    volumeBtn = document.querySelector(".volume"),
+    volumeBar =document.querySelector(".volume-track"),
+    volumeSet =document.querySelector(".volume-set");
+    
 
 let duration = 183;
 let paused = true;
+let repeat = false;
+let shuffle = false;
 let liked = false;
+let mute = false;
+let volume = 50;
 let width;
-let dragging = false;
+let trackDragging = false;
+let volumeDragging = false;
+let playlistOpen = false;
 
 function initTrack(dur){
     duration = dur;
@@ -27,39 +38,82 @@ function setTime(dur){
 playPauseBtn.addEventListener("click", function () {
     if(paused){
         paused = false;
-        playPauseIcon.className = "play-pause fas fa-play";
+        playPauseBtn.firstElementChild.className = "play-pause fas fa-pause";        
     }
     else {
         paused = true;
-        playPauseIcon.className = "play-pause fas fa-pause";
+        playPauseBtn.firstElementChild.className = "play-pause fas fa-play";
     }
     initTrack(182);
+});
+
+volumeBtn.addEventListener("click", function () {
+    if (mute) {
+        mute = false;
+        volumeBtn.firstElementChild.className = "bi bi-volume-down-fill";
+    } else {
+        mute = true;
+        volumeSet.style.width = "0";
+        volumeBtn.firstElementChild.className = "bi bi-volume-mute-fill";
+    }
 });
 
 likeBtn.addEventListener("click", function () {
     if(liked){
         liked = false;
-        likeIcon.className = "bi bi-heart";
+        likeBtn.firstElementChild.className = "bi bi-heart";
     }
     else {
         liked = true;
-        likeIcon.className = "bi bi-heart-fill";
+        likeBtn.firstElementChild.className = "bi bi-heart-fill";
+    }
+});
+
+shuffleBtn.addEventListener("click", function () {
+    if(shuffle){
+        shuffle = false;
+        shuffleBtn.firstElementChild.classList.remove("active");
+    }
+    else {
+        shuffle = true;
+        shuffleBtn.firstElementChild.classList.add("active");
+    }
+});
+
+playlistBtn.addEventListener("click", function () {
+    if(playlistOpen){
+        playlistOpen = false;
+        playlistBtn.firstElementChild.classList.remove("active");
+    }
+    else {
+        playlistOpen = true;
+        playlistBtn.firstElementChild.classList.add("active");
+    }
+});
+
+repeatBtn.addEventListener("click", function () {
+    if(repeat){
+        repeat = false;
+        repeatBtn.firstElementChild.classList.remove("active");
+    }
+    else {
+        repeat = true;
+        repeatBtn.firstElementChild.classList.add("active");
     }
 });
 
 track.addEventListener('mousedown', function(e) {
-    // knob offset relatively to track
-    /*track = e.clientX - track.offsetLeft;*/
-    dragging = true;
+    e.preventDefault();
+    trackDragging = true;
 });
 
 window.addEventListener('mouseup', function(e) {
-    dragging = false;
+    trackDragging = false;
 })
 
 window.addEventListener('mousemove', function(e) {
-    if (dragging) {
-         // current knob offset, relative to track
+    e.preventDefault();
+    if (trackDragging) {
         let offset = ((e.clientX - track.offsetLeft) / track.offsetWidth) * 100;
         if(offset < 0) {
             offset = 0;
@@ -68,5 +122,33 @@ window.addEventListener('mousemove', function(e) {
         }
         progress.style.width = `${offset}%`;
         spanCurrent.innerText = setTime((offset / 100) * duration);
+    }
+});
+
+volumeBar.addEventListener('mousedown', function(e) {
+    e.preventDefault();
+    volumeDragging = true;
+});
+
+window.addEventListener('mouseup', function(e) {
+    volumeDragging = false;
+})
+
+window.addEventListener('mousemove', function(e) {
+    e.preventDefault();
+    if (volumeDragging) {
+        let offset = ((e.clientX - volumeBar.offsetLeft) / volumeBar.offsetWidth) * 100;
+        if(offset <= 0) {
+            mute = true;
+            volumeBtn.firstElementChild.className = "bi bi-volume-mute-fill";
+            offset = 0;
+        } else if(offset > 100) {
+            offset = 100;
+        }
+        if(offset>0){
+            mute = false;
+            volumeBtn.firstElementChild.className = "bi bi-volume-down-fill";
+        }
+        volumeSet.style.width = `${offset}%`;
     }
 });
