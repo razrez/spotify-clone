@@ -31,7 +31,7 @@ function initTrack(dur){
 }
 
 function setTime(dur){
-    let min = ("0"+(dur - dur%60)/60).slice(-2);
+    let min = (dur - dur%60)/60;
     let sec = ("0"+Math.round(dur%60)).slice(-2); 
     return min + ":" + sec;
 }
@@ -72,7 +72,7 @@ likeBtn.addEventListener("click", function () {
     }
 });
 
-shuffleBtn.addEventListener("click", function () {
+shuffleBtn.addEventListener("mouseup", function () {
     if(shuffle){
         shuffle = false;
         shuffleBtn.firstElementChild.classList.remove("active");
@@ -123,6 +123,7 @@ window.addEventListener('mousemove', function(e) {
     e.preventDefault();
     if (trackDragging) {
         let offset = ((e.clientX - track.offsetLeft) / track.offsetWidth) * 100;
+        /*let currentTime = ((e.clientX - track.offsetLeft) / track.offsetWidth) * duration ;*/
         if(offset < 0) {
             offset = 0;
         } else if(offset > 100) {
@@ -140,14 +141,15 @@ volumeBar.addEventListener('mousedown', function(e) {
 
 window.addEventListener('mouseup', function(e) {
     volumeDragging = false;
-})
+});
 
 window.addEventListener('mousemove', function(e) {
     e.preventDefault();
     if (volumeDragging) {
         let offset = ((e.clientX - volumeBar.offsetLeft) / volumeBar.offsetWidth) * 100;
+        /*let curVolume = Math.trunc(((e.clientX - track.offsetLeft) / track.offsetWidth) * 100);*/
         if(offset <= 0) {
-            mute = true;
+            mute = true; 
             volumeBtn.firstElementChild.className = "bi bi-volume-mute-fill";
             offset = 0;
         } else if(offset > 100) {

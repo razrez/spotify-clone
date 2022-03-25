@@ -17,6 +17,11 @@
 button{
     background-color: transparent;
     border: none;
+    transition: color 1s;
+}
+
+button:active i{
+    color: var(--secondary-color);
 }
 
 .bi-heart-fill{
@@ -42,7 +47,7 @@ button{
 
 i{
     color: var(--secondary-color);
-    
+    transition: color 0.4s;
 }
 i:hover{
     color: var(--primary-color);
@@ -82,9 +87,9 @@ i:hover{
 }
 
 .song-bar {
-    position: absolute;
+    /*position: absolute;*/
     left: var(--padding);
-
+    max-width: 20em;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -181,7 +186,7 @@ i:hover{
 .progress-bar{
     overflow: visible;
     position: relative;
-    height: 4px;
+    height: 3px;
     border-radius: 10px;
     width: 30%;
     background-color: var(--secondary-color);
@@ -196,6 +201,9 @@ i:hover{
     background-color: var(--primary-color);
 }
 
+.player-track{
+    min-width: 35em;
+}
 
 .progress-bar:hover .progress::after{
     content: '';
@@ -216,11 +224,13 @@ i:hover{
 }
 
 .other-features{
+    min-width: 20em;
     /*width: 100%;*/
-    position: absolute;
-    right: var(--padding);
+    /*position: absolute;
+    right: var(--padding);*/
     display: flex;
     flex-direction: row;
+    justify-content: right;
     gap: 1em;
 }
 
