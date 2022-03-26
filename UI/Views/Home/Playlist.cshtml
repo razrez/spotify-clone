@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "MainLayout";
+    ViewData["Title"] = "Playlist";
+}
+
+
+<head>
+    <style>
+        .content{
+            color: white;
+        }
+        .playlist-header{
+            height: 320px;
+            background-color: rgb(8, 48, 72);
+            position: relative;
+        } 
+        .playlist-img{ 
+            width: 160px;
+            height: 150px;
+            border-radius: 15px;
+            display: inline-block;
+            position: absolute;
+            margin-top: 100px;
+            margin-left: 35px;
+        }
+        
+        .playlist-info{   
+            margin-top: 165px;
+            margin-left: 260px;
+            display: inline-block;
+        }
+        
+        .playlist-name{
+            font-weight: bolder;
+            font-size: 60px;
+            letter-spacing: -4px;
+            white-space: nowrap;
+        }
+        
+        .playlist-type{
+            font-weight: bolder;
+            font-size: 15px;
+            white-space: nowrap;
+                       
+        }
+        
+        .playlist-data span{
+            font-weight: 400;
+            font-size: 15px;
+            position: relative;
+        }
+        
+        a.playlist-creator{
+            font-weight: bolder;
+            font-size: 15px;
+            white-space: nowrap;
+            text-decoration: none;
+            color: white;
+        }
+        
+        a.playlist-creator:hover{
+            font-weight: bolder;
+            font-size: 15px;
+            white-space: nowrap;
+            text-decoration: underline;
+            color: white;
+        }
+                      
+        .playlist-body{
+            
+        }   
+    </style>
+</head>
+<div class="content">
+    <div class="playlist-header">
+        <div class="playlist-img">
+            <img width="200" height="200" src="~/img/TESTS-ARTIST-ALBUM.jpg"/>
+        </div>
+        <div class="playlist-info">
+            <div class="playlist-type">Playlist Type</div>
+            <div class="playlist-name">Playlist Name</div>
+            <div class="playlist-data">
+                <a href="#" class="playlist-creator">User Name</a>
+                <span>
+                    &bull; 3 tracks
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="playlist-body">
+            
+    </div>
+</div>
