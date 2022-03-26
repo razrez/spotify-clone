@@ -1,0 +1,86 @@
+﻿.content{
+    color: white;
+}
+.playlist-header{
+    height: 320px;
+    background: linear-gradient(rgb(8, 48, 72), rgb(4, 20, 31));
+    position: relative;
+}
+.playlist-img{
+    width: 160px;
+    height: 150px;
+    border-radius: 15px;
+    display: inline-block;
+    position: absolute;
+    margin-top: 100px;
+    margin-left: 35px;
+}
+
+.playlist-info{
+    margin-top: 165px;
+    margin-left: 260px;
+    display: inline-block;
+}
+
+.playlist-name{
+    font-weight: bolder;
+    font-size: 60px;
+    letter-spacing: -4px;
+    white-space: nowrap;
+}
+
+.playlist-type{
+    font-weight: bolder;
+    font-size: 15px;
+    white-space: nowrap;
+
+}
+
+.playlist-data span{
+    font-weight: 400;
+    font-size: 15px;
+    position: relative;
+}
+
+a.playlist-creator{
+    font-weight: bolder;
+    font-size: 15px;
+    white-space: nowrap;
+    text-decoration: none;
+    color: white;
+}
+
+a.playlist-creator:hover{
+    font-weight: bolder;
+    font-size: 15px;
+    white-space: nowrap;
+    text-decoration: underline;
+    color: white;
+}
+
+.songs-headlines{
+    display: flex;
+    color: grey;
+    font-weight: bolder;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.headline-number{
+    flex: 1;
+}
+
+.headline-name{
+    flex: 4;
+}
+.headline-album{
+    flex: 3;
+}
+
+.headline-date{
+    flex: 3;
+}
+
+.headline-time{
+    flex: 2;
+}
