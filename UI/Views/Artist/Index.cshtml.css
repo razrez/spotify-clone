@@ -1,6 +1,8 @@
 ﻿.content-spacing {
     color: white;
+    overflow-y: hidden;
 }
+
 
 .artist-header {
     height: 320px;
@@ -10,6 +12,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    max-width: 1700px;
 }
 
 .artist-info {
@@ -81,6 +84,7 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
+    max-width: 1600px;
 }
 
 .content-header a {

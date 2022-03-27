@@ -22,9 +22,9 @@
 .active:before {
     display: block;
     content: "=";
-    font-size: 50px;
+    font-size: 45px;
     position: relative;
-    top: -10px;
+    top: -6px;
     left: -1px;
     font-weight: bold;
     transform: rotate(90deg);
