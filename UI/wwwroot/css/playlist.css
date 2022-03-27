@@ -1,5 +1,6 @@
 ﻿.content{
     color: white;
+    overflow-x: hidden
 }
 .playlist-header{
     height: 320px;
@@ -7,8 +8,6 @@
     position: relative;
 }
 .playlist-img{
-    width: 160px;
-    height: 150px;
     border-radius: 15px;
     display: inline-block;
     position: absolute;
