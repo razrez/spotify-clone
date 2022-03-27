@@ -19,7 +19,7 @@
     left: 2px;
 }
 
-.active:before {
+.play-button.active:before {
     display: block;
     content: "=";
     font-size: 50px;
