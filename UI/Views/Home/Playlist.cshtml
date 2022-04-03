@@ -28,7 +28,7 @@
             <div class="play-button"></div> @*  can be made activated with class "active"  *@
         </div>
         <div class="songs mt-4">
-            <div class="songs-headlines ms-5">
+            <div class="songs-headlines ms-4 me-4">
                 <div class="headline-number">
                     #
                 </div>
@@ -37,9 +37,6 @@
                 </div>
                 <div class="headline-album">
                     ALBUM
-                </div>
-                <div class="headline-date">
-                    DATE
                 </div>
                 <div class="headline-time">
                     <svg width="16" height="16" viewBox="0 0 16 16" class="bi bi-clock" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -51,6 +48,19 @@
             <div class="ms-4 me-4">
                 <hr/>
             </div>
+            <div class="song-cards ms-4  me-4" id="songs">
+                
+            </div>
         </div>  
     </div>
 </div>
+<script src="~/js/play-button.js"></script>
+<script src="~/js/song-card.js"></script>
+<script>
+document.querySelector("#songs")
+                    .appendChild(new SongCard(1, "TESTS-ARTIST-ALBUM.jpg", "Song name", "artist1", "album1", "3:02")
+                    .render());
+document.querySelector("#songs")
+                    .appendChild(new SongCard(2, "TESTS-ARTIST-ALBUM.jpg", "Song name", "artist2", "album2", "3:02")
+                    .render());
+</script>
