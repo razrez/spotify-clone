@@ -69,11 +69,46 @@
     </div>
     <div class="layout_content">
         <main role="main" class="pb-3">
+            <div class="header-overlay"></div>
+            <div class="header">
+                <div class=history-nav>
+                    <a href="#">
+                        <div class="arrow-nav">
+                            <i class="bi-caret-left-fill"></i>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <div class="arrow-nav">
+                            <i class="bi-caret-right-fill"></i>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="search-bar">
+                    <i class="bi-search"></i>
+                    <input type="text" class="search" />
+                </div> @*show on search page*@
+                
+                <div class="flex-grow-1"></div>
+                <div class="dropdown-container">
+                    <div class="dropbtn">
+                        <img class="profile-img" src="img/TESTS-ARTIST-BACKGROUND.jpg" />
+                        Username
+                        <i class="bi-caret-down-fill profile-arrow"></i>
+                    </div>
+                    <div id="dropdown" class="dropdown-content">
+                        <a href="#">Account</a>
+                        <a href="#">Profile</a>
+                        <a href="#">Logout</a>
+                    </div>
+                </div>
+                
+            </div>
             @RenderBody()
         </main>
     </div>
     <div class="player_section">
-        @{ await Html.RenderPartialAsync("MainPartial/Playbar");}
+        @{ await Html.RenderPartialAsync("MainPartial/Playbar"); }
     </div>
 </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>

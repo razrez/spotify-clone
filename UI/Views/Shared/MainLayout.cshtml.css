@@ -5,6 +5,9 @@ for details on configuring this project to bundle and minify static web assets. 
   padding: 0;
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
+  --primary-color: #ddd;
+  --secondary-color: #999;
+  --green-color: #2d5;
 }
 
 
@@ -45,6 +48,148 @@ button.accept-policy {
   font-size: 1rem;
   line-height: inherit;
 }
+
+.header{
+  width: calc(100% - 240px);
+  height: 65px;
+  position: fixed;
+  color: white;
+  display: flex;
+  padding: 16px 32px;
+  justify-content: space-between;
+  --size: 30px;
+  align-items: center;
+}
+
+.header-overlay{
+  position: fixed;
+  width: calc(100% - 240px);
+  height: 65px;
+  opacity: 0;
+  background-color: #000000;
+}
+
+.history-nav{
+  width: 100px;
+  display: flex;
+  align-content: center;
+  gap: 1em;
+}
+
+.arrow-nav{
+  display: flex;
+  align-items: center;
+  padding-left: 5px;
+  height: var(--size);
+  width: var(--size);
+  border-radius: 50px;
+  background-color: black;
+  color: var(--secondary-color);
+  font-size: larger;
+}
+
+
+.search-bar{
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  justify-self: left;
+  height: calc(var(--size) + 8px);
+  width: 38%;
+  min-width: 200px;
+  max-width: 350px;
+  background-color: white;
+  border-radius: 50px;
+}
+
+.search{
+  border: 0;
+  outline: none;
+  flex-grow: 1;
+  margin-right: 10px;
+  font-size: 0.875rem;
+  letter-spacing: normal;
+}
+
+.search:focus{
+  border: none; 
+}
+
+.bi-search{
+  color: black;
+  font-size: 20px;
+  margin-left: 10px;
+}
+
+.profile{
+  width: 120px;
+  height: var(--size);
+  background-color: white;
+  border-radius: 50px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  font-size: 15px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  
+  height: var(--size);
+  background-color: #2f2f2f;
+  border-radius: 50px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-img{
+  margin-left: 3px;
+  height: calc( var(--size) - 5px); width: calc( var(--size) - 5px); border-radius: 50px;
+}
+
+.profile-arrow{
+  margin-top: 5px;
+  margin-right: 10px;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  margin-top: 10px;
+  border-radius: 3px;
+  display: none;
+  position: absolute;
+  background-color: #2f2f2f;
+  min-width: 150px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  margin: 4px;
+  border-radius: 3px;
+  color: white;
+  font-size: small;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #545454;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
 
 .footer {
   position: absolute;
