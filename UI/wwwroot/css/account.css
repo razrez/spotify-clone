@@ -1,8 +1,35 @@
 ﻿body{
     font-family: Helvetica, Arial, sans-serif;
     font-size: 16px;
-    background: linear-gradient(#212c39, #121e3d);
+    background: linear-gradient(rgb(33, 44, 57), rgb(18, 30, 61) 50%, rgb(0, 0, 0));
+    /*background: linear-gradient(#212c39, #121e3d);*/
     overflow-x: hidden;
+    /*чтобы футер не убегал*/
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin:0;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+    background: rgb(0, 0, 0);
+    box-shadow: -1em 0 4em rgba(13, 215, 7, 0.8);
+}
+body::-webkit-scrollbar-track {
+    border-radius: 10%;
+
+}
+body::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.8);
+    outline: 3px solid rgb(25, 171, 25);
+    border-radius: 10% 0 0 10%;
+}
+
+footer {
+    background-color: rgba(2, 3, 7, 0.83);
+    /*height:50px;*/
+    margin-top:auto;
 }
 
 .page{
@@ -213,8 +240,125 @@ a.media-link:hover{
     height: 100%;
 }
 
-
-
 a.about-link{
     color: #1fcf5d;
+}
+
+
+/*styles for change-password*/
+/*                          */
+.form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.form-logo {
+    width: 160px;
+    height: 100px;
+    margin: 14px;
+}
+
+.form {
+    display: block;
+}
+
+.form-field input, select {
+    width: 500px;
+    height: 50px;
+    padding: 14px;
+    border: 1px solid gray;
+    border-radius: 4px;
+    font-size: 17px;
+    max-height: fit-content;
+}
+
+.form-field input:focus, select:focus {
+    border: 3px solid gray;
+}
+
+.form-field select:hover, input:hover {
+    border-color: black;
+}
+
+.form-field input::placeholder {
+    font-size: 18px;
+}
+
+.form-field label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+.form a {
+    color: #1fcf5d;
+}
+
+.form a:hover {
+    color: #20e666;
+}
+
+.form-button {
+    background-color: #1fcf5d;
+    border-radius: 25px;
+    border: 0;
+    font-size: 15px;
+    font-weight: bold;
+    width: fit-content;
+    height: 48px;
+    padding: 10px 30px 10px 30px;
+    margin-left: 140px;
+}
+
+.form-button:hover {
+    transition-duration: 0.1s;
+    background-color: #20e364;
+    transform: scale(1.05);
+}
+
+.login-button {
+    position: relative;
+    align-self: center;
+}
+
+.login-button:hover {
+    cursor: context-menu;
+}
+
+.cancel-form-button {
+    justify-content: center;
+    padding: 10px;
+    width: fit-content;
+    height: 50px;
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 30px;
+    margin-right: 10px;
+    margin-top: 20px;
+    margin-left: 215px;
+}
+
+.cancel-form-button:hover {
+    transition-duration: 0.1s;
+    cursor: default;
+    border-color: black;
+    transform: scale(1.05);
+}
+
+.cancel-form-button {
+    font-size: 16px;
+    color: #030303;
+    letter-spacing: 2px;
+}
+
+.form button{
+    align-self: center;
+}
+
+.form form{
+    margin: 0;
+    padding: 0;
 }
