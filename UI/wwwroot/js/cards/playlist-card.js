@@ -1,5 +1,5 @@
 ﻿/**
- * Spotify card 
+ * Spotify playlist card 
  * @description If fill first 4 parameters, it will create standard playlist card (used on artist profile).
  * @description If fill all 5 parameters, it will create custom playlist by user (used in search).
  * @description If fill only "title" and "id", it will create custom playlist by user (used in user profile).
@@ -10,7 +10,7 @@
  * @param {int} id id for card
  * @param {string} user by user for card
  */
-class Card {
+class PlaylistCard {
     constructor(img = "", title, date, type = "", id, user = "") {
         this.img = img;
         this.title = title;
@@ -33,7 +33,7 @@ class Card {
                 e.target.classList.toggle("card-active")
             }
             else 
-                window.location.href = `/album/${this.id}`;
+                window.location.href = this.type === "PLAYLIST"? `playlist/${this.id}` :  `/album/${this.id}`;
         });
         
         let cover = !this.user ? 
@@ -44,8 +44,7 @@ class Card {
         
         let watermark = this.img === "" ? 
             `<div class="watermark empty"></div>` :
-            `<img src="../img/${this.img}" alt="" class="watermark"/>
-` 
+            `<img src="../img/${this.img}" alt="" class="watermark"/>` 
         
         card.innerHTML = ` 
             <div class="cover">

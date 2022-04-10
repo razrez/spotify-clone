@@ -112,3 +112,12 @@
     margin-left: 8px;
     margin-top: 8px;
 }
+
+.watermark.profile {
+    border-radius: 150px;
+}
+
+h1.profile {
+    position: relative;
+    top: 25px;
+}
