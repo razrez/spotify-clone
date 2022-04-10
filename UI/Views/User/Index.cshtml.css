@@ -3,7 +3,6 @@
     overflow-y: hidden;
 }
 
-
 .user-header {
     height: 320px;
     background: linear-gradient( rgb(	105,105,105), rgb(40,40,40));
@@ -84,12 +83,12 @@
 .edit-button {
     position: relative;
     top: 25px;
-    left: 25px;
+    left: 29px;
     width: 120px;
     height: 35px;
     border: 1px solid gray;
     border-radius: 5px;
-    padding-left: 12px;
+    padding-left: 16px;
     padding-top: 8px;
     font-size: 12px;
     font-weight: bold;

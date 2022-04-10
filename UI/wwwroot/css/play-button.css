@@ -22,7 +22,7 @@
 .play-button.active:before {
     display: block;
     content: "=";
-    font-size: 45px;
+    font-size: 43px;
     position: relative;
     top: -6px;
     left: -1px;
