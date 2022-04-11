@@ -5,21 +5,19 @@
  * @description If fill only "title" and "id", it will create custom playlist by user (used in user profile).
  * @param {string} img src for img background, if leave empty string then fill with base gradient
  * @param {string} title title for card
- * @param {string} date date for card
- * @param {string} type ["Album", "Album", "Single", "EP", "PLAYLIST"]
+ * @param {string} type ["ARTIST", "PLAYLIST"] ("PLAYLIST" means is user custom, "ARTIST" is public release)
  * @param {int} id id for card
  * @param {string} user by user for card
  */
 class PlaylistCard {
-    constructor(img = "", title, date, type = "", id, user = "") {
+    constructor(img = "", title, type = "", id, user = "") {
         this.img = img;
         this.title = title;
-        this.date = !date ? "" : date + " •";
         this.type = type;
         this.id = id;
         this.user = user;
     }
-    
+     
     /**
      * render created card
      * @returns {Element} - html element of card
@@ -36,8 +34,14 @@ class PlaylistCard {
                 window.location.href = this.type === "PLAYLIST"? `playlist/${this.id}` :  `/album/${this.id}`;
         });
         
+        if (this.user.length > 4) 
+            this.user = this.user.slice(0, 4) + "..";
+        
+        if (this.title.length > 13) 
+            this.title = this.title.slice(0, 13) + "..";
+        
         let cover = !this.user ? 
-            `<h2 class="cover-description">${this.date} ${this.type}</h2>` :
+            `<h2 class="cover-description">${this.type}</h2>` :
             `<h2 class="cover-description">By ${this.user} 
                 <span class="playlist-marker">${this.type}</span>
             </h2>`

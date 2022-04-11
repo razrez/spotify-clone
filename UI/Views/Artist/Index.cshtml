@@ -38,24 +38,27 @@
 <script src="~/js/cards/profile-card.js"></script>
 <script>
         document.querySelector("#albums")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2013", "Album", 1)
+            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "Album", 1)
             .render());
         document.querySelector("#albums")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2014", "Album", 2)
+            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title11111111111111",  "Album", 2)
             .render());
         document.querySelector("#singles-and-eps")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2012", "Single", 3)
+            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "Single", 3)
             .render());
         document.querySelector("#singles-and-eps")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2012", "EP", 4)
+            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "EP", 4)
             .render());
         document.querySelector("#singles-and-eps")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "", "PLAYLIST", 5, "USER")
+            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "PLAYLIST", 5, "USER")
             .render());
         document.querySelector("#singles-and-eps")
-            .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
+            .appendChild(new PlaylistCard("", "Title", "PLAYLIST", 6, "punkRelique")
             .render());
         document.querySelector("#singles-and-eps")
-            .appendChild(new ProfileCard("", "punkRelique", "user", 1)
+            .appendChild(new ProfileCard("", "punkRelique", "Profile", 1)
+            .render());
+        document.querySelector("#singles-and-eps")
+            .appendChild(new ProfileCard("", "BBBBBBBBBBBBBB", "Artist", 2)
             .render()); 
 </script>

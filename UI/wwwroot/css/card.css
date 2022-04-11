@@ -29,9 +29,7 @@
 }
 
 .cover-text {
-    position: relative;
-    top: -28px;
-    left: 1px;
+    
 }
 
 .cover-text h1, h2{
@@ -55,10 +53,10 @@
 .playlist-marker {
     color: white;
     font-weight: bold;
-    font-size: 9px;
+    font-size: 11px;
     background-color: #121010;
     border-radius: 30px;
-    padding: 3px 13px;
+    padding: 3px 5px;
     margin-left: 16px;
 }
 
@@ -72,8 +70,8 @@
     background: #1DB954;
     color: black;
     text-align: center;
-    position: relative;
-    top: -40px;
+    position: absolute;
+    top: 110px;
     left: 120px;
     opacity: 0.0;
     transition: all 0.3ms ease-in-out;
@@ -117,7 +115,11 @@
     border-radius: 150px;
 }
 
-h1.profile {
+.cover-text.profile {
     position: relative;
-    top: 25px;
+    top: 0;
+}
+
+h2.cover-description {
+    font-size: 15px;
 }
