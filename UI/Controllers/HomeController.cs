@@ -28,7 +28,6 @@ public class HomeController : Controller
         return View();
     }
     
-    [Route("Search")]
     public IActionResult Search()
     {
         return View();
