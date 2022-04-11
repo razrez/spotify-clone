@@ -114,7 +114,7 @@
 /*///////////////////////*/
 .grid-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(20%,min-content));
+    grid-template-columns: repeat(auto-fit, minmax(170px,min-content));
     gap: 14px;
     margin-left: 28px;
     margin-right: 28px;
@@ -127,6 +127,7 @@
     height: 170px;
     flex-direction: column;
     border-radius: 5px 30px 5px 30px;
+    justify-content: space-between;
 }
 
 .card-name{
@@ -141,10 +142,11 @@
     margin-top: 3%;
 }
 
-.playlist-image {
-    width: 80%;
-    display: flex;
-    border-radius: 5px 30px 5px 30px;
+.genre-picture1{
+    width:130px; /*width of your image*/
+    height:130px; /*height of your image*/
+    /*background-image:url('https://picsum.photos/id/237/150');*/
+    margin:0; /* If you want no margin */
     align-self: flex-end;
+    border-radius: 5px 30px 5px 30px;
 }
-
