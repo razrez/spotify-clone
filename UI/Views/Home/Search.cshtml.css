@@ -1,6 +1,7 @@
 .content-spacing {
     color: white;
     overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 
@@ -110,3 +111,40 @@
     margin-left: 28px;
     margin-top: 10px;
 }
+/*///////////////////////*/
+.grid-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20%,min-content));
+    gap: 14px;
+    margin-left: 28px;
+    margin-right: 28px;
+    margin-top: 10px;
+}
+
+.grid-item{
+    background-color: #72a814;
+    display: flex;
+    height: 170px;
+    flex-direction: column;
+    border-radius: 5px 30px 5px 30px;
+}
+
+.card-name{
+    font-weight: bolder;
+    font-size: 15px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+.grid-item p{
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 3%;
+}
+
+.playlist-image {
+    width: 80%;
+    display: flex;
+    border-radius: 5px 30px 5px 30px;
+    align-self: flex-end;
+}
+
