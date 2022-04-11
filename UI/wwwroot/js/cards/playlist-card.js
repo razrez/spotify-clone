@@ -1,11 +1,9 @@
 ﻿/**
- * Spotify playlist card 
- * @description If fill first 4 parameters, it will create standard playlist card (used on artist profile).
- * @description If fill all 5 parameters, it will create custom playlist by user (used in search).
- * @description If fill only "title" and "id", it will create custom playlist by user (used in user profile).
+ * Spotify playlist card
+ * @link https://pastebin.com/nfAen0t4 usage with pics and code
  * @param {string} img src for img background, if leave empty string then fill with base gradient
  * @param {string} title title for card
- * @param {string} type ["ARTIST", "PLAYLIST"] ("PLAYLIST" means is user custom, "ARTIST" is public release)
+ * @param {string} type ["Album", "EP", "Single", "PLAYLIST"] ("PLAYLIST" renders user custom playlist marker)
  * @param {int} id id for card
  * @param {string} user by user for card
  */
