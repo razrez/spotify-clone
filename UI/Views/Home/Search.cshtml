@@ -18,51 +18,55 @@
                 <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
             </div>
             
-            <div class="content-body" id="albums">
-            </div>
-            
-            <div class="content-header">
-                <a href="#" class="content-type">Browse all</a>
-                <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
-            </div>
-            <div class="content-body" id="singles-and-eps"></div>
-            
             <div class="grid-container">
                 <div class="grid-item">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/34/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: #314248">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/38/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: rgba(242,208,199,0.65)">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/239/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: rgba(207,241,215,0.8)">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/23/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: #442c21">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/7/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: #9b7057">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/1/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: rgb(84,81,89)">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
+                    <img src="https://picsum.photos/id/26/150" alt="" class="genre-picture1"/>
                 </div>
-                <div class="grid-item">
+                <div class="grid-item" style="background-color: rgba(98,154,181,0.85)">
                     <p class="card-name">Dance / Electro</p>
                     <div class="genre-picture1"></div>
-                    <img src="https://picsum.photos/id/237/150" alt="" class="genre-picture1"/>
+                    <img src="https://picsum.photos/id/33/150" alt="" class="genre-picture1"/>
                 </div>
-                
             </div>
+
+            <div class="content-header">
+                <a href="#" class="content-type">Singles & Ep's</a>
+                <a href="#" class="see-discography">SEE DISCOGRAPHY</a>
+            </div>
+
+            <div class="content-body" id="singles-and-eps"></div>
         </div>
         
     </div>
@@ -72,13 +76,7 @@
 <script src="~/js/cards/playlist-card.js"></script>
 <script src="~/js/cards/profile-card.js"></script>
 <script>
-        document.querySelector("#albums")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2013", "Album", 1)
-            .render());
-        document.querySelector("#albums")
-            .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2014", "Album", 2)
-            .render());
-      
+        
         document.querySelector("#singles-and-eps")
             .appendChild(new PlaylistCard("TESTS-ARTIST-ALBUM.jpg", "Title", "2012", "Single", 3)
             .render());
@@ -93,33 +91,6 @@
             .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
             .render());
         
-        /*document.querySelector("#singles-and-eps")
-            .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-            .render());
-        document.querySelector("#singles-and-eps")
-            .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-            .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());
-        document.querySelector("#singles-and-eps")
-                    .appendChild(new PlaylistCard("", "Title", "", "", 6, "")
-                    .render());*/
         
         document.querySelector("#singles-and-eps")
             .appendChild(new ProfileCard("", "punkRelique", "user", 1)

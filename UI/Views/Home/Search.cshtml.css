@@ -114,17 +114,17 @@
 /*///////////////////////*/
 .grid-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(170px,min-content));
-    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px,min-content));
+    gap: 24px;
     margin-left: 28px;
     margin-right: 28px;
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 .grid-item{
-    background-color: #72a814;
+    background-color: #68763a;
     display: flex;
-    height: 170px;
+    height: 200px;
     flex-direction: column;
     border-radius: 5px 30px 5px 30px;
     justify-content: space-between;
@@ -132,8 +132,7 @@
 
 .card-name{
     font-weight: bolder;
-    font-size: 15px;
-    letter-spacing: 1px;
+    font-size: 20px;
     white-space: nowrap;
 }
 .grid-item p{
@@ -143,8 +142,8 @@
 }
 
 .genre-picture1{
-    width:130px; /*width of your image*/
-    height:130px; /*height of your image*/
+    width:150px; /*width of your image*/
+    height:150px; /*height of your image*/
     /*background-image:url('https://picsum.photos/id/237/150');*/
     margin:0; /* If you want no margin */
     align-self: flex-end;
