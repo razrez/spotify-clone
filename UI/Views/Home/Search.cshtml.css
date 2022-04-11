@@ -114,7 +114,7 @@
 /*///////////////////////*/
 .grid-container{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px,min-content));
+    grid-template-columns: repeat(auto-fit, minmax(210px,min-content));
     gap: 24px;
     margin-left: 28px;
     margin-right: 28px;
@@ -124,13 +124,17 @@
 .grid-item{
     background-color: #68763a;
     display: flex;
-    height: 200px;
+    height: 210px;
     flex-direction: column;
-    border-radius: 5px 30px 5px 30px;
+    border-radius: 30px;
     justify-content: space-between;
+    transition-duration: 0.4s;
+    /*                     */
+    -webkit-transition: background 1s; /* For Safari 3.0 to 6.0 */
+    transition: background 1s; /* For modern browsers */
 }
 
-.card-name{
+.genre-name{
     font-weight: bolder;
     font-size: 20px;
     white-space: nowrap;
@@ -142,10 +146,20 @@
 }
 
 .genre-picture1{
-    width:150px; /*width of your image*/
-    height:150px; /*height of your image*/
+    width:160px; /*width of your image*/
+    height:160px; /*height of your image*/
     /*background-image:url('https://picsum.photos/id/237/150');*/
     margin:0; /* If you want no margin */
     align-self: flex-end;
-    border-radius: 5px 30px 5px 30px;
+    border-radius: 30px;
+    transition-duration: 0.3s;
+}
+
+.grid-item .genre-picture1:hover {
+    transform: translateY(10px);
+    
+}
+.grid-item:hover{
+    box-shadow: 0 0 5px 5px rgba(17, 239, 17, 0.38);
+    background: #3cc16e;
 }
