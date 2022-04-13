@@ -50,6 +50,7 @@ button.accept-policy {
 }
 
 .header{
+  z-index: 10000;
   width: calc(100% - 240px);
   height: 65px;
   position: fixed;
@@ -62,6 +63,7 @@ button.accept-policy {
 }
 
 .header-overlay{
+  z-index: 9999;
   position: fixed;
   width: calc(100% - 240px);
   height: 65px;
