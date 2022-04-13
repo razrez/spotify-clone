@@ -105,6 +105,7 @@ button.accept-policy {
 }
 
 .search{
+  background: none;
   border: 0;
   outline: none;
   flex-grow: 1;

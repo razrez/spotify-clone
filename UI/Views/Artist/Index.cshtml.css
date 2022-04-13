@@ -32,6 +32,10 @@
     top: -2px
 }
 
+.play-button{
+    z-index: 0;
+}
+
 .verified-icon:before {
     display: inline-block;
     content: "";
