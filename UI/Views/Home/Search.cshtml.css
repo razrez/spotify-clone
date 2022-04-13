@@ -1,7 +1,6 @@
 .content-spacing {
     color: white;
-    overflow-y: hidden;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 
@@ -155,7 +154,7 @@
     transition-duration: 0.3s;
 }
 
-.grid-item .genre-picture1:hover {
+.grid-item:hover .genre-picture1{
     transform: translateY(10px);
     
 }
