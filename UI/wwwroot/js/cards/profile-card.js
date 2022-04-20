@@ -15,7 +15,7 @@
                 e.target.classList.toggle("card-active")
             }
             else 
-                window.location.href = this.type === "user" ? `/user/${this.id}` : `/artist/${this.id}`;
+                window.location.href = this.type === "user" ? `/User/Index/${this.id}` : `/artist/${this.id}`;
         });
 
         

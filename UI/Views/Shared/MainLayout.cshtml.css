@@ -82,6 +82,7 @@ button.accept-policy {
   display: flex;
   align-items: center;
   padding-left: 5px;
+  padding-top: 1px;
   height: var(--size);
   width: var(--size);
   border-radius: 50px;
@@ -89,7 +90,6 @@ button.accept-policy {
   color: var(--secondary-color);
   font-size: larger;
 }
-
 
 .search-bar{
   display: flex;

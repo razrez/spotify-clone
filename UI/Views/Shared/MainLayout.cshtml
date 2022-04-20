@@ -22,7 +22,7 @@
         <br/>
         <ul>
             <li class="sidebar_item">
-                <a href="#" class="link">
+                <a href="/Home/Index" class="link">
                     <svg role="img" height="24" width="24" class="Svg-sc-1bi12j5-0 hDgDGI home-active-icon" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M21 22V7.174l-9.001-5.195L3 7.214V22h7v-7h4v7z"></path>
                     </svg>
@@ -30,7 +30,7 @@
                 </a>
             </li>
             <li class="sidebar_item">
-                <a href="#" class="link">
+                <a href="/Home/Search" class="link">
                     <svg role="img" height="24" width="24" viewBox="0 0 24 24">
                         <path fill="currentColor" d="M10.533 1.279c-5.18 0-9.407 4.14-9.407 9.279s4.226 9.279 9.407 9.279c2.234 0 4.29-.77 5.907-2.058l4.353 4.353a1 1 0 101.414-1.414l-4.344-4.344a9.157 9.157 0 002.077-5.816c0-5.14-4.226-9.28-9.407-9.28zm-7.407 9.279c0-4.006 3.302-7.28 7.407-7.28s7.407 3.274 7.407 7.28-3.302 7.279-7.407 7.279-7.407-3.273-7.407-7.28z"></path>
                     </svg>
@@ -57,7 +57,7 @@
                 </a>
             </li>
             <li class="sidebar_item">
-                <a href="#" class="link">
+                <a href="/Home/Playlist" class="link">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                     </svg>
@@ -92,13 +92,13 @@
                 <div class="flex-grow-1"></div>
                 <div class="dropdown-container">
                     <div class="dropbtn">
-                        <img class="profile-img" src="../img/TESTS-ARTIST-BACKGROUND.jpg" />
+                        <img class="profile-img" src="/img/TESTS-ARTIST-BACKGROUND.jpg" />
                         Username
                         <i class="bi-caret-down-fill profile-arrow"></i>
                     </div>
                     <div id="dropdown" class="dropdown-content">
-                        <a href="#">Account</a>
-                        <a href="#">Profile</a>
+                        <a  onclick="window.open('@Url.Action("Overview", "Account")')">Account</a>
+                        <a href="/User/Index">Profile</a>
                         <a href="#">Logout</a>
                     </div>
                 </div>

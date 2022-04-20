@@ -29,7 +29,7 @@ class PlaylistCard {
                 e.target.classList.toggle("card-active")
             }
             else 
-                window.location.href = this.type === "PLAYLIST"? `playlist/${this.id}` :  `/album/${this.id}`;
+                window.location.href = this.type === "PLAYLIST"? `Playlist/${this.id}` :  `Playlist/${this.id}`;
         });
         
         if (this.user.length > 4) 
