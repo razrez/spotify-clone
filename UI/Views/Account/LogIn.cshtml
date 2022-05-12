@@ -25,18 +25,18 @@
         </div>
     </div>
     <div class="form">
-        <form id="signup">
+        <form id="login" asp-controller="Account" asp-action="LogIn" method="post">
             <div class="form-field">
                 <label for="email">Email address or username</label><br/>
-                <input type="email" placeholder="Email address or username" required="You need to enter your email."/>
+                <input name="email" type="email" placeholder="Email address or username" required="You need to enter your email."/>
             </div>
             <div class="form-field">
                 <label for="password">Password</label><br/>
-                <input type="password" placeholder="Password." required="You need to enter your email."/>
+                <input name="password" type="password" placeholder="Password." required="You need to enter your email."/>
             </div>
             <h7 id="forgot-text">Forgot your password?</h7>
             <div class="form-agreement login-agreement">
-                <input type="checkbox"/>
+                <input name="remember" type="checkbox"/>
                 <span>Remember me</span>
             </div>
             <button type="submit" class="form-button login-button">LOG IN</button>

@@ -1,4 +1,8 @@
 ﻿$(document).ready(function () {
+    
+
+    
+    
     $('.layout_content').scroll(function () {
         $('.header-overlay').css("opacity", 0 + $('.layout_content').scrollTop() / 200)
     });

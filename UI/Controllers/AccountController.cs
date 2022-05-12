@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using UI.Models;
 
@@ -17,8 +18,29 @@ public class AccountController : Controller
         return View();
     }
     
+    [HttpGet]
     public IActionResult LogIn()
     {
+        return View();
+    }
+    
+    [HttpPost]
+    public IActionResult LogIn(string email, string password, bool remember)
+    {
+
+        var client = new HttpClient();
+        var values = new Dictionary<string, string>()
+        {
+            {"grant_type", "password"},
+            {"username", "user01@gmail.com"},
+            {"password", "qWe!123"},
+        };
+        var content = new FormUrlEncodedContent(values);
+        var res = client.PostAsync($"https://localhost:7030/login", content);
+        if (res.Result.StatusCode == HttpStatusCode.OK)
+        {
+            return RedirectToAction("Index", "Home");
+        }
         return View();
     }
 
