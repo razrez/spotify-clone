@@ -1,8 +1,9 @@
-﻿$(document).ready(function () {
-    
+﻿
+/* API HOST URL */
+let apiHost = "https://localhost:7030";
+/* API HOST URL */
 
-    
-    
+$(document).ready(function () {
     $('.layout_content').scroll(function () {
         $('.header-overlay').css("opacity", 0 + $('.layout_content').scrollTop() / 200)
     });
