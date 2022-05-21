@@ -1,9 +1,5 @@
 ﻿@{
+    Layout = "MainLayout";
     ViewData["Title"] = "Home Page";
 }
-<div class="text-center">
-    @for (int i = 0; i < 100; i++)
-    {
-        <p>AYE</p>
-    }
-</div>
+@{ await Html.RenderPartialAsync("HomePartial/IndexPartial");}

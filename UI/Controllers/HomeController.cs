@@ -17,20 +17,34 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    public IActionResult Playlist()
-    {
-        return View();
-    }
-
-    public IActionResult Privacy()
-    {
-        return View();
-    }
     
     public IActionResult Search()
     {
         return View();
+    }  
+    
+    public IActionResult Playlist()
+    {
+        return View();
+    }
+    
+    
+
+    public IActionResult IndexPartial()
+    {
+        var client = new HttpClient();
+        var res = client.GetAsync("https://localhost:7030//playlists/random");
+        return PartialView("HomePartial/IndexPartial");
+    }
+
+    public IActionResult SearchPartial()
+    {
+        return PartialView("HomePartial/SearchPartial");
+    }
+
+    public IActionResult PlaylistPartial()
+    {
+        return PartialView("HomePartial/PlaylistPartial");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
