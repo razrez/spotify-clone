@@ -8,16 +8,26 @@ namespace UI.Controllers;
 
 public class AccountController : Controller
 {
-    public IActionResult Overview()
-    {
-        return View();
-    }
+    public IActionResult Overview() => View();
 
-    public IActionResult Plans()
-    {
-        return View();
-    }
+    public IActionResult Plans() => View();
+    
+    public IActionResult About() => View();
 
+    public IActionResult ChangePassword() => View();
+    
+    #region PartialViews Render
+
+    public IActionResult OverviewPartial() => PartialView("AccountPartial/OverviewPartial");
+
+    public IActionResult PlansPartial() => PartialView("AccountPartial/PlansPartial");
+
+    public IActionResult ChangePasswordPartial() => PartialView("AccountPartial/ChangePasswordPartial");
+
+    #endregion
+    
+
+    #region Login Signup etc..
     [HttpGet]
     public IActionResult LogIn()
     {
@@ -57,13 +67,8 @@ public class AccountController : Controller
     {
         return View();
     }
-
-    public IActionResult About()
-    {
-        return View();
-    }
-
-    public IActionResult ChangePassword() => View();
+    #endregion
+    
 }
 
 public class ResponseType

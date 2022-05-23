@@ -3,7 +3,7 @@ $(document).ready(function(){
         pattern_protocol = new RegExp("^(http:\/\/|https:\/\/|\/\/)"), // да, "просто двойной слеш" тоже здесь
         pattern_lochost = new RegExp("^(" + location.host + ")");
     let url;
-    $(document).on('click', 'a[href]', function(e){
+    $(document).on('click', 'a[href].navlink', function(e){
         e.preventDefault();
         if(!$(this).attr('href')){console.log('no href'); return false;} //<a /> -  without href => err
         url = $(this).attr('href'),
