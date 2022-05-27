@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string?
+@{
     Layout = null;
 }
 
@@ -23,6 +24,9 @@
         <div class="line">
             <span>or</span>
         </div>
+    </div>
+    <div>
+        @Model
     </div>
     <div class="form">
         <form id="login" asp-controller="Account" asp-action="LogIn" method="post">

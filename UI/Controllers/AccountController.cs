@@ -45,26 +45,95 @@ public class AccountController : Controller
             {"password", password},
         };
         var content = new FormUrlEncodedContent(values);
-        var res = client.PostAsync($"https://localhost:7030/login", content);
+        var res = client
+            .PostAsync($"https://localhost:7030/api/auth/login", content).Result;
 
-        if (res.Result.StatusCode == HttpStatusCode.OK)
+        if (res.StatusCode == HttpStatusCode.OK)
         {
-            var jsonString = await res.Result.Content.ReadAsStringAsync();
-            var token = JsonConvert.DeserializeObject<ResponseType>(jsonString)!.access_token;
-            HttpContext.Response.Cookies.Append(".AspNetCore.Application.Id", value: token,
+            var jsonString = await res.Content.ReadAsStringAsync();
+            var response = JsonConvert.DeserializeObject<ResponseType>(jsonString)!;
+            var accessToken = response.access_token;
+            var refreshToken = response.refresh_token;
+            HttpContext.Response.Cookies.Append(".AspNetCore.Connection.Token", value: accessToken,
                 new CookieOptions
                 {
-                    MaxAge = TimeSpan.FromMinutes(60)
+                    MaxAge = TimeSpan.FromSeconds(response.expires_in),
+                    SameSite = SameSiteMode.Strict,
+                    Secure = true
+                });
+            HttpContext.Response.Cookies.Append(".AspNetCore.Connection.Refresh", value: refreshToken,
+                new CookieOptions
+                {
+                    MaxAge = TimeSpan.FromSeconds(response.expires_in),
+                    SameSite = SameSiteMode.Strict,
+                    Secure = true
                 });
             return RedirectToAction("Index", "Home");
         }
 
-        // TODO wrong login or password 
+        if (res.StatusCode == HttpStatusCode.BadRequest)
+        {
+            return View(model: "Invalid username and/or password");
+        }
+
         return View();
     }
 
+    [HttpGet]
     public IActionResult SignUp()
     {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> SignUp(string email, string password, string name, 
+        int birthYear, int birthMonth, int birthDay)
+    {
+        var client = new HttpClient();
+        var values = new Dictionary<string, string>()
+        {
+            {"grant_type", "password"},
+            {"username", email},
+            {"password", password},
+            {"Name", name},
+            {"BirthYear", birthYear.ToString()},
+            {"BirthMonth", birthMonth.ToString()},
+            {"BirthDay", birthDay.ToString()},
+            {"Country", "Russia"},
+            {"ProfileImg", "None"}
+        };
+        var content = new FormUrlEncodedContent(values);
+        var res = client
+            .PostAsync($"https://localhost:7030/api/auth/signup", content).Result;
+        
+        if (res.StatusCode == HttpStatusCode.OK)
+        {
+            var jsonString = await res.Content.ReadAsStringAsync();
+            var response = JsonConvert.DeserializeObject<ResponseType>(jsonString)!;
+            var accessToken = response.access_token;
+            var refreshToken = response.refresh_token;
+            HttpContext.Response.Cookies.Append(".AspNetCore.Connection.Token", value: accessToken,
+                new CookieOptions
+                {
+                    MaxAge = TimeSpan.FromSeconds(response.expires_in),
+                    SameSite = SameSiteMode.Strict,
+                    Secure = true
+                });
+            HttpContext.Response.Cookies.Append(".AspNetCore.Connection.Refresh", value: refreshToken,
+                new CookieOptions
+                {
+                    MaxAge = TimeSpan.FromSeconds(response.expires_in),
+                    SameSite = SameSiteMode.Strict,
+                    Secure = true
+                });
+            return RedirectToAction("Index", "Home");
+        }
+
+        if (res.StatusCode == HttpStatusCode.BadRequest)
+        {
+            return View(model: "Unable to create new user");
+        }
+
         return View();
     }
     #endregion
@@ -76,4 +145,6 @@ public class ResponseType
     public string access_token;
     public string token_type;
     public int expires_in;
+    public string scope;
+    public string refresh_token;
 }
