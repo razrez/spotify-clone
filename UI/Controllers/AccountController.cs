@@ -87,7 +87,7 @@ public class AccountController : Controller
 
     [HttpPost]
     public async Task<IActionResult> SignUp(string email, string password, string name, 
-        int birthYear, int birthMonth, int birthDay)
+        int year, int month, int day)
     {
         var client = new HttpClient();
         var values = new Dictionary<string, string>()
@@ -96,9 +96,9 @@ public class AccountController : Controller
             {"username", email},
             {"password", password},
             {"Name", name},
-            {"BirthYear", birthYear.ToString()},
-            {"BirthMonth", birthMonth.ToString()},
-            {"BirthDay", birthDay.ToString()},
+            {"BirthYear", year.ToString()},
+            {"BirthMonth", month.ToString()},
+            {"BirthDay", day.ToString()},
             {"Country", "Russia"},
             {"ProfileImg", "None"}
         };
