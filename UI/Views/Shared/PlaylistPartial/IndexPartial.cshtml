@@ -8,12 +8,12 @@
             <img width="200" height="200" src="~/img/TESTS-ARTIST-ALBUM.jpg"/>
         </div>
         <div class="playlist-info">
-            <div class="playlist-type">Playlist Type</div>
-            <div class="playlist-name">Playlist Name</div>
+            <div class="playlist-type">TYPE</div>
+            <div class="playlist-name">NAME</div>
             <div class="playlist-data">
-                <a href="#" class="playlist-creator">User Name</a>
-                <span>
-                    &bull; 3 tracks
+                <a href="#" class="playlist-creator">USERNICKNAME</a>
+                <span id="tracks-amount">
+                    &bull; infinite tracks
                 </span>
             </div>
         </div>
@@ -49,13 +49,14 @@
         </div>  
     </div>
 </div>
-<script src="~/js/play-button.js"></script>
-<script src="~/js/song-card.js"></script>
-<script>
-document.querySelector("#songs")
-                    .appendChild(new SongCard(1, "TESTS-ARTIST-ALBUM.jpg", "Song name", "artist1", "album1", "3:02")
-                    .render());
-document.querySelector("#songs")
-                    .appendChild(new SongCard(2, "TESTS-ARTIST-ALBUM.jpg", "Song name", "artist2", "album2", "3:02")
-                    .render());
-</script>
+<script type="module" src="~/js/play-button.js"></script>
+<script src="~/js/cards/song-card.js"></script>
+<script type="module" src="~/js/playlist/show-playlist-info.js"></script>
+@* <script> *@
+@* document.querySelector("#songs") *@
+@*                     .appendChild(new SongCard(1, "TESTS-ARTIST-ALBUM.jpg", "Song name", "artist1", "album1", "3:02") *@
+@*                     .render()); *@
+@* document.querySelector("#songs") *@
+@*                     .appendChild(new SongCard(2, "TESTS-ARTIST-ALBUM.jpg", "Song name", "artist2", "album2", "3:02") *@
+@*                     .render()); *@
+@* </script> *@

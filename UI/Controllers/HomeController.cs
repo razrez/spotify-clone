@@ -21,14 +21,7 @@ public class HomeController : Controller
     public IActionResult Search()
     {
         return View();
-    }  
-    
-    public IActionResult Playlist()
-    {
-        return View();
     }
-    
-    
 
     public IActionResult IndexPartial()
     {
@@ -40,11 +33,6 @@ public class HomeController : Controller
     public IActionResult SearchPartial()
     {
         return PartialView("HomePartial/SearchPartial");
-    }
-
-    public IActionResult PlaylistPartial()
-    {
-        return PartialView("HomePartial/PlaylistPartial");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
