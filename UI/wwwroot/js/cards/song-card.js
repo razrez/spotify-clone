@@ -1,14 +1,23 @@
-﻿class SongCard{
-    constructor(number, img="", name, artist, album, time) {
+﻿class SongCard {
+    constructor(number, img="", name, artist, artistId, playlist, playlistId, playlistType, time) {
         this.number = number;
         this.img = img;
         this.name = name;
         this.artist = artist;
-        this.album = album;
+        this.artistId = artistId;
+        this.playlist = playlist;
+        this.playlistId = playlistId;
+        this.playlistType = playlistType;
         this.time = time;
     }
 
-    render(){
+    render() {
+        if (this.playlistType === "User") {
+            this.playlistType = "Playlist";
+        }
+        else {
+            this.playlistType = "Album";
+        }
         const songCard = document.createElement("div");
         songCard.className = "song-card";
         songCard.innerHTML = `
@@ -26,12 +35,12 @@
                 </div>  
                 <div class="ms-1" style="float:left;">
                     <div class="song-name">${this.name}</div>
-                    <a href="#" class="song-artist">${this.artist}</a>
+                    <a href="/artist/${this.artistId}" class="song-artist">${this.artist}</a>
                 </div>
             </div>
             
             <div class="song-album">
-                <a href="#">${this.album}</a> 
+                <a href="/${this.playlistType}/${this.playlistId}">${this.playlist}</a> 
             </div>
             <div class="song-time">
                 <span class="me-3">${this.time}</span>              

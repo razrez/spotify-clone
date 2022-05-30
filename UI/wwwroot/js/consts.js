@@ -8,7 +8,7 @@ const playlistTypes = ['Album', 'Single', 'Ep', 'User', 'LikedSongs'];
 
 const premiumTypes = ['Individual', 'Student', 'Duo', 'Family', 'Basic'];
 
-const userType = ['User', 'Artist', 'Admin'];
+const userTypes = ['User', 'Artist', 'Admin'];
 
 
 export {
@@ -17,5 +17,5 @@ export {
     genres,
     playlistTypes,
     premiumTypes,
-    userType
+    userTypes
 }
