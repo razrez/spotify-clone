@@ -8,8 +8,7 @@ const   playlistCreator = document.querySelector(".playlist-creator"),
         tracksAmount = document.querySelector("#tracks-amount"),
         songsPlace = document.querySelector("#songs"),
         playlistImage = document.querySelector(".playlist-img"),
-        playlistData = document.querySelector(".playlist-data"),
-        songs = document.querySelector(".songs");
+        playlistData = document.querySelector(".playlist-data");
 
 toggleLoading(playlistCreator, playlistName, playlistType, playlistImage, playlistData);
 
@@ -33,16 +32,18 @@ async function showPlaylistInfo() {
 
     showSongs(playlist)
 
-    let tracksCountWord = playlist['songs'].length > 1 && playlist['songs'].length !== 0 ? " • tracks" : " • track";
+    let tracksCountWord = playlist['songs'].length > 1 && playlist['songs'].length !== 0 ? " tracks" : " track";
     
     // TODO: настроить img у песни, img_src, когда запрос начнет возвращать его
-    playlistType.innerText = playlistTypes[playlist['playlistType']];
+    playlistType.innerText = playlistTypes[playlist['playlistType']] === "LikedSongs" ?
+        "Liked songs" : playlistTypes[playlist['playlistType']];
     playlistName.innerText = playlist['title'];
     playlistCreator.innerText = nickname;
+    console.log(userType);
     if (userType !== "Artist")
         userType = "User";
     playlistCreator.href = `/${userType}/${userId}`;
-    tracksAmount.innerText = playlist['songs'].length + tracksCountWord;;
+    tracksAmount.innerText = " • " + playlist['songs'].length + tracksCountWord;;
 
     toggleLoading(playlistCreator, playlistName, playlistType, playlistImage, playlistData);
 }
@@ -85,4 +86,5 @@ function toggleLoading(...fields) {
         field.classList.toggle("loading");
     })
 }
+
 
