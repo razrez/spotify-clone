@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/css/card.css" asp-append-version="true"/>
     <link rel="stylesheet" href="~/UI.styles.css" asp-append-version="true"/>
+    <link rel="stylesheet" href="~/css/loading.css" asp-append-version="true"/>
 </head>
 <body>
 <div class="page">
@@ -60,7 +61,6 @@
         @{ await Html.RenderPartialAsync("MainPartial/Playbar"); }
     </div>
 </div>
-<script type="module" src="~/js/consts.js"></script>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/js/MainLayoutScript.js"></script>
 <script src="~/js/PlaybarScript.js"></script>

@@ -1,5 +1,6 @@
 ﻿import {api, playlistTypes, userTypes} from '../consts.js'
 import getUserProfile from "../getUserProfile.js";
+import toggleLoading from "../toggleLoading.js";
 
 const playlistId = window.location.href.split('/').pop();
 let nickname, userId, userType, playlist;
@@ -9,9 +10,7 @@ const   playlistCreator = document.querySelector(".playlist-creator"),
         tracksAmount = document.querySelector("#tracks-amount"),
         songsPlace = document.querySelector("#songs"),
         playlistImage = document.querySelector(".playlist-img"),
-        playlistData = document.querySelector(".playlist-data");
-
-toggleLoading(playlistCreator, playlistName, playlistType, playlistImage, playlistData);
+        playlistInfo = document.querySelector(".playlist-info");
 
 window.addEventListener("load", showPlaylistInfo)
 
@@ -39,13 +38,12 @@ async function showPlaylistInfo() {
     playlistType.innerText = playlistTypes[playlist['playlistType']];
     playlistName.innerText = playlist['title'];
     playlistCreator.innerText = nickname;
-    console.log(userType);
     if (userType !== "Artist")
         userType = "User";
     playlistCreator.href = `/${userType}/${userId}`;
     tracksAmount.innerText = " • " + playlist['songs'].length + tracksCountWord;;
 
-    toggleLoading(playlistCreator, playlistName, playlistType, playlistImage, playlistData);
+    toggleLoading(playlistImage, playlistInfo);
 }
 
 async function getPlaylistInfo(id) {
@@ -74,12 +72,6 @@ function showSongs(playlist) {
                     playlist['id'],
                     "3:02") // TODO: что с этим делать
                     .render());
-    })
-}
-
-function toggleLoading(...fields) {
-    fields.forEach(field => {
-        field.classList.toggle("loading");
     })
 }
 

@@ -1,5 +1,5 @@
 ﻿class SongCard {
-    constructor(number, img="", name, artist, artistId, playlist, playlistId, playlistType, time) {
+    constructor(number, img="", name, artist, artistId, playlist, playlistId, time) {
         this.number = number;
         this.img = img;
         this.name = name;
@@ -7,7 +7,6 @@
         this.artistId = artistId;
         this.playlist = playlist;
         this.playlistId = playlistId;
-        this.playlistType = playlistType;
         this.time = time;
     }
 
