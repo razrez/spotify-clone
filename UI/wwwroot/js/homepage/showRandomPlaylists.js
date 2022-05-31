@@ -27,8 +27,7 @@ function showRandomPlaylists (){
                                 .render());
                 });
             });
+            toggleLoading(document.querySelector(".playlists-header"));
         });
-    
-    toggleLoading(document.querySelector(".playlists-header"));
 }
 $(document).ready(showRandomPlaylists);
