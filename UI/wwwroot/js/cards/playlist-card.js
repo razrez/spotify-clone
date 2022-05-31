@@ -14,8 +14,9 @@ class PlaylistCard {
         this.type = type;
         this.id = id;
         this.user = user;
+        
     }
-     
+    
     /**
      * render created card
      * @returns {Element} - html element of card
@@ -26,10 +27,10 @@ class PlaylistCard {
         card.addEventListener("click", (e) => {
             if (e.target && e.target.classList.contains("button-on-card")) {
                 e.stopPropagation();
-                e.target.classList.toggle("card-active")
+                e.target.classList.toggle("card-active");
             }
             else 
-                window.location.href = this.type === "PLAYLIST"? `Playlist/${this.id}` :  `Playlist/${this.id}`;
+                window.location.href = `/Playlist/${this.id}`;
         });
         
         if (this.user.length > 4) 
@@ -46,7 +47,9 @@ class PlaylistCard {
         
         let watermark = this.img === "" ? 
             `<div class="watermark empty"></div>` :
-            `<img src="../img/${this.img}" alt="" class="watermark"/>` 
+            `<img src="../img/${this.img}" alt="" class="watermark"/>`
+        
+        
         
         card.innerHTML = ` 
             <div class="cover">
