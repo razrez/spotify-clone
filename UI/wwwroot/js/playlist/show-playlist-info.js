@@ -1,4 +1,6 @@
 ﻿import {api, playlistTypes, userTypes} from '../consts.js'
+import getUserProfile from "../getUserProfile.js";
+import toggleLoading from "../toggleLoading.js";
 
 const playlistId = window.location.href.split('/').pop();
 let nickname, userId, userType, playlist;
@@ -8,9 +10,7 @@ const   playlistCreator = document.querySelector(".playlist-creator"),
         tracksAmount = document.querySelector("#tracks-amount"),
         songsPlace = document.querySelector("#songs"),
         playlistImage = document.querySelector(".playlist-img"),
-        playlistData = document.querySelector(".playlist-data");
-
-toggleLoading(playlistCreator, playlistName, playlistType, playlistImage, playlistData);
+        playlistInfo = document.querySelector(".playlist-info");
 
 window.addEventListener("load", showPlaylistInfo)
 
@@ -18,7 +18,7 @@ async function showPlaylistInfo() {
     await getPlaylistInfo(playlistId)
         .then(async res => {
             playlist = res;
-            await getUserNickname(playlist['userId'])
+            await getUserProfile(playlist['userId'])
                 .then(res => {
                     if (res)
                         nickname = res[0]['username'];
@@ -35,28 +35,23 @@ async function showPlaylistInfo() {
     let tracksCountWord = playlist['songs'].length > 1 && playlist['songs'].length !== 0 ? " tracks" : " track";
     
     // TODO: настроить img у песни, img_src, когда запрос начнет возвращать его
-    playlistType.innerText = playlistTypes[playlist['playlistType']] === "LikedSongs" ?
-        "Liked songs" : playlistTypes[playlist['playlistType']];
+    playlistType.innerText = playlistTypes[playlist['playlistType']];
     playlistName.innerText = playlist['title'];
     playlistCreator.innerText = nickname;
-    console.log(userType);
     if (userType !== "Artist")
         userType = "User";
     playlistCreator.href = `/${userType}/${userId}`;
     tracksAmount.innerText = " • " + playlist['songs'].length + tracksCountWord;;
 
-    toggleLoading(playlistCreator, playlistName, playlistType, playlistImage, playlistData);
-}
-
-async function getUserNickname(id) {
-    return await fetch(`${api}/profile/user/getProfile/${id}`)
-        .then(response => response.json())
-        .then(res => res)
-        .catch(console.log)
+    toggleLoading(playlistImage, playlistInfo);
 }
 
 async function getPlaylistInfo(id) {
-    return await fetch(`${api}/playlist/${playlistId}`)
+    return await fetch(`${api}/playlist/${playlistId}`, {
+        headers : {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    })
         .then(response => response.json())
         .then(res => res)
         .catch(console.log)
@@ -75,15 +70,8 @@ function showSongs(playlist) {
                     song['userId'],
                     playlist['title'],
                     playlist['id'],
-                    playlistTypes[playlist['playlistType']],
                     "3:02") // TODO: что с этим делать
                     .render());
-    })
-}
-
-function toggleLoading(...fields) {
-    fields.forEach(field => {
-        field.classList.toggle("loading");
     })
 }
 

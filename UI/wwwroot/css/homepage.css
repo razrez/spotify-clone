@@ -1,0 +1,20 @@
+﻿#content {
+    position: absolute;
+    top: 90px;
+    left: 280px;
+    color: white;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.playlist-header {
+    color: white;
+    font-size: 23px;
+    background: white;
+}
+
+.playlists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
