@@ -14,7 +14,6 @@ class PlaylistCard {
         this.type = type;
         this.id = id;
         this.user = user;
-        
     }
     
     /**

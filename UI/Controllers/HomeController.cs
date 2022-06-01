@@ -20,15 +20,13 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult Search()
+    public IActionResult Search(string input)
     {
         return View();
     }
 
     public IActionResult IndexPartial()
     {
-        var client = new HttpClient();
-        var res = client.GetAsync("https://localhost:7030//playlists/random");
         return PartialView("HomePartial/IndexPartial");
     }
 
