@@ -20,7 +20,7 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult Search(string input)
+    public IActionResult Search()
     {
         return View();
     }
