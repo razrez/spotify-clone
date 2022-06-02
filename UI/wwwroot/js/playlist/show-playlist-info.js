@@ -21,12 +21,12 @@ async function showPlaylistInfo() {
             await getUserProfile(playlist['userId'])
                 .then(res => {
                     if (res)
-                        nickname = res[0]['username'];
+                        nickname = res['username'];
                     else 
                         nickname = playlist['userId'];
                     
                     userId = playlist['userId'];
-                    userType = userTypes[res[0]['userType']];
+                    userType = userTypes[res['userType']];
                 }); // TODO: когда дед пофиксит профиль, убрать [0]
         });
 
