@@ -32,7 +32,7 @@ async function showPlaylistInfo() {
 
     showSongs(playlist)
 
-    let tracksCountWord = playlist['songs'].length > 1 && playlist['songs'].length !== 0 ? " tracks" : " track";
+    let tracksCountWord = playlist['songs'].length !== 1 ? " tracks" : " track";
     
     // TODO: настроить img у песни, img_src, когда запрос начнет возвращать его
     playlistType.innerText = playlistTypes[playlist['playlistType']];
