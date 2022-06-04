@@ -31,22 +31,35 @@ $(document).ready(function () {
     
 });
 const searchBar = document.querySelector(".search-bar input");
-let lastSearch, resultPlace, genres, linkSearch, 
+let resultPlace, genres, linkSearch, 
     playlistsPlace, songsPlace, artistsPlace, usersPlace;
+
+let headerPlaylist, headerSongs, headerArtists, headerUsers, headerNothing, headers;
+
+let somethingFound = false;
 
 searchBar.addEventListener("keypress", async function (event) {
     if (event.key === 'Enter') {
         if (!window.location.href.toLowerCase().includes('/home/search')) {
             $('#renderBody').load('/home/searchPartial', async function() {
-                await showResult();
+                setHeaders();
+                await showResult()
+                    .then(() => {
+                        if (!somethingFound) {
+                            headerNothing.style.display = "block";
+                        }
+                    });
             });
             window.history.replaceState(null, null, '/Home/Search');
         }
         else {
-            if (searchBar.value === lastSearch) {
-                return;
-            }
-            await showResult();
+            setHeaders();
+            await showResult()
+                .then(() => {
+                    if (!somethingFound) {
+                        headerNothing.style.display = "block";
+                    }
+                });
         }
     }
 });
@@ -55,7 +68,6 @@ searchBar.addEventListener('input', function(event) {
     if (searchBar.value === "") {
         genres.style.display = "block";
         resultPlace.style.display = "none";
-        lastSearch = "";
     }
 })
 
@@ -68,12 +80,6 @@ async function showResult() {
     artistsPlace = document.querySelector(".search-artists");
     usersPlace = document.querySelector(".search-users");
     
-    let headerPlaylist = document.querySelector(".header-search-playlists"),
-        headerSongs = document.querySelector(".header-search-songs"),
-        headerArtists = document.querySelector(".header-search-artists"),
-        headerUsers = document.querySelector(".header-search-users");
-        
-    let headers = [headerPlaylist, headerSongs, headerArtists, headerUsers];
     let places = [playlistsPlace, songsPlace, artistsPlace, usersPlace];
     
     linkSearch.classList.add("link-active");
@@ -84,7 +90,7 @@ async function showResult() {
     });
 
     headers = headers.map(header => {
-        header.style.display = "none";
+        header.style.display = "block";
         setLoadingIfNot(header);
     });
     
@@ -92,16 +98,15 @@ async function showResult() {
         place.innerText = "";
     });
 
-    if (searchBar.value && lastSearch !== searchBar.value) {
+    if (searchBar.value) {
         genres.style.display = "none";
         resultPlace.style.display = "block";
-        lastSearch = searchBar.value;
         
         // playlists
         await fetch(`${api}/search/playlists?input=${searchBar.value}`)
                 .then(response => response.json())
                 .then(data => {
-                    if (data['title']==="Not Found") {
+                    if (data.length===0) {
                         toggleLoading(headerPlaylist);
                         headerPlaylist.style.display = "none";
                         return;
@@ -112,7 +117,7 @@ async function showResult() {
                             .then(data => {
                                 playlistsPlace.appendChild(
                                     new PlaylistCard (
-                                        "", // TODO: когда будут карточки
+                                        `${api}/files/picture?playlistId=${playlist['id']}`,
                                         playlist['title'],
                                         playlistTypes[playlist['playlistType']],
                                         playlist['id'],
@@ -121,17 +126,40 @@ async function showResult() {
                                 );
                             });
                     });
+                    somethingFound = true;
                     toggleLoading(headerPlaylist);
                     headerPlaylist.style.display = "block";
-                })
-        
+                });
+
         // songs // TODO: когда будут нормально присылать песни с их плейлистами
+        // await fetch(`${api}/search/songs?input=${searchBar.value} `)
+        //     .then(response => response.json())
+        //     .then(data => {
+        //         if (data.length===0) {
+        //             toggleLoading(headerSongs);
+        //             headerSongs.style.display = "none";
+        //             return;
+        //         }
+        //         data.forEach(song => {
+        //             songsPlace.appendChild(
+        //                 new SongCard(
+        //                     `${api}/files/picture/playlist?playlistId=${user['userId']}`, // TODO: когда картинки будут присылать
+        //                     song['username'],
+        //                     userTypes[user['userType']],
+        //                     user['userId']
+        //                 ).render()
+        //             )
+        //         });
+        //         somethingFound = true;
+        //         toggleLoading(headerSongs);
+        //         headerSongs.style.display = "block";
+        //     })
         
         // artists
         await fetch(`${api}/search/artists?input=${searchBar.value} `)
                 .then(response => response.json())
                 .then(data => {
-                    if (data['title']==="Not Found") {
+                    if (data.length===0) {
                         toggleLoading(headerArtists);
                         headerArtists.style.display = "none";
                         return;
@@ -139,13 +167,14 @@ async function showResult() {
                     data.forEach(artist => {
                         artistsPlace.appendChild(
                             new ProfileCard(
-                                "", // TODO: когда картинки будут присылать
+                                `${api}/files/picture/user?userId=${artist['userId']}`,
                                 artist['username'],
                                 userTypes[artist['userType']],
                                 artist['userId']
                             ).render()
                         )
                     });
+                    somethingFound = true;
                     toggleLoading(headerArtists);
                     headerArtists.style.display = "block";
                 })
@@ -154,7 +183,7 @@ async function showResult() {
         await fetch(`${api}/search/users?input=${searchBar.value} `)
             .then(response => response.json())
             .then(data => {
-                if (data['title']==="Not Found") {
+                if (data.length===0) {
                     toggleLoading(headerUsers);
                     headerUsers.style.display = "none";
                     return;
@@ -162,13 +191,14 @@ async function showResult() {
                 data.forEach(user => {
                     usersPlace.appendChild(
                         new ProfileCard(
-                            "", // TODO: когда картинки будут присылать
+                            `${api}/files/picture/user?userId=${user['userId']}`,
                             user['username'],
                             userTypes[user['userType']],
                             user['userId']
                         ).render()
                     )
                 });
+                somethingFound = true;
                 toggleLoading(headerUsers);
                 headerUsers.style.display = "block";
             })
@@ -182,4 +212,16 @@ async function showResult() {
 function setLoadingIfNot(elem) {
     if (!elem.classList.contains("loading"))
         elem.classList.add("loading");
+}
+
+function setHeaders() {
+    headerPlaylist = document.querySelector(".header-search-playlists"),
+        headerSongs = document.querySelector(".header-search-songs"),
+        headerArtists = document.querySelector(".header-search-artists"),
+        headerUsers = document.querySelector(".header-search-users"),
+        headerNothing = document.querySelector(".empty-result");
+
+    headers = [headerPlaylist, headerSongs, headerArtists, headerUsers];
+
+    headerNothing.style.display = "none";
 }
