@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string?
+@{
     Layout = null;
 }
 
@@ -17,12 +18,23 @@
     <br>
     <div class="google-form-button">
         <img class="google-form-logo" src="~/img/google-logo.svg"/>
-        <div class="google-form-text">CONTINUE WITH GOOGLE</div>
+        <div class="google-form-text">
+            @{
+                var returnUrl = "https://localhost:7057/";
+                var path = $"https://localhost:7030/api/external_login/signin/google?returnUrl={returnUrl}";
+            }
+            <a id="google-link" href="@path">
+                CONTINUE WITH GOOGLE
+            </a>
+        </div>
     </div>
     <div class="line-wrapper">
         <div class="line">
             <span>or</span>
         </div>
+    </div>
+    <div>
+        @Model
     </div>
     <div class="form">
         <form id="login" asp-controller="Account" asp-action="LogIn" method="post">
@@ -48,6 +60,17 @@
         </form>
     </div>
 </div>
+<script>
+    /*fetch("https://localhost:7030/api/external_login/provider",
+    { method: "GET"})
+    .then((response) => {
+        return response.text();
+      })
+      .then((data) => {
+          let googleOauth = document.getElementById("google-link")
+                 googleOauth.setAttribute("href", data)
+        });*/
+</script>
 <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
