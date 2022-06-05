@@ -1,6 +1,6 @@
 ﻿
 /* API HOST URL */
-let apiHost = "https://localhost:7030";
+let apiHost = "https://localhost:7030/api";
 /* API HOST URL */
 
 $(document).ready(function () {
