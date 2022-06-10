@@ -1,5 +1,5 @@
 ﻿class SongCard {
-    constructor(number, img="", name, artist, artistId, playlist, playlistId, time) {
+    constructor(number, img="", name, artist, artistId, playlist, playlistId, time, trackId) {
         this.number = number;
         this.img = img;
         this.name = name;
@@ -8,6 +8,7 @@
         this.playlist = playlist;
         this.playlistId = playlistId;
         this.time = time;
+        this.trackId = trackId;
     }
 
     render() {
@@ -71,6 +72,13 @@
                 </div>
             </div>
         `;
+        
+        let play_btn = songCard.querySelector(".play-btn");
+        play_btn.addEventListener("click", () => {
+            UploadTrack(this.number, this.img, this.name, this.artist,
+                this.artistId, this.playlist, this.playlistId, this.trackId);//Я знаю что криво
+        });
+        
         return songCard;
     }
 }

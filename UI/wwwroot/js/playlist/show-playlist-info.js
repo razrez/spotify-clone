@@ -70,8 +70,10 @@ function showSongs(playlist) {
                     song['userId'],
                     playlist['title'],
                     playlist['id'],
-                    "3:02") // TODO: что с этим делать
+                    "3:02", // TODO: что с этим делать
+                    song["id"]) 
                     .render());
+        index++;
     })
 }
 

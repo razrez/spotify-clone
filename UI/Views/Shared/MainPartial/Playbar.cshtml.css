@@ -5,7 +5,7 @@
     --padding: 1em;
     background-color: #111;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     position: relative;
 
@@ -87,7 +87,7 @@ i:hover{
 }
 
 .song-bar {
-    /*position: absolute;*/
+    z-index: 1;
     left: var(--padding);
     max-width: 20em;
     display: flex;
@@ -148,6 +148,8 @@ i:hover{
     gap: 1em;
 }
 .progress-controller{
+    padding-right: 1em;
+    position: absolute;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -224,6 +226,7 @@ i:hover{
 }
 
 .other-features{
+    z-index: 1;
     min-width: 20em;
     /*width: 100%;*/
     /*position: absolute;
