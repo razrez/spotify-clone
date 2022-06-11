@@ -22,6 +22,7 @@
 }
 
 .playlist-name{
+    cursor: default;
     font-weight: bolder;
     font-size: 60px;
     letter-spacing: -4px;
@@ -29,6 +30,7 @@
 }
 
 .playlist-type{
+    cursor: default;
     font-weight: bolder;
     font-size: 15px;
     white-space: nowrap;
@@ -36,12 +38,14 @@
 }
 
 .playlist-data span{
+    cursor: default;
     font-weight: 400;
     font-size: 15px;
     position: relative;
 }
 
 a.playlist-creator{
+    cursor: default;
     font-weight: bolder;
     font-size: 15px;
     white-space: nowrap;
@@ -58,6 +62,7 @@ a.playlist-creator:hover{
 }
 
 .songs-headlines{
+    cursor: default;
     display: flex;
     color: grey;
     font-weight: bold;
@@ -95,7 +100,6 @@ a.playlist-creator:hover{
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.2);
-    padding: 10px;
     border-radius: 5px ;
     color: white;
 }
@@ -114,7 +118,6 @@ a.playlist-creator:hover{
     display: block;
     position: relative;
     cursor: pointer;
-    
 }
 
 .song-info{
@@ -125,6 +128,7 @@ a.playlist-creator:hover{
 }
 
 .song-time{
+    cursor: default;
     flex: 2;
 }
 
@@ -141,6 +145,7 @@ a.playlist-creator:hover{
 .song-name{
     color: white;
     font-size: 0.9rem;
+    cursor: default;
 }
 
 a.song-artist{
@@ -178,20 +183,46 @@ button.like-btn{
     background: transparent;
 }
 
-.three-dots-menu{
-    display:none;
-}
-
 button.three-dots-menu{
     border: none;
     background: transparent;
+    display:none;
+    padding: 20px;
+}
+
+.song-card button.like-btn {
+    display: inline-block;
+}
+
+.song-card button.three-dots-menu {
+    display: inline-block;
 }
 
 .song-card:hover button.like-btn{
-    display: inline-block;
     color: white;
 }
 .song-card:hover button.three-dots-menu{
-    display: inline-block;
     color: white;
+}
+
+.popup-menu {
+    display: none;
+    color: white;
+    position: absolute;
+    text-align: center;
+    font-size: 15px;
+    width: 150px;
+    height: 100px;
+    padding: 10px;
+    background: #212020;
+    border-radius: 5px;
+    cursor: default;
+}
+
+.popup-menu p {
+    padding: 5px;
+}
+
+.popup-menu p:hover {
+    background-color: #4d4848;
 }

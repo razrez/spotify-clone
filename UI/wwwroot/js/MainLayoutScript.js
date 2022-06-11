@@ -1,4 +1,4 @@
-﻿import {playlistTypes, userTypes, api} from "./consts.js";
+import {playlistTypes, userTypes, api} from "./consts.js";
 import toggleLoading from "./toggleLoading.js";
 
 $(document).ready(function () {

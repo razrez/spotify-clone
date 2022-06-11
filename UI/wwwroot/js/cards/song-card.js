@@ -1,5 +1,5 @@
 ﻿class SongCard {
-    constructor(number, img="", name, artist, artistId, playlist, playlistId, time) {
+    constructor(number, img="", name, artist, artistId, playlist, playlistId, time, trackId) {
         this.number = number;
         this.img = img;
         this.name = name;
@@ -8,11 +8,30 @@
         this.playlist = playlist;
         this.playlistId = playlistId;
         this.time = time;
+        this.trackId = trackId;
     }
 
     render() {
         const songCard = document.createElement("div");
         songCard.className = "song-card";
+        songCard.addEventListener("click", function(e) {
+            if (e.target && e.target.classList.contains("bi-three-dots")) {
+                let menu = document.querySelector(".popup-menu");
+                if (menu.style.display === "block")
+                    menu.style.display = "none";
+                else {
+                    menu.style.display = "block";
+                    console.log(menu.parentElement.parentElement);
+                }
+            }
+        });
+
+        window.addEventListener("click", function (e){
+            if (e.target && !e.target.classList.contains("bi-three-dots")) {
+                document.querySelector(".popup-menu").style.display = "none";
+            }
+        })
+        
         songCard.innerHTML = `
             <div class="song-number">
                 <div class="number">${this.number}</div>
@@ -47,8 +66,19 @@
                         <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                     </svg>
                 </button>
+                <div class="popup-menu">
+                    <p id="album">To album</p>
+                    <p id="playlist">Add to playlist</p>
+                </div>
             </div>
         `;
+        
+        let play_btn = songCard.querySelector(".play-btn");
+        play_btn.addEventListener("click", () => {
+            UploadTrack(this.number, this.img, this.name, this.artist,
+                this.artistId, this.playlist, this.playlistId, this.trackId);//Я знаю что криво
+        });
+        
         return songCard;
     }
 }

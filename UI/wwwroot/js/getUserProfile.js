@@ -1,7 +1,7 @@
 ﻿import {api} from "./consts.js";
 
 export default async function getUserProfile(id) {
-    return await fetch(`${api}/profile/user/getProfile/${id}`, {
+    return await fetch(`${api}/profile/getProfile?userId=${id}`, {
         headers : {
             'Authorization': `Bearer ${getToken()}`
         }

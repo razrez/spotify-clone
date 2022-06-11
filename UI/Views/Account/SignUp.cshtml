@@ -1,4 +1,5 @@
-﻿@{
+﻿@model string
+@{
     Layout = null;
 }
 
@@ -29,8 +30,11 @@
     <h2 class="signup-text signup-text-under">
         Sign up with your email address
     </h2>
+    <div>
+        @Model
+    </div>
     <div class="form">
-        <form>
+        <form asp-controller="Account" asp-action="SignUp" method="post">
             <div class="form-field">
                 <label for="email">What's your email?</label><br/>
                 <input type="email" name="email" placeholder="Enter your email." required="You need to enter your email."/>
@@ -56,18 +60,18 @@
                     <input id="day" name="day" pattern="([0-2]\d|3[0-1])" maxlength="2" type="number" placeholder="DD" required="Enter a valid day."/>
                     <select id="month" name="month" required="Enter a valid month.">
                         <option value="" selected disabled hidden>Month</option>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                     </select>
                     <input id="year" name="year" pattern="(1\d{3}|2\d{3})" type="number" placeholder="YYYY" required="Enter a valid year."/>
                 </div>
@@ -95,7 +99,7 @@
                     <a href="#">Privacy Policy</a>.
                 </span><br/>
             </div>
-            <button type="button" class="form-button signup-button">Sign up</button>
+            <button type="submit" class="form-button signup-button">Sign up</button>
             <p class="signup-suggestion">Have an account? <a href="#">Log in</a>.</p><br/>
         </form>
     </div>

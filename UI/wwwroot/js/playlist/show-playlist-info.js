@@ -21,18 +21,18 @@ async function showPlaylistInfo() {
             await getUserProfile(playlist['userId'])
                 .then(res => {
                     if (res)
-                        nickname = res[0]['username'];
+                        nickname = res['username'];
                     else 
                         nickname = playlist['userId'];
                     
                     userId = playlist['userId'];
-                    userType = userTypes[res[0]['userType']];
+                    userType = userTypes[res['userType']];
                 }); // TODO: когда дед пофиксит профиль, убрать [0]
         });
 
     showSongs(playlist)
 
-    let tracksCountWord = playlist['songs'].length > 1 && playlist['songs'].length !== 0 ? " tracks" : " track";
+    let tracksCountWord = playlist['songs'].length !== 1 ? " tracks" : " track";
     
     // TODO: настроить img у песни, img_src, когда запрос начнет возвращать его
     playlistType.innerText = playlistTypes[playlist['playlistType']];
@@ -70,8 +70,10 @@ function showSongs(playlist) {
                     song['userId'],
                     playlist['title'],
                     playlist['id'],
-                    "3:02") // TODO: что с этим делать
+                    "3:02", // TODO: что с этим делать
+                    song["id"]) 
                     .render());
+        index++;
     })
 }
 
