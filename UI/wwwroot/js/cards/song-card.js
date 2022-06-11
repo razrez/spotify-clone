@@ -75,8 +75,9 @@
         
         let play_btn = songCard.querySelector(".play-btn");
         play_btn.addEventListener("click", () => {
-            UploadTrack(this.number, this.img, this.name, this.artist,
-                this.artistId, this.playlist, this.playlistId, this.trackId);//Я знаю что криво
+            /*UploadTrack(this.number, this.img, this.name, this.artist,
+                this.artistId, this.playlist, this.playlistId, this.trackId);*/
+            UploadTrack(this.number, this.playlistId);//Я знаю что криво
         });
         
         return songCard;
