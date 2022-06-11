@@ -18,7 +18,7 @@ function showRandomPlaylists (){
                     .then(nickname => {
                     container
                         .appendChild(
-                            new PlaylistCard(
+                            new PlaylistCard (
                                 '',//playlist['imgSrc'],
                                 playlist['title'],
                                 playlistTypes[playlist['playlistType']],
@@ -28,7 +28,6 @@ function showRandomPlaylists (){
                                 .render());
                 });
             });
-            toggleLoading(document.querySelector(".playlists-header"));
         });
 }
 $(document).ready(showRandomPlaylists);
