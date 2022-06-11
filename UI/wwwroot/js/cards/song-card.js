@@ -24,7 +24,7 @@
             </div>
             <div class="song-info">
                 <div class="me-3" style="float:left;"> 
-                    <img src="/img/${this.img}" width="40" height="40" alt="album card"> 
+                    <img src="/img/${this.img}" width="40" height="40" alt=""> 
                 </div>  
                 <div class="ms-1" style="float:left;">
                     <div class="song-name">${this.name}</div>

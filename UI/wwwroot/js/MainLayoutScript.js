@@ -76,7 +76,7 @@ async function showResult() {
     genres = document.querySelector(".genres-body");
     linkSearch = document.querySelector(".link.search");
     playlistsPlace = document.querySelector(".search-playlists");
-    songsPlace = document.querySelector(".search-songs");
+    songsPlace = document.querySelector(".songs");
     artistsPlace = document.querySelector(".search-artists");
     usersPlace = document.querySelector(".search-users");
     
@@ -131,29 +131,41 @@ async function showResult() {
                     headerPlaylist.style.display = "block";
                 });
 
-        // songs // TODO: когда будут нормально присылать песни с их плейлистами
-        // await fetch(`${api}/search/songs?input=${searchBar.value} `)
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         if (data.length===0) {
-        //             toggleLoading(headerSongs);
-        //             headerSongs.style.display = "none";
-        //             return;
-        //         }
-        //         data.forEach(song => {
-        //             songsPlace.appendChild(
-        //                 new SongCard(
-        //                     `${api}/files/picture/playlist?playlistId=${user['userId']}`, // TODO: когда картинки будут присылать
-        //                     song['username'],
-        //                     userTypes[user['userType']],
-        //                     user['userId']
-        //                 ).render()
-        //             )
-        //         });
-        //         somethingFound = true;
-        //         toggleLoading(headerSongs);
-        //         headerSongs.style.display = "block";
-        //     })
+        let index = 1;
+        // songs
+        await fetch(`${api}/search/songs?input=${searchBar.value} `)
+            .then(response => response.json())
+            .then(data => {
+                if (data.length===0) {
+                    toggleLoading(headerSongs);
+                    headerSongs.style.display = "none";
+                    return;
+                }
+                
+                data.forEach(async song => {
+                    await fetch(`${api}/user/content/name/${song['userId']}`)
+                        .then(response => response.json())
+                        .then(nickname => {
+                            songsPlace.appendChild(
+                                new SongCard(
+                                    index,
+                                    `${api}/files/picture/playlist?playlistId=${song['originPlaylistId']}`,
+                                    song['name'],
+                                    nickname['name'] ?? song['userId'],
+                                    song['userId'],
+                                    song['originPlaylistTitle'],
+                                    song['originPlaylistId'],
+                                    "2:28"
+                                ).render()
+                            )
+                            index++;
+                        });
+                });
+                
+                somethingFound = true;
+                toggleLoading(headerSongs);
+                headerSongs.style.display = "block";
+            });
         
         // artists
         await fetch(`${api}/search/artists?input=${searchBar.value} `)
