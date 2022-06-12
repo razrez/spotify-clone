@@ -1,7 +1,3 @@
-import {api, playlistTypes} from '../consts.js';
-import getUserProfile from "../getUserProfile.js";
-import toggleLoading from "../toggleLoading.js";
-
 function showRandomPlaylists (){
     let container = document.querySelector(".playlists");
     fetch(api + "/home/random/playlists?count=10",{

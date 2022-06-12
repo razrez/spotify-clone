@@ -1,6 +1,3 @@
-import {playlistTypes, userTypes, api} from "./consts.js";
-import toggleLoading from "./toggleLoading.js";
-
 $(document).ready(function () {
     $('.layout_content').scroll(function () {
         $('.header-overlay').css("opacity", 0 + $('.layout_content').scrollTop() / 200)
@@ -30,8 +27,9 @@ $(document).ready(function () {
     })
     
 });
+
 const searchBar = document.querySelector(".search-bar input");
-let resultPlace, genres, linkSearch, 
+let resultPlace, genresPlace, linkSearch, 
     playlistsPlace, songsPlace, artistsPlace, usersPlace;
 
 let headerPlaylist, headerSongs, headerArtists, headerUsers, headerNothing, headers;
@@ -66,17 +64,17 @@ searchBar.addEventListener("keypress", async function (event) {
 
 searchBar.addEventListener('input', function(event) {
     if (searchBar.value === "") {
-        genres.style.display = "block";
+        genresPlace.style.display = "block";
         resultPlace.style.display = "none";
     }
 })
 
 async function showResult() {
     resultPlace = document.querySelector(".search-result");
-    genres = document.querySelector(".genres-body");
+    genresPlace = document.querySelector(".genres-body");
     linkSearch = document.querySelector(".link.search");
     playlistsPlace = document.querySelector(".search-playlists");
-    songsPlace = document.querySelector(".songs");
+    songsPlace = document.querySelector(".search-songs");
     artistsPlace = document.querySelector(".search-artists");
     usersPlace = document.querySelector(".search-users");
     
@@ -99,7 +97,7 @@ async function showResult() {
     });
 
     if (searchBar.value) {
-        genres.style.display = "none";
+        genresPlace.style.display = "none";
         resultPlace.style.display = "block";
         
         // playlists
@@ -216,7 +214,7 @@ async function showResult() {
             })
         
     } else {
-        genres.style.display = "block";
+        genresPlace.style.display = "block";
         resultPlace.style.display = "none";
     }
 }
