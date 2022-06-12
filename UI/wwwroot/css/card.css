@@ -6,6 +6,7 @@
     background-color: #181818;
     border-radius: 5px;
     cursor: default;
+    margin: 6px;
 }
 
 .card:hover .button-on-card {

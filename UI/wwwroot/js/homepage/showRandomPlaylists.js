@@ -1,7 +1,3 @@
-import {api, playlistTypes} from '../consts.js';
-import getUserProfile from "../getUserProfile.js";
-import toggleLoading from "../toggleLoading.js";
-
 function showRandomPlaylists (){
     let container = document.querySelector(".playlists");
     fetch(api + "/home/random/playlists?count=10",{
@@ -18,7 +14,7 @@ function showRandomPlaylists (){
                     .then(nickname => {
                     container
                         .appendChild(
-                            new PlaylistCard(
+                            new PlaylistCard (
                                 '',//playlist['imgSrc'],
                                 playlist['title'],
                                 playlistTypes[playlist['playlistType']],
@@ -28,7 +24,6 @@ function showRandomPlaylists (){
                                 .render());
                 });
             });
-            toggleLoading(document.querySelector(".playlists-header"));
         });
 }
 $(document).ready(showRandomPlaylists);

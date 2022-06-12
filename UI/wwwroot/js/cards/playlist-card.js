@@ -14,7 +14,6 @@ class PlaylistCard {
         this.type = type;
         this.id = id;
         this.user = user;
-        
     }
     
     /**
@@ -50,9 +49,7 @@ class PlaylistCard {
         
         let watermark = this.img === "" ? 
             `<div class="watermark empty"></div>` :
-            `<img src="../img/${this.img}" alt="" class="watermark"/>`
-        
-        
+            `<img src="${this.img}" alt="" class="watermark"/>`
         
         card.innerHTML = ` 
             <div class="cover">

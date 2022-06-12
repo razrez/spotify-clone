@@ -21,16 +21,15 @@
                     menu.style.display = "none";
                 else {
                     menu.style.display = "block";
-                    console.log(menu.parentElement.parentElement);
                 }
             }
         });
 
-        window.addEventListener("click", function (e){
-            if (e.target && !e.target.classList.contains("bi-three-dots")) {
-                document.querySelector(".popup-menu").style.display = "none";
-            }
-        })
+        // window.addEventListener("click", function (e){
+        //     if (e.target && !e.target.classList.contains("bi-three-dots")) {
+        //         document.querySelector(".popup-menu").style.display = "none";
+        //     }
+        // }) // TODO: three dots menu
         
         songCard.innerHTML = `
             <div class="song-number">
@@ -43,7 +42,7 @@
             </div>
             <div class="song-info">
                 <div class="me-3" style="float:left;"> 
-                    <img src="/img/${this.img}" width="40" height="40" alt="album card"> 
+                    <img src="/img/${this.img}" width="40" height="40" alt=""> 
                 </div>  
                 <div class="ms-1" style="float:left;">
                     <div class="song-name">${this.name}</div>
@@ -66,10 +65,10 @@
                         <path fill-rule="evenodd" d="M3 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm5 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
                     </svg>
                 </button>
-                <div class="popup-menu">
-                    <p id="album">To album</p>
-                    <p id="playlist">Add to playlist</p>
-                </div>
+<!--                <div class="popup-menu">-->
+<!--                    <p id="album">To album</p>-->
+<!--                    <p id="playlist">Add to playlist</p>-->
+<!--                </div> //TODO : three dots menu-->
             </div>
         `;
         
