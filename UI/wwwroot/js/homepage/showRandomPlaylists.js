@@ -27,6 +27,7 @@ function showRandomPlaylists (){
             toggleLoading(document.querySelector(".playlists-header"));
         });
 }
+
 $(document).ready(showRandomPlaylists);
 $(".home").click(function (){
     $( document ).ajaxStop(showRandomPlaylists);
