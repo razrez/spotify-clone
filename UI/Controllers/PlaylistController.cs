@@ -8,7 +8,7 @@ public class PlaylistController : Controller
     {
         return View();
     }
-
+    
     public IActionResult IndexPartial()
     {
         return PartialView("PlaylistPartial/IndexPartial");

@@ -27,8 +27,11 @@ class PlaylistCard {
             if (e.target && e.target.classList.contains("button-on-card")) {
                 e.stopPropagation();
                 e.target.classList.toggle("card-active");
+                if (e.target && e.target.classList.contains("card-active"))
+                    UploadTrack(1, this.id);
+                else Pause(e);
             }
-            else 
+            else
                 window.location.href = `/Playlist/${this.id}`;
         });
         

@@ -20,7 +20,7 @@ app.UseRouting();
 
 app.Use(async (context, next) =>
 {
-    var token = context.Request.Cookies[".AspNetCore.Application.Id"];
+    var token = context.Request.Cookies[".AspNetCore.Connection.Token"];
     if (!string.IsNullOrEmpty(token))
         context.Request.Headers.Add("Authorization", "Bearer " + token);
  

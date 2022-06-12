@@ -4,5 +4,5 @@ function getToken() {
         let [key,value] = el.split('=');
         cookie[key.trim()] = value;
     })
-    return cookie['.AspNetCore.Application.Id'];
+    return cookie['.AspNetCore.Connection.Token'];
 }

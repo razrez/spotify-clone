@@ -3,12 +3,14 @@
     volumeContainer  = document.querySelector(".volume-track"),
     volumePosition   = document.querySelector(".volume-set"),
     playPauseButton     = document.querySelector(".play"),
+    forwardButton     = document.querySelector(".step_forward"),
+    backButton     = document.querySelector(".step-back"),
     currentTrackTime = document.querySelector("#current"),
     trackDuration     = document.querySelector("#duration"),
     likeButton          = document.querySelector(".like"),
     repeatButton        = document.querySelector(".repeat"),
     shuffleButton       = document.querySelector(".shuffle"),
-    playlistButton      = document.querySelector(".playlist"),
+    playlistButton      = document.querySelector(".bar-playlist-btn"),
     volumeButton        = document.querySelector(".volume"),
     repeatSong       = document.querySelector("#repeat-song"),
     cover       = document.querySelector(".cover"),
@@ -16,10 +18,14 @@
     artistName       = document.querySelector(".artist");
 
 let audio = new Audio();
+let playlist;
+let currentSong;
+
 let interval;
 const replay = {NoReplay: 0, Song: 1, Playlist: 2}
 
 /*           states         */
+
 let paused = true;
 let shuffle = false;
 let liked = false;
@@ -28,25 +34,58 @@ let trackDragging = false;
 let volumeDragging = false;
 let playlistOpen = false;
 let playbackState = 0;
-
 let volume;
 
 
 
 /*          set audio           */
 
-function UploadTrack(number, img, name, artist, artistId, playlist, playlistId, trackId){
-    SetAudioFileById(trackId);
-    SetCoverByPlaylistId(playlistId);
-    artistName.innerText = artist;
-    trackName.innerText = name;
+function UploadTrack(number, playlistId){
+    GetPlaylist(playlistId)
+        .then(res => playlist = res)
+        .then(() => SetTrack(number-1))
+        .then(() => Play());    
+}
+
+function SetTrack(number){
+    let artistName;
+    GetArtistInfo(number)
+        .then(res => {
+            artistName = res['username'];
+            currentSong = {number: number, ...playlist['songs'][number], artistName: artistName};
+            SetSongInfo(number);
+            SetAudioFileById(currentSong.id);})
+}
+
+function SetSongInfo() {
+    SetSliderPosition(trackPosition, 0);
+    currentTrackTime.innerText = '0:00';
+    SetCoverByPlaylistId(playlist.id);
+    artistName.innerText = currentSong['artistName'];
+    trackName.innerText = currentSong.name;
+    artistName.href = `/Artist/${currentSong['userId']}`;
+    trackName.href = `/Playlist/${currentSong['originPlaylistId']}`;
     //TODO liked?
-    //TODO set url  to artist and playlist
 }
 
 audio.addEventListener('loadeddata', () => {
     trackDuration.innerText = GetFormattedTime(audio.duration);
-    Play();
+    if(!paused){
+        Play();
+    }
+    // The duration variable now holds the duration (in seconds) of the audio clip
+})
+
+audio.addEventListener('ended', () => {
+    if (shuffle){
+        SetRandomTrack()
+        return;
+    }
+    if(playlist['songs'][currentSong.number+1]!==undefined)
+        SetTrack(currentSong.number+1);
+    else if (playbackState === replay.Playlist){
+        SetTrack(0);
+    }
     // The duration variable now holds the duration (in seconds) of the audio clip
 })
 
@@ -86,7 +125,8 @@ playlistButton.addEventListener("click", function () {
     else {
         playlistOpen = true;
         playlistButton.firstElementChild.classList.add("active");
-        //TODO get playlist page
+        //TODO get playlist page async!
+        window.location.href = `/Playlist/${playlist.id}`;
     }
 });
 
@@ -95,7 +135,6 @@ repeatButton.addEventListener("click", function () {
         playbackState = replay.Playlist;
         repeatButton.firstElementChild.classList.add("active");
         audio.loop = false;
-        //TODO replay playlist
     }
     else if(playbackState === replay.Playlist){
         playbackState = replay.Song;
@@ -109,6 +148,22 @@ repeatButton.addEventListener("click", function () {
         audio.loop = false;
     }
 });
+
+forwardButton.addEventListener('click', function () {
+    if(playlist['songs'][currentSong.number+1]!==undefined)
+        SetTrack(currentSong.number+1);
+    if (playbackState === replay.Playlist){
+        SetTrack(0);
+    }
+})
+
+backButton.addEventListener('click', () => {
+    if(playlist['songs'][currentSong.number-1]!==undefined)
+        SetTrack(currentSong.number-1);
+    if (playbackState === replay.Playlist){
+        SetTrack(playlist['songs'].length-1);
+    }
+})
 
 
 
@@ -215,9 +270,9 @@ function Play() {
     paused = false;
     audio.play();
     playPauseButton.firstElementChild.className = "play-pause fas fa-pause";
-    interval = setInterval(()=>{
+    interval = setInterval(() => {
         currentTrackTime.innerText = GetFormattedTime(Math.round(audio.currentTime));
-        trackPosition.style.width = `${100/audio.duration*audio.currentTime}%`;
+        trackPosition.style.width = `${100 / audio.duration * audio.currentTime}%`;
     }, 10);
 }
 function Pause() {
@@ -247,4 +302,27 @@ function GetFormattedTime(dur){
     let min = (dur - dur%60)/60;
     let sec = ("0"+Math.round(dur%60)).slice(-2);
     return min + ":" + sec;
+}
+
+async function GetPlaylist(id){
+    return await fetch(`${apiHost}/playlist/${id}`, {
+        headers : {
+            'Authorization': `Bearer ${getToken()}`
+        }
+    })
+        .then(response => response.json())
+        .catch(console.log)
+}
+
+async function GetArtistInfo(number) {
+    return await fetch(`${apiHost}/profile/getProfile?userId=${playlist['songs'][number]['userId']}`, {
+        headers : {
+            'Authorization': `Bearer ${getToken()}`
+        }})
+        .then(response => response.json())
+        .catch(console.log)
+}
+
+function SetRandomTrack() {
+    SetTrack(Math.floor(Math.random() * playlist['songs'].length));
 }
