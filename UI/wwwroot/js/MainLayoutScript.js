@@ -183,7 +183,7 @@ async function showResult() {
                                 (artist['profileImg'] 
                                         ?`${api}/files/picture/user?userId=${artist['userId']}`
                                         : ""),
-                                artist['username'],
+                                (artist['username'] ?? artist['userId']),
                                 userTypes[artist['userType']],
                                 artist['userId']
                             ).render()
@@ -209,7 +209,7 @@ async function showResult() {
                             (user['profileImg']
                                 ?`${api}/files/picture/user?userId=${user['userId']}`
                                 : ""),
-                            user['username'],
+                            (user['username'] ?? user['userId']),
                             userTypes[user['userType']],
                             user['userId']
                         ).render()
