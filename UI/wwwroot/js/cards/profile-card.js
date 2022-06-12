@@ -22,7 +22,7 @@
         
         let watermark = this.img === "" ?
             `<div class="watermark profile empty"></div>` :
-            `<img src="../img/${this.img}" alt="" class="watermark profile"/>`
+            `<img src="${this.img}" alt="" class="watermark profile"/>`
 
         let button = this.type === "Artist"? 
             `<div class="button-on-card"></div> <!--can be made active with \"card-active\" class-->` :
