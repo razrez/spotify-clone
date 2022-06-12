@@ -188,8 +188,8 @@ h1 {
     margin-bottom: 50px;
 }
 
-.songs {
-    margin-bottom: 50px;
+.search-songs {
+    margin-bottom: 40px;
     height: 300px;
     overflow-x: hidden;
     overflow-y: auto;

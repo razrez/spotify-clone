@@ -1,6 +1,4 @@
-﻿import {api} from './consts.js';
-
-export default async function getData(url) {
+﻿async function getData(url) {
     try{
         return await fetch(`${api}/${url} `, {
             method: 'GET',

@@ -1,14 +1,10 @@
-﻿import {api, playlistTypes, userTypes} from '../consts.js'
-import getUserProfile from "../getUserProfile.js";
-import toggleLoading from "../toggleLoading.js";
-
-const playlistId = window.location.href.split('/').pop();
+﻿const playlistId = window.location.href.split('/').pop();
 let nickname, userId, userType, playlist;
 const   playlistCreator = document.querySelector(".playlist-creator"),
         playlistType = document.querySelector(".playlist-type"),
         playlistName = document.querySelector(".playlist-name"),
         tracksAmount = document.querySelector("#tracks-amount"),
-        songsPlace = document.querySelector("#songs"),
+        songsPlacePlaylist = document.querySelector("#songs"),
         playlistImage = document.querySelector(".playlist-img"),
         playlistInfo = document.querySelector(".playlist-info");
 
@@ -27,14 +23,16 @@ async function showPlaylistInfo() {
                     
                     userId = playlist['userId'];
                     userType = userTypes[res['userType']];
-                }); // TODO: когда дед пофиксит профиль, убрать [0]
+                });
         });
 
     showSongs(playlist)
 
     let tracksCountWord = playlist['songs'].length !== 1 ? " tracks" : " track";
     
-    // TODO: настроить img у песни, img_src, когда запрос начнет возвращать его
+    playlistImage.src = playlist['imgSrc'] 
+        ?`${api}/files/picture/playlist?playlistId=${playlist['id']}` 
+        : playlistImage.classList.add('empty');
     playlistType.innerText = playlistTypes[playlist['playlistType']];
     playlistName.innerText = playlist['title'];
     playlistCreator.innerText = nickname;
@@ -60,11 +58,11 @@ async function getPlaylistInfo(id) {
 function showSongs(playlist) {
     let index = 1;
     playlist['songs'].forEach(song => {
-        songsPlace
+        songsPlacePlaylist
             .appendChild(
                 new SongCard(
                     index,
-                    "TESTS-ARTIST-ALBUM.jpg",
+                    `${api}/playlist/${playlistId}`,
                     song['name'],
                     nickname,
                     song['userId'],
