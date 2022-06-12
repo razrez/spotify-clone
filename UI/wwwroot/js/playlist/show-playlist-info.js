@@ -70,7 +70,7 @@ function showSongs(playlist) {
             .appendChild(
                 new SongCard(
                     index,
-                    `${api}/playlist/${playlistId}`,
+                    '',
                     song['name'],
                     nickname,
                     song['userId'],
