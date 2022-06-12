@@ -15,7 +15,7 @@ function showRandomPlaylists (){
                     container
                         .appendChild(
                             new PlaylistCard (
-                                '',//playlist['imgSrc'],
+                                (playlist['imgSrc'] === "null" ? "" : `${api}/files/picture/playlist?playlistId=${playlist['id']}`),
                                 playlist['title'],
                                 playlistTypes[playlist['playlistType']],
                                 playlist['id'],
