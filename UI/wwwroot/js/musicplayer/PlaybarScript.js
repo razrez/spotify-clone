@@ -18,7 +18,7 @@
     artistName       = document.querySelector(".artist");
 
 let audio = new Audio();
-let playlist;
+let currentPlaylist;
 let currentSong;
 
 let interval;
@@ -42,7 +42,7 @@ let volume;
 
 function UploadTrack(number, playlistId){
     GetPlaylist(playlistId)
-        .then(res => playlist = res)
+        .then(res => currentPlaylist = res)
         .then(() => SetTrack(number-1))
         .then(() => Play());    
 }
@@ -52,7 +52,7 @@ function SetTrack(number){
     GetArtistInfo(number)
         .then(res => {
             artistName = res['username'];
-            currentSong = {number: number, ...playlist['songs'][number], artistName: artistName};
+            currentSong = {number: number, ...currentPlaylist['songs'][number], artistName: artistName};
             SetSongInfo(number);
             SetAudioFileById(currentSong.id);})
 }
@@ -60,7 +60,7 @@ function SetTrack(number){
 function SetSongInfo() {
     SetSliderPosition(trackPosition, 0);
     currentTrackTime.innerText = '0:00';
-    SetCoverByPlaylistId(playlist.id);
+    SetCoverByPlaylistId(currentPlaylist.id);
     artistName.innerText = currentSong['artistName'];
     trackName.innerText = currentSong.name;
     artistName.href = `/Artist/${currentSong['userId']}`;
@@ -81,7 +81,7 @@ audio.addEventListener('ended', () => {
         SetRandomTrack()
         return;
     }
-    if(playlist['songs'][currentSong.number+1]!==undefined)
+    if(currentPlaylist['songs'][currentSong.number+1]!==undefined)
         SetTrack(currentSong.number+1);
     else if (playbackState === replay.Playlist){
         SetTrack(0);
@@ -126,7 +126,7 @@ playlistButton.addEventListener("click", function () {
         playlistOpen = true;
         playlistButton.firstElementChild.classList.add("active");
         //TODO get playlist page async!
-        window.location.href = `/Playlist/${playlist.id}`;
+        window.location.href = `/Playlist/${currentPlaylist.id}`;
     }
 });
 
@@ -150,7 +150,7 @@ repeatButton.addEventListener("click", function () {
 });
 
 forwardButton.addEventListener('click', function () {
-    if(playlist['songs'][currentSong.number+1]!==undefined)
+    if(currentPlaylist['songs'][currentSong.number+1]!==undefined)
         SetTrack(currentSong.number+1);
     if (playbackState === replay.Playlist){
         SetTrack(0);
@@ -158,10 +158,10 @@ forwardButton.addEventListener('click', function () {
 })
 
 backButton.addEventListener('click', () => {
-    if(playlist['songs'][currentSong.number-1]!==undefined)
+    if(currentPlaylist['songs'][currentSong.number-1]!==undefined)
         SetTrack(currentSong.number-1);
     if (playbackState === replay.Playlist){
-        SetTrack(playlist['songs'].length-1);
+        SetTrack(currentPlaylist['songs'].length-1);
     }
 })
 
@@ -292,10 +292,10 @@ function RemoveFromYourLibrary(){
 }
 
 function SetAudioFileById(id){
-    audio.src = `${apiHost}/files/song?songId=${id}`;
+    audio.src = `${api}/files/song?songId=${id}`;
 }
 function SetCoverByPlaylistId(id) {
-    cover.src = `${apiHost}/files/picture/playlist?playlistId=${id}`;
+    cover.src = `${api}/files/picture/playlist?playlistId=${id}`;
 }
 //converts (number)seconds to (string)mm:ss format
 function GetFormattedTime(dur){
@@ -305,7 +305,7 @@ function GetFormattedTime(dur){
 }
 
 async function GetPlaylist(id){
-    return await fetch(`${apiHost}/playlist/${id}`, {
+    return await fetch(`${api}/playlist/${id}`, {
         headers : {
             'Authorization': `Bearer ${getToken()}`
         }
@@ -315,7 +315,7 @@ async function GetPlaylist(id){
 }
 
 async function GetArtistInfo(number) {
-    return await fetch(`${apiHost}/profile/getProfile?userId=${playlist['songs'][number]['userId']}`, {
+    return await fetch(`${api}/profile/getProfile?userId=${currentPlaylist['songs'][number]['userId']}`, {
         headers : {
             'Authorization': `Bearer ${getToken()}`
         }})
@@ -324,5 +324,5 @@ async function GetArtistInfo(number) {
 }
 
 function SetRandomTrack() {
-    SetTrack(Math.floor(Math.random() * playlist['songs'].length));
+    SetTrack(Math.floor(Math.random() * currentPlaylist['songs'].length));
 }
