@@ -32,3 +32,6 @@ function showRandomPlaylists (){
         });
 }
 $(document).ready(showRandomPlaylists);
+$(".home").click(function (){
+    $( document ).ajaxStop(showRandomPlaylists);
+});

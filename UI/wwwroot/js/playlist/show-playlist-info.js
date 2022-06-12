@@ -41,8 +41,16 @@ async function showPlaylistInfo() {
     if (userType !== "Artist")
         userType = "User";
     playlistCreator.href = `/${userType}/${userId}`;
-    tracksAmount.innerText = " • " + playlist['songs'].length + tracksCountWord;;
-
+    tracksAmount.innerText = " • " + playlist['songs'].length + tracksCountWord;
+    document.querySelector('.play-button').addEventListener('click', (e)=>{
+        if (e.target && e.target.classList.contains("active")){
+            UploadTrack(1, playlist['id']);
+        }
+        else
+            Pause();
+    })
+    let playBtn = document.querySelector(".play-button");
+    
     toggleLoading(playlistImage, playlistInfo);
 }
 
