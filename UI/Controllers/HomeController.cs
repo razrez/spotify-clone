@@ -26,6 +26,11 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult YourLibrary()
+    {
+        return View();
+    }
+
     public IActionResult IndexPartial()
     {
         return PartialView("HomePartial/IndexPartial");
@@ -36,6 +41,11 @@ public class HomeController : Controller
         return PartialView("HomePartial/SearchPartial");
     }
 
+    public IActionResult YourLibraryPartial()
+    {
+        return PartialView("HomePartial/YourLibraryPartial");
+    }
+    
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
