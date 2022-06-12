@@ -113,9 +113,12 @@ async function showResult() {
                         fetch(`${api}/user/content/name/${playlist['userId']}`)
                             .then(response => response.json())
                             .then(data => {
+                                console.log(playlist['imgSrc'])
                                 playlistsPlace.appendChild(
                                     new PlaylistCard (
-                                        `${api}/files/picture?playlistId=${playlist['id']}`,
+                                        (playlist['imgSrc']
+                                            ? "" 
+                                            : `${api}/files/picture/playlist?playlistId=${playlist['id']}`),
                                         playlist['title'],
                                         playlistTypes[playlist['playlistType']],
                                         playlist['id'],
@@ -177,7 +180,9 @@ async function showResult() {
                     data.forEach(artist => {
                         artistsPlace.appendChild(
                             new ProfileCard(
-                                `${api}/files/picture/user?userId=${artist['userId']}`,
+                                (artist['profileImg'] 
+                                        ?`${api}/files/picture/user?userId=${artist['userId']}`
+                                        : ""),
                                 artist['username'],
                                 userTypes[artist['userType']],
                                 artist['userId']
@@ -201,7 +206,9 @@ async function showResult() {
                 data.forEach(user => {
                     usersPlace.appendChild(
                         new ProfileCard(
-                            `${api}/files/picture/user?userId=${user['userId']}`,
+                            (user['profileImg']
+                                ?`${api}/files/picture/user?userId=${user['userId']}`
+                                : ""),
                             user['username'],
                             userTypes[user['userType']],
                             user['userId']
