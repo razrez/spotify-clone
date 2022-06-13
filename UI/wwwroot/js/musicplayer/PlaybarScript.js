@@ -126,16 +126,21 @@ shuffleButton.addEventListener("mouseup", function () {
 });
 
 playlistButton.addEventListener("click", function () {
-    if(playlistOpen){
+    /*if(playlistOpen){
         playlistOpen = false;
         playlistButton.firstElementChild.classList.remove("active");
     }
     else {
         playlistOpen = true;
-        playlistButton.firstElementChild.classList.add("active");
-        //TODO get playlist page async!
-        window.location.href = `/Playlist/${currentPlaylist.id}`;
-    }
+        playlistButton.firstElementChild.classList.add("active");*/
+        let currentPath = window.location.pathname;
+        let location = `/Playlist/${currentPlaylist.id}`;
+        if (currentPath !== location){
+            $('#renderBody').load(location +'Partial');
+            window.history.pushState(null, null, location);
+            $( document ).ajaxStop(showPlaylistInfo);
+        }
+    
 });
 
 repeatButton.addEventListener("click", function () {
