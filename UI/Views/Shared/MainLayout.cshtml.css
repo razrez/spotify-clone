@@ -79,6 +79,7 @@ button.accept-policy {
 }
 
 .arrow-nav{
+  cursor: pointer;
   display: flex;
   align-items: center;
   padding-left: 5px;
