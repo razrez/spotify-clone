@@ -1,10 +1,8 @@
-﻿import {api} from '../consts.js';
-
-const Countries = {0: "Russia", 1:"Ukraine", 2:"USA", 3:"Greece"}
+﻿const Countries = {0: "Russia", 1:"Ukraine", 2:"USA", 3:"Greece"}
 const Months = {
     1:"January", 2:"February", 3:"March", 4:"April",
-    5:"May", 6:"June", 7:"June", 8:"August", 9:"September",
-    10:"October", 11:"November", 12:"December",}
+    5:"May", 6:"June", 7:"July", 8:"August", 9:"September",
+    10:"October", 11:"November", 12:"December"}
 
 const setDate = function (date) {
     let parsedDate = date.split('-')
@@ -23,7 +21,6 @@ function getProfile(userId){
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             username.innerText = data["username"]
             email.innerText = data["email"]
             birthdate.innerText = setDate(data["birthday"])
@@ -32,22 +29,10 @@ function getProfile(userId){
         .catch(console.log)
 }
 
-async function getPremium(userId){
-    const response = await fetch(`${api}/profile/user_premium/${userId}`)
-        .then(response => response.json())
-    return await response
-}
-
 function onLoad(){
-    fetch(api + "/auth/validate_token", {
-        method: "GET",
-        headers: {
-            'Authorization': `Bearer ${getToken()}`
-        }
-    }).then(response => response.json()).then(data => {
-        getProfile(data["id"])
-        let premium = getPremium(data["id"]).then(result =>{
-            console.log(result)
+    getClaims().then(result => {
+        getProfile(result["id"])
+        let premium = getUserPremium(result["id"]).then(result =>{
             if(premium != null){
                 document.querySelector("#plan")
                     .appendChild(new PlanCard(result["id"], result["name"], result["description"], result["userCount"], result["price"], true)

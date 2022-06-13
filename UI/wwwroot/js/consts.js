@@ -9,13 +9,3 @@ const playlistTypes = ['Album', 'Single', 'Ep', 'Custom', 'Liked songs'];
 const premiumTypes = ['Individual', 'Student', 'Duo', 'Family', 'Basic'];
 
 const userTypes = ['User', 'Artist', 'Admin'];
-
-
-export {
-    api, 
-    countries,
-    genres,
-    playlistTypes,
-    premiumTypes,
-    userTypes
-}

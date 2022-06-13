@@ -1,5 +1,3 @@
-import {api} from '../consts.js';
-
 function setChange(userId, premiumId){
     const change_btn = document.getElementById('change')
     let formData = new FormData()
@@ -10,28 +8,11 @@ function setChange(userId, premiumId){
             method: 'POST',
             body: formData
         })
-            .then(response => response.json())
-            .then(console.log
-            )
-            .catch(console.log)
         window.location.href = 'Plans'
     })
 }
 
-function getPremium(premiumId){
-    
-    fetch(`${api}/profile/premiums`)
-        .then(response => response.json())
-        .then(data => {
-            data.map(plan =>{
-                if(plan["id"] == premiumId){
-                    document.querySelector("#new-plan")
-                        .appendChild(new PlanCard(plan["id"], plan["name"], plan["description"], plan["userCount"], plan["price"], true)
-                            .render())
-                }
-            })
-        })
-}
+
 
 function onLoad(){
     const queryString = window.location.search;
@@ -46,9 +27,12 @@ function onLoad(){
         .then(response => response.json())
         .then(data =>{
         getPremium(premiumId)
-        console.log(data["id"])
         setChange(data["id"], premiumId)
     })
     
 }
 $( document ).ready(onLoad)
+/*
+$(".plans").click(function (){
+    $( document ).ajaxStop(onLoad);
+});*/
