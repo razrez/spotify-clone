@@ -15,6 +15,7 @@ public class AccountController : Controller
     public IActionResult About() => View();
 
     public IActionResult ChangePassword() => View();
+    public IActionResult ChangePlan(int planId) => View(planId);
     
     #region PartialViews Render
 
