@@ -43,21 +43,21 @@ let volume;
 function UploadTrack(number, playlistId){
     GetPlaylist(playlistId)
         .then(res => currentPlaylist = res)
-        .then(() => SetTrack(number-1))
+        .then(async () => await SetTrack(number-1))
         .then(() => Play());    
 }
 
-function SetTrack(number){
+async function SetTrack(number){
     let artistName;
     GetArtistInfo(number)
-        .then(res => {
+        .then(async res => {
             artistName = res['username'];
             currentSong = {number: number, ...currentPlaylist['songs'][number], artistName: artistName};
-            SetSongInfo(number);
-            SetAudioFileById(currentSong.id);})
+            await SetSongInfo(number);
+            await SetAudioFileById(currentSong.id);})
 }
 
-function SetSongInfo() {
+async function SetSongInfo() {
     SetSliderPosition(trackPosition, 0);
     currentTrackTime.innerText = '0:00';
     SetCoverByPlaylistId(currentPlaylist.id);
@@ -65,7 +65,15 @@ function SetSongInfo() {
     trackName.innerText = currentSong.name;
     artistName.href = `/Artist/${currentSong['userId']}`;
     trackName.href = `/Playlist/${currentSong['originPlaylistId']}`;
-    //TODO liked?
+    let isLiked = await IsSongLiked(currentSong['id']);
+    if(isLiked){
+        liked = true;
+        likeButton.firstElementChild.className = "bi bi-heart-fill";
+    }
+    else {
+        liked = false;
+        likeButton.firstElementChild.className = "bi bi-heart";
+    }
 }
 
 audio.addEventListener('loadeddata', () => {
@@ -150,8 +158,9 @@ repeatButton.addEventListener("click", function () {
 });
 
 forwardButton.addEventListener('click', function () {
-    if(currentPlaylist['songs'][currentSong.number+1]!==undefined)
-        SetTrack(currentSong.number+1);
+    if(currentPlaylist['songs'][currentSong.number+1]!==undefined) {
+        SetTrack(currentSong.number + 1);
+    }
     if (playbackState === replay.Playlist){
         SetTrack(0);
     }
@@ -160,7 +169,7 @@ forwardButton.addEventListener('click', function () {
 backButton.addEventListener('click', () => {
     if(currentPlaylist['songs'][currentSong.number-1]!==undefined)
         SetTrack(currentSong.number-1);
-    if (playbackState === replay.Playlist){
+    else if (playbackState === replay.Playlist){
         SetTrack(currentPlaylist['songs'].length-1);
     }
 })
@@ -282,11 +291,26 @@ function Pause() {
     clearInterval(interval);
 }
 
-function AddToYourLibrary(){
+async function AddToYourLibrary(){
+    let res = await GetUserId();
+    console.log(res);
+    fetch(`${api}/song/likeSong?songId=${currentSong.id}&userId=${res['id']}`, {
+        method: 'POST',
+        headers : {
+            'Authorization': `Bearer ${getToken()}`
+        }})
+        .catch(console.log)
     liked = true;
     likeButton.firstElementChild.className = "bi bi-heart-fill";
 }
-function RemoveFromYourLibrary(){
+async function RemoveFromYourLibrary(){
+    let res = await GetUserId();
+    fetch(`${api}/song/deleteLikeSong?songId=${currentSong.id}&userId=${res['id']}`, {
+        method: 'POST',
+        headers : {
+            'Authorization': `Bearer ${getToken()}`
+        }})
+        .catch(console.log)
     liked = false;
     likeButton.firstElementChild.className = "bi bi-heart";
 }
@@ -321,6 +345,27 @@ async function GetArtistInfo(number) {
         }})
         .then(response => response.json())
         .catch(console.log)
+}
+
+async function IsSongLiked(sid){
+    let res = await GetUserId();
+    return await fetch(`${api}/song/isSongLiked?songId=${sid}&userId=${res['id']}`, {
+        headers : {
+            'Method': 'GET',
+            'Authorization': `Bearer ${getToken()}`
+        }})
+        .then(response => response.json())
+        .then(res => res).catch(console.log)
+    
+}
+
+function GetUserId(){
+    return fetch(`${api}/auth/validate_token`,{
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${getToken()}`
+        }
+    }).then(response => response.json());
 }
 
 function SetRandomTrack() {
