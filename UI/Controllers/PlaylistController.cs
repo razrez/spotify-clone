@@ -9,7 +9,8 @@ public class PlaylistController : Controller
         return View();
     }
     
-    public IActionResult IndexPartial()
+    [Route("playlist/{id}Partial")]
+    public IActionResult IndexPartial(int id)
     {
         return PartialView("PlaylistPartial/IndexPartial");
     }

@@ -10,6 +10,14 @@ $(document).ready(function () {
         $(this).addClass('link-active');
     });
     
+    $('.forward-history').click(function (){
+        window.history.forward();
+    })
+
+    $('.back-history').click(function (){
+        window.history.back();
+    })
+    
     $('.dropbtn').click(function (){
         $('#dropdown').toggleClass("show");
     })
