@@ -32,15 +32,10 @@ function getProfile(userId){
         .catch(console.log)
 }
 
-function getPremium(userId){
-    fetch(`${api}/profile/user_premium/${userId}`)
+async function getPremium(userId){
+    const response = await fetch(`${api}/profile/user_premium/${userId}`)
         .then(response => response.json())
-        .then(data => {
-            console.log(data)
-            return data
-        })
-        .catch(console.log)
-    return null
+    return await response
 }
 
 function onLoad(){
@@ -51,17 +46,18 @@ function onLoad(){
         }
     }).then(response => response.json()).then(data => {
         getProfile(data["id"])
-        let premium = getPremium(data["id"])
-        if(premium != null){
-            document.querySelector("#plan")
-                .appendChild(new PlanCard(data["name"], data["description"], data["userCount"], data["price"], true)
-                    .render())
-        }
-        else
-            document.querySelector("#plan")
-                .appendChild(new PlanCard("Free", "Free Spotify" , 1, 0, true)
-                    .render())
-                
+        let premium = getPremium(data["id"]).then(result =>{
+            console.log(result)
+            if(premium != null){
+                document.querySelector("#plan")
+                    .appendChild(new PlanCard(result["id"], result["name"], result["description"], result["userCount"], result["price"], true)
+                        .render())
+            }
+            else
+                document.querySelector("#plan")
+                    .appendChild(new PlanCard(0, "Free", "Free Spotify" , 1, 0, true)
+                        .render())
+        })
     })
     
 }

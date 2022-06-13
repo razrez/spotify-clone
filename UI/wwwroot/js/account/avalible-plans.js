@@ -18,7 +18,7 @@ function getAvailablePremiums(){
             console.log(data)
             data.map(plan =>{
                 document.querySelector("#plans")
-                    .appendChild(new PlanCard(plan["name"], plan["description"], plan["userCount"], plan["price"], false)
+                    .appendChild(new PlanCard(plan["id"], plan["name"], plan["description"], plan["userCount"], plan["price"], false)
                         .render())
             })
         })
@@ -36,12 +36,12 @@ function onLoad(){
             let premium = getPremium(data["id"])
             if(premium != null){
                 document.querySelector("#plan")
-                    .appendChild(new PlanCard(data["name"], data["description"], data["userCount"], data["price"], true)
+                    .appendChild(new PlanCard(plan["id"], data["name"], data["description"], data["userCount"], data["price"], true)
                         .render())
             }
             else
                 document.querySelector("#plan")
-                    .appendChild(new PlanCard("Free", "Free Spotify" , 1, 0, true)
+                    .appendChild(new PlanCard(0, "Free", "Free Spotify" , 1, 0, true)
                         .render())
         })
     getAvailablePremiums()

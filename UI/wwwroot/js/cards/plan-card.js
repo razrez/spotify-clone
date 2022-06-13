@@ -1,5 +1,6 @@
 class PlanCard{
-    constructor(name, description, account_count, cost, is_bought) {
+    constructor(id, name, description, account_count, cost, is_bought) {
+        this.id = id
         this.name = name
         this.description = description
         this.account_count = account_count
@@ -12,7 +13,7 @@ class PlanCard{
         if(this.account_count > 1)
             accountCountText = `${this.account_count} accounts`;
         let buy_button = `<div class="col-2">
-            <a href="#" class="btn btn-outline-dark border-dark-btn">
+            <a href="/Account/ChangePlan?planId=${this.id}" class="btn btn-outline-dark border-dark-btn">
                 <b>Buy</b>
             </a>
         </div>`
