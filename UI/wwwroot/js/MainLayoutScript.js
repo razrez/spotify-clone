@@ -17,6 +17,22 @@ $(document).ready(function () {
     $('.back-history').click(function (){
         window.history.back();
     })
+
+    fetch(`${api}/auth/validate_token`,{
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${getToken()}`
+        }
+    }).then(response => response.json())
+        .then(res => {
+            $.get(`${api}/user/content/name/${res['id']}`, function (res){
+                console.log(res.name)
+                $('.usernameDrop').text(res.name);
+            });
+            
+        })
+    
+    
     
     $('.dropbtn').click(function (){
         $('#dropdown').toggleClass("show");
