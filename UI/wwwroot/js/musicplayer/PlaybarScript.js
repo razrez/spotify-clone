@@ -166,7 +166,7 @@ forwardButton.addEventListener('click', function () {
     if(currentPlaylist['songs'][currentSong.number+1]!==undefined) {
         SetTrack(currentSong.number + 1);
     }
-    if (playbackState === replay.Playlist){
+    else if (playbackState === replay.Playlist){
         SetTrack(0);
     }
 })
