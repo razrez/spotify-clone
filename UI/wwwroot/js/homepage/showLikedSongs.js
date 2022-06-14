@@ -58,8 +58,9 @@ async function showLikedSongsInfo() {
         else
             Pause();
     })
-
-    toggleLoading(playlistImage, playlistInfo);
+    
+    playlistImage.classList.remove("loading");
+    playlistInfo.classList.remove("loading");
 }
 
 function showSongsLiked(playlist) {
@@ -78,7 +79,8 @@ function showSongsLiked(playlist) {
                     playlist['title'],
                     playlist['id'],
                     "3:02", // TODO: что с этим делать
-                    song["id"])
+                    song["id"],
+                )
                     .render());
         index++;
     })

@@ -192,7 +192,8 @@ async function showResult() {
                                     song['userId'],
                                     song['originPlaylistTitle'],
                                     song['originPlaylistId'],
-                                    "2:28"
+                                    "2:28",
+                                    song['id']
                                 ).render()
                             )
                             index++;
