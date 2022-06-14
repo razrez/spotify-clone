@@ -11,6 +11,7 @@ window.addEventListener("load", showPlaylistInfo)
 $( document ).ajaxStop(showPlaylistInfo);
 
 async function showPlaylistInfo() {
+    songsPlacePlaylist.innerText = "";
     const user = await fetch(`${api}/auth/validate_token`, {
         method: 'GET',
         headers: {
@@ -52,11 +53,13 @@ async function showPlaylistInfo() {
         else
             Pause();
     })
-
-    toggleLoading(playlistImage, playlistInfo);
+    
+    playlistImage.classList.remove("loading");
+    playlistInfo.classList.remove("loading");
 }
 
 function showSongsLiked(playlist) {
+    songsPlacePlaylist.innerText = "";
     if (playlist.length===0) return;
     let index = 1;
     playlist['songs'].forEach(song => {
