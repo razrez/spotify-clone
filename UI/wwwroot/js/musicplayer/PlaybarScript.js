@@ -142,7 +142,6 @@ playlistButton.addEventListener("click", function () {
         if (currentPath !== location){
             $('#renderBody').load(location +'Partial');
             window.history.pushState(null, null, location);
-            $( document ).ajaxStop(showPlaylistInfo);
         }
     
 });
@@ -302,7 +301,6 @@ function Pause() {
 
 async function AddToYourLibrary(){
     let res = await GetUserId();
-    console.log(res);
     fetch(`${api}/song/likeSong?songId=${currentSong.id}&userId=${res['id']}`, {
         method: 'POST',
         headers : {

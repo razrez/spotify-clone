@@ -13,8 +13,10 @@ $(document).ready(function(){
             if(pattern_protocol.test(url)){url = url.replace(pattern_protocol, '');}
             if(pattern_lochost.test(url)){url = url.replace(pattern_lochost, '');}
             //if link is local => return url without http:// or http:// and domain
-            $('#renderBody').load(url+"Partial");
-            window.history.pushState(null, null, url); //change url to keep page after reload
+            if (url !== window.location.pathname){
+                $('#renderBody').load(url+"Partial");
+                window.history.pushState(null, null, url); //change url to keep page after reload
+            }
             return false;
         }else{
             console.log('External link: '+url);

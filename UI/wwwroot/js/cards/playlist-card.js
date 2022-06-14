@@ -31,8 +31,13 @@ class PlaylistCard {
                     UploadTrack(1, this.id);
                 else Pause(e);
             }
-            else
-                window.location.href = `/Playlist/${this.id}`;
+            else{
+                let location = `/Playlist/${this.id}`;
+                $('#renderBody').load(location +'Partial');
+                window.history.pushState(null, null, location);
+                /*$( document ).ajaxStop(showPlaylistInfo);*/
+            }
+                /*window.location.href = `/Playlist/${this.id}`;*/
         });
         
         if (this.user.length > 4) 

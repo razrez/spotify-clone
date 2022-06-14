@@ -1,6 +1,6 @@
-﻿const playlistId = window.location.href.split('/').pop();
-let nickname, userId, userType, playlist;
-const   playlistCreator = document.querySelector(".playlist-creator"),
+﻿var playlistId = window.location.href.split('/').pop();
+var nickname, userId, userType, playlist;
+var   playlistCreator = document.querySelector(".playlist-creator"),
         playlistType = document.querySelector(".playlist-type"),
         playlistName = document.querySelector(".playlist-name"),
         tracksAmount = document.querySelector("#tracks-amount"),
@@ -8,7 +8,8 @@ const   playlistCreator = document.querySelector(".playlist-creator"),
         playlistImage = document.querySelector(".playlist-img"),
         playlistInfo = document.querySelector(".playlist-info");
 
-window.addEventListener("load", showPlaylistInfo)
+window.addEventListener("load", showPlaylistInfo);
+$( document ).ajaxStop(showPlaylistInfo);
 
 async function showPlaylistInfo() {
     await getPlaylistInfo(playlistId)
