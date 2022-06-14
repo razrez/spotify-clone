@@ -26,6 +26,8 @@ public class AccountController : Controller
     public IActionResult PlansPartial() => PartialView("AccountPartial/PlansPartial");
 
     public IActionResult ChangePasswordPartial() => PartialView("AccountPartial/ChangePasswordPartial");
+    
+    public IActionResult EditProfilePartial() => PartialView("AccountPartial/EditProfilePartial");
 
     #endregion
     
