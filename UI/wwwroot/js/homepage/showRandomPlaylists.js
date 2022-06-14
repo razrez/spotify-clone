@@ -1,5 +1,6 @@
 function showRandomPlaylists (){
     let container = document.querySelector(".playlists");
+    container.innerHTML = "";
     let playlistHeader = document.querySelector(".playlists-header");
     
     fetch(api + "/home/random/playlists?count=10",{
@@ -43,7 +44,9 @@ $(window).bind('popstate', function(){
 });
 $(".home").click(function (){
     $( document ).ajaxStop(() => {
+        console.log('stop')
         if (window.location.pathname === '/Home/Index'){
+            console.log('path')
             showRandomPlaylists();
         }
     });

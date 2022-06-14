@@ -1,15 +1,19 @@
 ﻿var playlistId = window.location.href.split('/').pop();
 var nickname, userId, userType, playlist;
-var   playlistCreator = document.querySelector(".playlist-creator"),
-        playlistType = document.querySelector(".playlist-type"),
-        playlistName = document.querySelector(".playlist-name"),
-        tracksAmount = document.querySelector("#tracks-amount"),
-        songsPlacePlaylist = document.querySelector("#songs"),
-        playlistImage = document.querySelector(".playlist-img"),
-        playlistInfo = document.querySelector(".playlist-info");
+var playlistCreator = document.querySelector(".playlist-creator"),
+    playlistType = document.querySelector(".playlist-type"),
+    playlistName = document.querySelector(".playlist-name"),
+    tracksAmount = document.querySelector("#tracks-amount"),
+    songsPlacePlaylist = document.querySelector("#songs"),
+    playlistImage = document.querySelector(".playlist-img"),
+    playlistInfo = document.querySelector(".playlist-info");
 
 window.addEventListener("load", showPlaylistInfo);
-$( document ).ajaxStop(showPlaylistInfo);
+$(document).ajaxComplete(() => {
+    if (window.location.pathname.split('/')[1] === 'Playlist'){
+        showPlaylistInfo();
+    }
+});
 
 async function showPlaylistInfo() {
     await getPlaylistInfo(playlistId)
@@ -64,6 +68,7 @@ async function getPlaylistInfo(id) {
 }
 
 function showSongs(playlist) {
+    songsPlacePlaylist.innerHTML = "";
     let index = 1;
     playlist['songs'].forEach(song => {
         songsPlacePlaylist

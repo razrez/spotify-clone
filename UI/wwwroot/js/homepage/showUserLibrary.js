@@ -1,5 +1,6 @@
 async function showUserLibrary() {
     let container = document.querySelector(".playlists");
+    container.innerHTML = "";
     fetch(`${api}/auth/validate_token`,{
         method: "GET",
         headers: {
