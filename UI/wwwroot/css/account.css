@@ -319,7 +319,9 @@ a.about-link{
     width: fit-content;
     height: 48px;
     padding: 10px 30px 10px 30px;
-    margin-left: 140px;
+    margin-left: 2%;
+    margin-top: 5%;
+    margin-bottom: 6%;
 }
 
 .form-button:hover {
@@ -329,6 +331,7 @@ a.about-link{
 }
 
 .login-button {
+    margin-top: 3%;
     position: relative;
     align-self: center;
 }
@@ -342,12 +345,15 @@ a.about-link{
     padding: 10px;
     width: fit-content;
     height: 50px;
-    text-align: center;
     border: 1px solid gray;
     border-radius: 30px;
     margin-right: 10px;
     margin-top: 20px;
-    margin-left: 215px;
+    margin-left: 6%;
+    font-size: 16px;
+    color: #030303;
+    letter-spacing: 10px;
+    display: revert;
 }
 
 .cancel-form-button:hover {
@@ -357,11 +363,6 @@ a.about-link{
     transform: scale(1.05);
 }
 
-.cancel-form-button {
-    font-size: 16px;
-    color: #030303;
-    letter-spacing: 2px;
-}
 
 .form button{
     align-self: center;
