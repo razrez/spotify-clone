@@ -31,6 +31,12 @@ public class HomeController : Controller
         return View();
     }
 
+    public IActionResult LikedSongs()
+    {
+        return View();
+    }
+    
+    
     public IActionResult IndexPartial()
     {
         return PartialView("HomePartial/IndexPartial");
@@ -44,6 +50,11 @@ public class HomeController : Controller
     public IActionResult YourLibraryPartial()
     {
         return PartialView("HomePartial/YourLibraryPartial");
+    }
+    
+    public IActionResult LikedSongsPartial()
+    {
+        return PartialView("HomePartial/LikedSongsPartial");
     }
     
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
