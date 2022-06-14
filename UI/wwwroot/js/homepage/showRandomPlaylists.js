@@ -1,5 +1,7 @@
 function showRandomPlaylists (){
     let container = document.querySelector(".playlists");
+    let playlistHeader = document.querySelector(".playlists-header");
+    
     fetch(api + "/home/random/playlists?count=10",{
         method: "GET",
         headers : {
@@ -24,11 +26,14 @@ function showRandomPlaylists (){
                                 .render());
                 });
             });
-            toggleLoading(document.querySelector(".playlists-header"));
+            if (playlistHeader.classList.contains("loading")){
+                playlistHeader.classList.remove("loading");
+            };
         });
 }
 
 $(document).ready(showRandomPlaylists);
+
 $(".home").click(function (){
     $( document ).ajaxStop(showRandomPlaylists);
 });
