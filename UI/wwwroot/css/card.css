@@ -106,10 +106,11 @@
 .empty {
     background: rgb(0,0,0);
     background: linear-gradient(320deg, rgba(0,0,0,1) 23%, rgba(29,185,84,1) 100%);
-    width: 152px;
-    height: 145px;
+    width: 200px;
+    height: 200px;
     margin-left: 8px;
     margin-top: 8px;
+    border-radius: 10px;
 }
 
 .watermark.profile {
