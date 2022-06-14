@@ -48,7 +48,6 @@ async function showPlaylistInfo() {
         else
             Pause();
     })
-    let playBtn = document.querySelector(".play-button");
     
     toggleLoading(playlistImage, playlistInfo);
 }

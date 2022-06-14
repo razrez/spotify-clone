@@ -1,5 +1,5 @@
 ﻿var nickname, userId, userType, playlist;
-const playlistCreator = document.querySelector(".playlist-creator"),
+var playlistCreator = document.querySelector(".playlist-creator"),
     playlistType = document.querySelector(".playlist-type"),
     playlistName = document.querySelector(".playlist-name"),
     tracksAmount = document.querySelector("#tracks-amount"),
@@ -8,7 +8,7 @@ const playlistCreator = document.querySelector(".playlist-creator"),
     playlistInfo = document.querySelector(".playlist-info");
 
 window.addEventListener("load", showPlaylistInfo)
-
+$( document ).ajaxStop(showPlaylistInfo);
 
 async function showPlaylistInfo() {
     const user = await fetch(`${api}/auth/validate_token`, {
@@ -22,7 +22,7 @@ async function showPlaylistInfo() {
     });
     
     
-    const songs = await fetch(`${api}/song/getLikedSongs?userId=${user["id"]}`)
+    const playlist = await fetch(`${api}/song/getLikedSongs?userId=${user["id"]}`)
         .then(res => res.json()).then(res => res).catch(console.log)
     
     await getUserProfile(user['id'])
@@ -36,15 +36,15 @@ async function showPlaylistInfo() {
             userType = userTypes[res['userType']];
         });
 
-    showSongs(songs)
+    showSongsLiked(playlist)
 
-    let tracksCountWord = songs.length !== 1 ? " tracks" : " track";
+    let tracksCountWord = playlist['songs'].length !== 1 ? " tracks" : " track";
     
     playlistCreator.innerText = nickname;
     if (userType !== "Artist")
         userType = "User";
     playlistCreator.href = `/${userType}/${userId}`;
-    tracksAmount.innerText = " • " + songs.length + tracksCountWord;
+    tracksAmount.innerText = " • " + playlist['songs'].length + tracksCountWord;
     document.querySelector('.play-button').addEventListener('click', (e)=>{
         if (e.target && e.target.classList.contains("active")){
             UploadTrack(1, playlist['id']);
@@ -56,10 +56,10 @@ async function showPlaylistInfo() {
     toggleLoading(playlistImage, playlistInfo);
 }
 
-function showSongs(playlist) {
+function showSongsLiked(playlist) {
     if (playlist.length===0) return;
     let index = 1;
-    playlist.forEach(song => {
+    playlist['songs'].forEach(song => {
         songsPlacePlaylist
             .appendChild(
                 new SongCard(
