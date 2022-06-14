@@ -77,10 +77,8 @@ function showSongs(playlist) {
                     playlist['title'],
                     playlist['id'],
                     "3:02", // TODO: что с этим делать
-                    song["id"]) 
+                    song["id"])
                     .render());
         index++;
     })
 }
-
-

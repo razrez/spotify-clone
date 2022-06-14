@@ -15,21 +15,47 @@
         const songCard = document.createElement("div");
         songCard.className = "song-card";
         songCard.addEventListener("click", function(e) {
-            if (e.target && e.target.classList.contains("bi-three-dots")) {
-                let menu = document.querySelector(".popup-menu");
-                if (menu.style.display === "block")
-                    menu.style.display = "none";
-                else {
-                    menu.style.display = "block";
-                }
+            // if (e.target && e.target.classList.contains("bi-three-dots")) {
+            //     let menu = document.querySelector(".popup-menu");
+            //     if (menu.style.display === "block")
+            //         menu.style.display = "none";
+            //     else {
+            //         menu.style.display = "block";
+            //     }
+            // }
+            
+            if (e.target && e.target.classList.contains("like-btn")) {
+                let userId;
+                fetch(`${api}/auth/validate_token`, {
+                    headers: {"Authorization": `Bearer ${getToken()}`}
+                })
+                    .then(response => response.json())
+                    .then(res => {
+                        userId = res['id'];
+                        fetch(`${api}/song/likeSong?songId=${e.target.id}&userId=${userId}`,{
+                            method: 'POST',
+                        })
+                            .then(res => {
+                                if (res.status===400) {
+                                    fetch(`${api}/song/deleteLikeSong?songId=${e.target.id}&userId=${userId}`, {
+                                        method: 'POST'
+                                    })
+                                        .then(() => alert("You removed song from favourites"))
+                                        .catch(console.log)
+                                }
+                                else {
+                                    alert("You added this song to your favourite songs")
+                                }
+                        })
+                            .catch(console.log)
+                    })
             }
         });
 
-        // window.addEventListener("click", function (e){
-        //     if (e.target && !e.target.classList.contains("bi-three-dots")) {
-        //         document.querySelector(".popup-menu").style.display = "none";
-        //     }
-        // }) // TODO: three dots menu
+        // document.querySelector(`#track${this.trackId}`).addEventListener("click", (e) => {
+        //     fetch(`${api}/song/likeSong?songId=${this.trackId}&userId=${this.currentUser}`)
+        //         .catch(console.log)
+        // });
         
         songCard.innerHTML = `
             <div class="song-number">
@@ -55,10 +81,8 @@
             </div>
             <div class="song-time">
                 <span class="me-3">${this.time}</span>              
-                <button class="like-btn" id="like-btn">
-                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                    </svg>
+                <button id="${this.trackId}" class="like-btn" id="like-btn">
+                    <i class="bi bi-heart"></i>
                 </button>
                 <button class="three-dots-menu">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-three-dots" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +95,13 @@
 <!--                </div> //TODO : three dots menu-->
             </div>
         `;
-        
+
+        // window.addEventListener("click", function (e){
+        //     if (e.target && !e.target.classList.contains("like-btn")) {
+        //         document.querySelector(".popup-menu").style.display = "none";
+        //     }
+        // })
+
         let play_btn = songCard.querySelector(".play-btn");
         play_btn.addEventListener("click", () => {
             /*UploadTrack(this.number, this.img, this.name, this.artist,
