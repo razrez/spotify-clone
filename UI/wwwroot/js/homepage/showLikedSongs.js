@@ -1,4 +1,4 @@
-﻿let nickname, userId, userType, playlist;
+﻿var nickname, userId, userType, playlist;
 const playlistCreator = document.querySelector(".playlist-creator"),
     playlistType = document.querySelector(".playlist-type"),
     playlistName = document.querySelector(".playlist-name"),
@@ -57,7 +57,6 @@ async function showPlaylistInfo() {
 }
 
 function showSongs(playlist) {
-    console.log(playlist)
     if (playlist.length===0) return;
     let index = 1;
     playlist.forEach(song => {

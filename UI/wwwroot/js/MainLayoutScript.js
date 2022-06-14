@@ -26,7 +26,6 @@ $(document).ready(function () {
     }).then(response => response.json())
         .then(res => {
             $.get(`${api}/user/content/name/${res['id']}`, function (res){
-                console.log(res.name)
                 $('.usernameDrop').text(res.name);
             });
             
