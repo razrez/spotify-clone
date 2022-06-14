@@ -7,11 +7,16 @@ var playlistCreator = document.querySelector(".playlist-creator"),
     playlistImage = document.querySelector(".playlist-img"),
     playlistInfo = document.querySelector(".playlist-info");
 
-window.addEventListener("load", showPlaylistInfo)
-$( document ).ajaxStop(showPlaylistInfo);
+window.addEventListener("load", showLikedSongsInfo);
+    $( document ).ajaxStop(() => {
+        console.log('load')
+        if (window.location.pathname === '/Home/LikedSongs'){
+            showLikedSongsInfo();
+            console.log('init')
+        }
+    });
 
-async function showPlaylistInfo() {
-    songsPlacePlaylist.innerText = "";
+async function showLikedSongsInfo() {
     const user = await fetch(`${api}/auth/validate_token`, {
         method: 'GET',
         headers: {
@@ -59,7 +64,7 @@ async function showPlaylistInfo() {
 }
 
 function showSongsLiked(playlist) {
-    songsPlacePlaylist.innerText = "";
+    songsPlacePlaylist.innerHTML = "";
     if (playlist.length===0) return;
     let index = 1;
     playlist['songs'].forEach(song => {
