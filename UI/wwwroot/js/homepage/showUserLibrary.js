@@ -31,7 +31,19 @@ async function showUserLibrary() {
 }
 
 $(document).ready(showUserLibrary);
-$(".home").click(function (){
-    $( document ).ajaxStop(showUserLibrary);
+
+$(window).bind('popstate', function(){
+    $( document ).ajaxStop(() => {
+        if (window.location.pathname === '/Home/YourLibrary'){
+            showUserLibrary();
+        }
+    });
+});
+$(".uLib").click(function (){
+    $( document ).ajaxStop(() => {
+        if (window.location.pathname === '/Home/YourLibrary'){
+            showUserLibrary();
+        }
+    });
 });
 

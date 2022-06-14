@@ -34,6 +34,17 @@ function showRandomPlaylists (){
 
 $(document).ready(showRandomPlaylists);
 
+$(window).bind('popstate', function(){
+    $( document ).ajaxStop(() => {
+        if (window.location.pathname === '/Home/Index'){
+            showRandomPlaylists();
+        }
+    });
+});
 $(".home").click(function (){
-    $( document ).ajaxStop(showRandomPlaylists);
+    $( document ).ajaxStop(() => {
+        if (window.location.pathname === '/Home/Index'){
+            showRandomPlaylists();
+        }
+    });
 });
