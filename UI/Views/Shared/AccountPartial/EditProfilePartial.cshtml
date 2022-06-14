@@ -15,7 +15,7 @@
                 <input type="password" placeholder="repeat" required id="new-password-confirm"/>
             </div>
             <br/>
-            <button type="submit" class="form-button login-button" id="sendButton">SET NEW PASSWORD</button>
+            <button type="submit" class="form-button login-button">SET NEW PASSWORD</button>
             <div class="cancel-form-button">
                 <div class="spotify-form-text">cancel</div>
             </div>
@@ -23,35 +23,3 @@
     </div>
     <br/>
 </div>
-<script>
-let form = document.getElementById('change-password');
-
-form.addEventListener("submit", function(event) {
-    event.preventDefault();
-    getClaims().then(claims => {
-        const passwordData = {
-            userId: claims['id'],
-            oldPassword: event.target['password'],
-            newPassword: event.target['new-password']
-        };
-    })
-    alert('aet');
-    console.log(event.target['password']);
-})
-
-const asyncGetUserName = async () => {
-    try 
-    {
-        getClaims().then(claims => 
-        {
-            let userId = claims['id'];
-            console.log(userId);
-        })
-    }
-    catch (error)
-    {
-        console.log(error);
-    }
-}
-
-</script>
