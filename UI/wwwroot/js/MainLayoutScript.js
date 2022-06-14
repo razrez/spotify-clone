@@ -266,3 +266,6 @@ function setHeaders() {
 
     headerNothing.style.display = "none";
 }
+
+document.querySelector("#logout").addEventListener("click", () =>
+    document.cookie=".AspNetCore.Connection.Token=; path=/;");
