@@ -29,7 +29,7 @@ function getProfile(userId){
         .catch(console.log)
 }
 
-function  vonLoad(){
+function onLoad(){
     getClaims().then(result => {
         getProfile(result["id"])
         let premium = getUserPremium(result["id"]).then(result =>{
