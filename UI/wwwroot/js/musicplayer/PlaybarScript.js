@@ -41,6 +41,10 @@ let volume;
 /*          set audio           */
 
 function UploadTrack(number, playlistId){
+    if (!getToken()){
+        window.location.href = "/Account/Login";
+        return;
+    }
     GetPlaylist(playlistId)
         .then(res => currentPlaylist = res)
         .then(async () => await SetTrack(number-1))
