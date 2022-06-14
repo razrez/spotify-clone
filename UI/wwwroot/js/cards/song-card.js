@@ -23,22 +23,29 @@
             //         menu.style.display = "block";
             //     }
             // }
+            
             if (e.target && e.target.classList.contains("like-btn")) {
+                let userId;
                 fetch(`${api}/auth/validate_token`, {
                     headers: {"Authorization": `Bearer ${getToken()}`}
                 })
                     .then(response => response.json())
                     .then(res => {
-                        fetch(`${api}/song/likeSong?songId=${e.target.id}&userId=${res['id']}`,{
+                        userId = res['id'];
+                        fetch(`${api}/song/likeSong?songId=${e.target.id}&userId=${userId}`,{
                             method: 'POST',
                         })
-                            .then(res => res.json()).then(res => {
-                            if(res.status===400) {
-                                alert("You already have this song")
-                            }
-                            else {
-                                alert("You added this song to your liked songs")
-                            }
+                            .then(res => {
+                                if (res.status===400) {
+                                    fetch(`${api}/song/deleteLikeSong?songId=${e.target.id}&userId=${userId}`, {
+                                        method: 'POST'
+                                    })
+                                        .then(() => alert("You removed song from favourites"))
+                                        .catch(console.log)
+                                }
+                                else {
+                                    alert("You added this song to your favourite songs")
+                                }
                         })
                             .catch(console.log)
                     })
