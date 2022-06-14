@@ -16,7 +16,11 @@ async function showPlaylistInfo() {
         headers: {
             'Authorization': `Bearer ${getToken()}`
         }
-    }).then(response => response.json()).then(res => res).catch(console.log);
+    }).then(response => response.json()).then(res => res).catch(() => {
+        history.pushState(null, '', "/");
+        window.location.href = "/Account/Login";
+    });
+    
     
     const songs = await fetch(`${api}/song/getLikedSongs?userId=${user["id"]}`)
         .then(res => res.json()).then(res => res).catch(console.log)

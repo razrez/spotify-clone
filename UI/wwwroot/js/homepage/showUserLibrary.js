@@ -22,6 +22,10 @@ async function showUserLibrary() {
                         )   
                     })
                 })
+        })
+        .catch(() => {
+            history.pushState(null, '', "/");
+            window.location.href = "/Account/Login";
         });
     toggleLoading(document.querySelector(".playlists-header"))
 }
