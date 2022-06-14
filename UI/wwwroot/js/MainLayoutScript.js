@@ -28,16 +28,29 @@ $(document).ready(function () {
             $.get(`${api}/user/content/name/${res['id']}`, function (res){
                 $('.usernameDrop').text(res.name);
             });
-            
+            document.querySelector('.profile-img').src = `${api}/files/picture/user?userId=${res['id']}`;
         })
     
     
     
-    $('.dropbtn').click(function (){
+    $('.dropbtn').click(function (e){
+        console.log('gener')
         $('#dropdown').toggleClass("show");
     })
-    $(window).click(function () {
-        if (!event.target.matches('.dropbtn')) {
+    /*$('.profile-img').click(function (e){
+        console.log('img')
+        $('#dropdown').toggleClass("show");
+    })
+    $('.usernameDrop').click(function (e){
+        console.log('name')
+        $('#dropdown').toggleClass("show");
+    })
+    $('.dropIco').click(function (e){
+        console.log('ico')
+        $('#dropdown').toggleClass("show");
+    })*/
+    $(window).click(function (e) {
+        if (!e.target.matches('.dropbtn') && !e.target.matches('.profile-img') && !e.target.matches('.usernameDrop') && !e.target.matches('.dropIco')) {
             let dropdowns = $(".dropdown-content");
             let i;
             for (i = 0; i < dropdowns.length; i++) {
