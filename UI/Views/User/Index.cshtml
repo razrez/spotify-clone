@@ -24,6 +24,9 @@
         </div>
         <div class="user-releases">
             <div class="content-header">
+                <div class="playlists-header loading">
+                        <p style="width: 500px">Your playlists</p>
+                </div>
                 <div class="content-block">
                     <a class="content-type">Public Playlists</a>
                 </div>
@@ -33,16 +36,8 @@
         </div>
     </div>
 </div>
-<script src="~/js/play-button.js"></script>
-@* CARDS MOCKS and EXAMPLES of USAGE also in src*@
-<script src="~/js/cards/playlist-card.js"></script>
-<script src="~/js/cards/profile-card.js"></script>
-<script>
-        /*document.querySelector("#playlists")
-                    .appendChild(new PlaylistCard("", "Title", "PLAYLIST", 6, "punkRelique")
-                    .render());*/
-        
-</script>
+@*<script src="~/js/play-button.js"></script>*@
+<script src="~/js/getUserProfile.js"></script>
 <script>
 async function showUserLibrary() {
     let container = document.getElementById('playlists');
@@ -81,18 +76,17 @@ $(document).ready(showUserLibrary);
 
 $(window).bind('popstate', function(){
     $( document ).ajaxStop(() => {
-        if (window.location.pathname === '/Home/YourLibrary'){
+        if (window.location.pathname === '/User/Index'){
             showUserLibrary();
         }
     });
 });
 $(".uLib").click(function (){
     $( document ).ajaxStop(() => {
-        if (window.location.pathname === '/Home/YourLibrary'){
+        if (window.location.pathname === '/User/Index'){
             showUserLibrary();
         }
     });
 });
-
-
 </script>
+
