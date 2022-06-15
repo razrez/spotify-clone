@@ -15,7 +15,7 @@
             <div class="block-info">
                 <div class="type">PROFILE</div>
                 <div class="user-name">Salavat Gilyazetdinov</div>
-                <div class="short-content">1 Public Playlists</div>
+                <div class="short-content" id="count">1 Public Playlists</div>
             </div>
         </div>
     </div> 
@@ -51,6 +51,7 @@ async function showUserLibrary() {
             await fetch(`${api}/user/content/playlists/${res['id']}`)
                 .then(response => response.json())
                 .then(playlists => {
+                    let count = 0;
                     playlists.map(playlist => {
                         container.appendChild(new PlaylistCard(
                             (playlist['imgSrc'] ?? ""),
@@ -59,8 +60,11 @@ async function showUserLibrary() {
                             playlist['id'],
                             (playlist['username'] ?? playlist['userId']))
                             .render()
-                        )   
+                        ) 
+                        count+=1;  
                     })
+                    let test = count > 1 ? ' Public Playlists' : ' Public Playlist';
+                    document.getElementById('count').innerHTML = count + test;
                 })
         })
         .catch(() => {
