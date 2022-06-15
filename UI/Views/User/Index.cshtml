@@ -38,9 +38,9 @@
 <script src="~/js/cards/playlist-card.js"></script>
 <script src="~/js/cards/profile-card.js"></script>
 <script>
-        document.querySelector("#playlists")
+        /*document.querySelector("#playlists")
                     .appendChild(new PlaylistCard("", "Title", "PLAYLIST", 6, "punkRelique")
-                    .render());
+                    .render());*/
         
 </script>
 <script>
@@ -55,7 +55,7 @@ async function showUserLibrary() {
         })
         .then(response => response.json())
         .then(async res => {
-            await fetch(`${api}/playlist/library/user/${res['id']}`)
+            await fetch(`${api}/user/content/playlists/${res['id']}`)
                 .then(response => response.json())
                 .then(playlists => {
                     playlists.map(playlist => {
