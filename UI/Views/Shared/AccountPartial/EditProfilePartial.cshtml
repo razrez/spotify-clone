@@ -6,24 +6,28 @@
                 <label for="email">Email</label><br/>
                 <input value="" type="email" required id="email" autofocus="autofocus"/>
             </div>
+            <div class="form-field">
+                <label for="username">Username</label><br/>
+                <input value="" type="text" required id="username" />
+            </div>
 
             <div class="form-field">
                 <div class="form-row-3">
-                    <label for="date">day:</label><br/>
-                    <input type="number" value="10" min="1" max="31" required minlength="8" id="date"/>
+                    <label for="day">day:</label><br/>
+                    <input type="number" min="1" max="31" required minlength="8" id="day"/>
                     
                     <label for="month">month:</label><br/>
-                    <input type="number" value="11" min="1" max="12" required minlength="8" id="month"/>
+                    <input type="number" min="1" max="12" required minlength="8" id="month"/>
                     
                     <label for="year">year:</label><br/>
-                    <input type="number" value="2001" min="1900" max="3000" required minlength="8" id="year"/>
+                    <input type="number" min="1900" max="3000" required minlength="8" id="year"/>
                 </div>
             </div>
             
             <div class="form-field" style="width: 42%">
                 <label>Country</label>
                 <br/>
-                <select>
+                <select id="country">
                     <option value="0">Russia</option>
                     <option value="1">Ukraine</option>
                     <option value="2">Usa</option>
@@ -42,49 +46,45 @@
     <br/>
 </div>
 <script>
+document.getElementById('edit-profile').addEventListener('submit', async event => {
+    event.preventDefault();
+    const myData = {
+        email: event.target['email'].value,
+        username: event.target['username'].value,
+        country: event.target['country'].value,
+        birthday: event.target['day'].value + '.' + event.target['month'].value + '.' + event.target['year'].value
+    };
+    await loadData()
+    //console.log(myData);
+});
 
-
-let email = document.getElementById("email")
-let birthdate = document.getElementById("birthdate")
-let country = document.getElementById("country")
-let form = new FormData(document.getElementById('edit-profile')).get('date');
-document.getElementById('edit-profile')
-    .addEventListener("submit", async function(event) {
-        event.preventDefault();
-        await getClaims().then( async claims => {
-            const apiUrl = "https://localhost:7030/api/profile/password/change";
-            const changeData = {
-                userId: claims['id'],
-                oldPassword: event.target['password'].value,
-                newPassword: event.target['new-password'].value
-            };
-            try {
-                await changePasswordAsync(apiUrl, changeData)
-                    .then((data) => {
-                        console.log(data);
-                        document.querySelector("#result").appendChild(data);
-                    });
-            }
-            catch (error){
-                console.log('wrong password');
-                document.getElementById('result').innerHTML = "wrong credentials or new password isn't safe";
-                document.getElementById('reset').click();
-                //window.location.reload();
-            }
-
-    });
-})
-/*fetch(`${api}/profile/getProfile?userId=${userId}`, {
-    headers : {
-        'Authorization': `Bearer ${getToken()}`
-    }
-})
-    .then(response => response.json())
-    .then(data => {
-        username.innerText = data["username"]
-        email.innerText = data["email"]
-        birthdate.innerText = setDate(data["birthday"])
-        country.innerText = Countries[data["country"]]
+async function loadData(){
+    let username = document.getElementById("username")
+    let email = document.getElementById("email")
+    let day = document.getElementById("day")
+    let month = document.getElementById("month")
+    let year = document.getElementById("year")
+    let country = document.getElementById("country")
+    await getClaims().then(async claims =>{
+        await fetch(`${api}/profile/getProfile?userId=${claims['id']}`, {
+                headers : {
+                    'Authorization': `Bearer ${getToken()}`
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                let currentData = data["birthday"].split('-');
+                console.log(currentData)
+                
+                username.value = data["username"]
+                email.value = data["email"]
+                day.value = currentData[2].replace('0','');
+                month.value = currentData[1].replace('0','');
+                year.value = currentData[0]
+                country.value = data["country"]
+            })
+            .catch(console.log)
     })
-    .catch(console.log)*/
+    
+}
 </script>
