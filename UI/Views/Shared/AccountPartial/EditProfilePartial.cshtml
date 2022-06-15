@@ -52,26 +52,31 @@ window.onload = async function() {
 
 document.getElementById('edit-profile').addEventListener('submit', async event => {
     event.preventDefault();
-    const myData = {
-        email: event.target['email'].value,
-        username: event.target['username'].value,
-        country: event.target['country'].value,
-        birthday: event.target['day'].value + '.' + event.target['month'].value + '.' + event.target['year'].value
-    };
-    const changePasswordUrl = "https://localhost:7030/api/profile/changeProfile";
-    try {
-        await loadData(changePasswordUrl, changeData)
-            .then(async (data) => {
-                console.log(data);
-            });
-    }
-    catch (error){
-        console.log('fail for changing profile');
-        await loadData()
-        //window.location.reload();
-    }
-    //await loadData()
-    //console.log(myData);
+    await getClaims().then( async claims => {
+            const changeProfileUrl = "https://localhost:7030/api/profile/change";
+            const myData = {
+                userId: claims['id'],
+                email: event.target['email'].value,
+                username: event.target['username'].value,
+                country: event.target['country'].value,
+                birthday: event.target['year'].value + '.' + event.target['month'].value + '.' + event.target['day'].value
+            };
+            try {
+                await putData(changeProfileUrl, myData)
+                    .then(async (data) => {
+                        console.log(data);
+                        await loadData();
+                    });
+            }
+            catch (error){
+                console.log('fail for changing profile');
+                await loadData()
+                console.log(myData)
+                //window.location.reload();
+            }
+            //await loadData()
+            //console.log(myData);
+    });
 });
 
 async function loadData(){
@@ -94,7 +99,7 @@ async function loadData(){
                 
                 username.value = data["username"]
                 email.value = data["email"]
-                day.value = currentData[2].replace('0','');
+                day.value = currentData[2];
                 month.value = currentData[1].replace('0','');
                 year.value = currentData[0]
                 country.value = data["country"]
@@ -103,14 +108,14 @@ async function loadData(){
     })
 }
     
-async function postData (url, data) {
+async function putData (url, data) {
     const response = await fetch( url, {
-        method: 'POST',
+        method: 'PUT',
         headers : {
             'Content-Type': 'application/json'
             //'Authorization': `Bearer ${getToken()}`
         },
-        form: JSON.stringify(data)
+        body: JSON.stringify(data)
     });
 
     if (response.status > 300){
