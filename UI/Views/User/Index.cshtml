@@ -20,7 +20,7 @@
     </div> 
     <div class="user-body">
         <div class="user-interaction">
-            <a href="/account/editprofile" class="edit-button" style="color: white; text-underline: none">EDIT PROFILE</a>
+            <a href="/account/editprofile" class="edit-button" style="color: white">EDIT PROFILE</a>
         </div>
         <div class="user-releases">
             <div class="content-header">
@@ -33,3 +33,66 @@
         </div>
     </div>
 </div>
+<script src="~/js/play-button.js"></script>
+@* CARDS MOCKS and EXAMPLES of USAGE also in src*@
+<script src="~/js/cards/playlist-card.js"></script>
+<script src="~/js/cards/profile-card.js"></script>
+<script>
+        document.querySelector("#playlists")
+                    .appendChild(new PlaylistCard("", "Title", "PLAYLIST", 6, "punkRelique")
+                    .render());
+        
+</script>
+<script>
+async function showUserLibrary() {
+    let container = document.getElementById('playlists');
+    container.innerHTML = "";
+    fetch(`${api}/auth/validate_token`,{
+        method: "GET",
+        headers: {
+            "Authorization": `Bearer ${getToken()}`
+        }
+        })
+        .then(response => response.json())
+        .then(async res => {
+            await fetch(`${api}/playlist/library/user/${res['id']}`)
+                .then(response => response.json())
+                .then(playlists => {
+                    playlists.map(playlist => {
+                        container.appendChild(new PlaylistCard(
+                            (playlist['imgSrc'] ?? ""),
+                            playlist['title'],
+                            playlistTypes[playlist['playlistType']],
+                            playlist['id'],
+                            (playlist['username'] ?? playlist['userId']))
+                            .render()
+                        )   
+                    })
+                })
+        })
+        .catch(() => {
+            history.pushState(null, '', "/");
+            window.location.href = "/Account/Login";
+        });
+    toggleLoading(document.querySelector(".playlists-header"))
+}
+
+$(document).ready(showUserLibrary);
+
+$(window).bind('popstate', function(){
+    $( document ).ajaxStop(() => {
+        if (window.location.pathname === '/Home/YourLibrary'){
+            showUserLibrary();
+        }
+    });
+});
+$(".uLib").click(function (){
+    $( document ).ajaxStop(() => {
+        if (window.location.pathname === '/Home/YourLibrary'){
+            showUserLibrary();
+        }
+    });
+});
+
+
+</script>
