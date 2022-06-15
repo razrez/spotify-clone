@@ -1,21 +1,28 @@
-﻿<div class="container mt-5 ms-4" style="flex-wrap: wrap; display: flex; flex-direction: column">
-    <h1><b>Change your password</b></h1>
+﻿<div class="container mt-5 ms-4" >
+    <h1><b>Edit your profile</b></h1>
     <div class="form">
         <form id="edit-profile">
             <div class="form-field">
                 <label for="email">Email</label><br/>
                 <input value="" type="email" required id="email" autofocus="autofocus"/>
             </div>
-            <div class="form-field ">
-                <label for="new-email">Confirm password</label><br/>
-                <input type="password" class="" placeholder="confirm password" required minlength="8" id="new-email"/>
+
+            <div class="form-field">
+                <div class="form-row-3">
+                    <label for="date">day:</label><br/>
+                    <input type="number" value="10" min="1" max="31" required minlength="8" id="date"/>
+                    
+                    <label for="month">month:</label><br/>
+                    <input type="number" value="11" min="1" max="12" required minlength="8" id="month"/>
+                    
+                    <label for="year">year:</label><br/>
+                    <input type="number" value="2001" min="1900" max="3000" required minlength="8" id="year"/>
+                </div>
             </div>
-            <div class="form-field ">
-                <label for="birth">Date of birth</label><br/>
-                <input type="date" value="10/12/2001" placeholder="new password" required minlength="8" id="birth"/>
-            </div>
-            <div class="form-field ">
-                <label>Country</label><br/>
+            
+            <div class="form-field" style="width: 42%">
+                <label>Country</label>
+                <br/>
                 <select>
                     <option value="0">Russia</option>
                     <option value="1">Ukraine</option>
@@ -23,9 +30,9 @@
                     <option value="3">Greece</option>
                 </select>
             </div>
-            <hr style="width: 70%; margin-top: 3%"/>
+            <hr style="width: 28%; margin-top: 3%"/>
             <div class="flex-lg-row">
-                <button type="submit" class="form-button" id="sendButton">SET NEW PASSWORD</button>
+                <button type="submit" class="form-button" id="sendButton">SAVE PROFILE</button>
                 <button type="reset" class="cancel-form-button" id="reset">
                     <div class="spotify-form-text">X</div>
                 </button>
@@ -37,4 +44,47 @@
 <script>
 
 
+let email = document.getElementById("email")
+let birthdate = document.getElementById("birthdate")
+let country = document.getElementById("country")
+let form = new FormData(document.getElementById('edit-profile')).get('date');
+document.getElementById('edit-profile')
+    .addEventListener("submit", async function(event) {
+        event.preventDefault();
+        await getClaims().then( async claims => {
+            const apiUrl = "https://localhost:7030/api/profile/password/change";
+            const changeData = {
+                userId: claims['id'],
+                oldPassword: event.target['password'].value,
+                newPassword: event.target['new-password'].value
+            };
+            try {
+                await changePasswordAsync(apiUrl, changeData)
+                    .then((data) => {
+                        console.log(data);
+                        document.querySelector("#result").appendChild(data);
+                    });
+            }
+            catch (error){
+                console.log('wrong password');
+                document.getElementById('result').innerHTML = "wrong credentials or new password isn't safe";
+                document.getElementById('reset').click();
+                //window.location.reload();
+            }
+
+    });
+})
+/*fetch(`${api}/profile/getProfile?userId=${userId}`, {
+    headers : {
+        'Authorization': `Bearer ${getToken()}`
+    }
+})
+    .then(response => response.json())
+    .then(data => {
+        username.innerText = data["username"]
+        email.innerText = data["email"]
+        birthdate.innerText = setDate(data["birthday"])
+        country.innerText = Countries[data["country"]]
+    })
+    .catch(console.log)*/
 </script>

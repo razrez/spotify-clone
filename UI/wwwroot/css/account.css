@@ -273,6 +273,22 @@ a.about-link{
     display: block;
 }
 
+.form-row-3 {
+    display: inline-flex;
+    margin-top: 3%;
+    align-items: center;
+    width: 50%;
+}
+
+.form-row-3 input {
+    margin-left: 1%;
+    margin-right: 3%;
+}
+.form-row-3 label{
+    margin-right: 2px;
+    align-items: center;
+}
+
 .form-field input, select {
     width: 70%;
     height: 50px;
