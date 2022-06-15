@@ -46,6 +46,10 @@
     <br/>
 </div>
 <script>
+window.onload = async function() {
+    await loadData();
+};
+
 document.getElementById('edit-profile').addEventListener('submit', async event => {
     event.preventDefault();
     const myData = {
@@ -54,7 +58,19 @@ document.getElementById('edit-profile').addEventListener('submit', async event =
         country: event.target['country'].value,
         birthday: event.target['day'].value + '.' + event.target['month'].value + '.' + event.target['year'].value
     };
-    await loadData()
+    const changePasswordUrl = "https://localhost:7030/api/profile/changeProfile";
+    try {
+        await loadData(changePasswordUrl, changeData)
+            .then(async (data) => {
+                console.log(data);
+            });
+    }
+    catch (error){
+        console.log('fail for changing profile');
+        await loadData()
+        //window.location.reload();
+    }
+    //await loadData()
     //console.log(myData);
 });
 
@@ -74,7 +90,7 @@ async function loadData(){
             .then(response => response.json())
             .then(data => {
                 let currentData = data["birthday"].split('-');
-                console.log(currentData)
+                //console.log(currentData)
                 
                 username.value = data["username"]
                 email.value = data["email"]
@@ -85,6 +101,22 @@ async function loadData(){
             })
             .catch(console.log)
     })
+}
     
+async function postData (url, data) {
+    const response = await fetch( url, {
+        method: 'POST',
+        headers : {
+            'Content-Type': 'application/json'
+            //'Authorization': `Bearer ${getToken()}`
+        },
+        form: JSON.stringify(data)
+    });
+
+    if (response.status > 300){
+        throw new Error();
+    }
+
+    return await response.json();
 }
 </script>
